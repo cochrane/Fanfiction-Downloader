@@ -195,7 +195,7 @@ static NSArray *genres = nil;
 		return NO;
 	}
 	NSArray *pathComponents = storyURL.pathComponents;
-	if (pathComponents.count < 3 || ![pathComponents[1] isEqual:@"s"])
+	if (pathComponents.count < 3 || ![[pathComponents objectAtIndex:1] isEqual:@"s"])
 	{
 		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
 						  NSLocalizedDescriptionKey : NSLocalizedString(@"Not a story URL", @"Path doesn't start with /s/ or is too short"),
@@ -203,7 +203,7 @@ static NSArray *genres = nil;
 		return NO;
 	}
 	
-	NSInteger storyID = [pathComponents[2] integerValue];
+	NSInteger storyID = [[pathComponents objectAtIndex:2] integerValue];
 	if (storyID == 0)
 	{
 		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
@@ -220,8 +220,8 @@ static NSArray *genres = nil;
 + (NSUInteger)storyIDFromURL:(NSURL *)storyURL
 {
 	NSArray *pathComponents = storyURL.pathComponents;
-	if (pathComponents.count < 3 || ![pathComponents[1] isEqual:@"s"]) return 0;
-	return (NSUInteger) [pathComponents[2] integerValue];
+	if (pathComponents.count < 3 || ![[pathComponents objectAtIndex:1] isEqual:@"s"]) return 0;
+	return (NSUInteger) [[pathComponents objectAtIndex:2] integerValue];
 }
 
 + (BOOL)URLisValidAndExistsForStory:(NSURL *)storyURL errorDescription:(NSError * __autoreleasing *)error

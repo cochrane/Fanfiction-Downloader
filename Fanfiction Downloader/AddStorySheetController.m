@@ -13,7 +13,7 @@
 @interface AddStorySheetController ()
 
 @property (copy, nonatomic) void (^completionHandler)(BOOL haveStory, NSUInteger storyID);
-@property (weak, nonatomic) NSWindow *parentWindow;
+@property (retain, nonatomic) NSWindow *parentWindow;
 
 - (void)showError:(NSError *)error;
 
