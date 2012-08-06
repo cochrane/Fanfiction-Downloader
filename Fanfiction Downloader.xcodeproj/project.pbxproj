@@ -33,7 +33,6 @@
 		52B7E38A15CC987A00A686E9 /* StoryChapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7E38915CC987A00A686E9 /* StoryChapter.m */; };
 		52B7E38D15CC98A900A686E9 /* StoryOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7E38C15CC98A900A686E9 /* StoryOverview.m */; };
 		52B7E39115CCA18900A686E9 /* NSXMLNode+QuickerXPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7E39015CCA18900A686E9 /* NSXMLNode+QuickerXPath.m */; };
-		52CE3AF115CDECD500375FA9 /* Mail.app in Resources */ = {isa = PBXBuildFile; fileRef = 52CE3AF015CDECD500375FA9 /* Mail.app */; };
 		52CE3AF315CDED0200375FA9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CE3AF215CDED0200375FA9 /* ScriptingBridge.framework */; };
 		52CE3AF615CDEF1E00375FA9 /* EmailSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3AF515CDEF1E00375FA9 /* EmailSender.m */; };
 /* End PBXBuildFile section */
@@ -112,7 +111,7 @@
 		52B7E38C15CC98A900A686E9 /* StoryOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryOverview.m; sourceTree = "<group>"; };
 		52B7E38F15CCA18900A686E9 /* NSXMLNode+QuickerXPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLNode+QuickerXPath.h"; sourceTree = "<group>"; };
 		52B7E39015CCA18900A686E9 /* NSXMLNode+QuickerXPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLNode+QuickerXPath.m"; sourceTree = "<group>"; };
-		52CE3AF015CDECD500375FA9 /* Mail.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Mail.app; path = ../../../../../Applications/Mail.app; sourceTree = "<group>"; };
+		52BED9D315CFC08B004A2E96 /* Mail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mail.h; sourceTree = "<group>"; };
 		52CE3AF215CDED0200375FA9 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		52CE3AF415CDEF1E00375FA9 /* EmailSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSender.h; sourceTree = "<group>"; };
 		52CE3AF515CDEF1E00375FA9 /* EmailSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSender.m; sourceTree = "<group>"; };
@@ -134,7 +133,6 @@
 		52B7E35C15CC985200A686E9 = {
 			isa = PBXGroup;
 			children = (
-				52CE3AEF15CDECB900375FA9 /* Scripted Applications */,
 				52B7E37115CC985200A686E9 /* Fanfiction Downloader */,
 				52B7E36A15CC985200A686E9 /* Frameworks */,
 				52B7E36815CC985200A686E9 /* Products */,
@@ -172,6 +170,7 @@
 		52B7E37115CC985200A686E9 /* Fanfiction Downloader */ = {
 			isa = PBXGroup;
 			children = (
+				52BED9D315CFC08B004A2E96 /* Mail.h */,
 				52B7E38E15CCA17100A686E9 /* Utils */,
 				52B7E37D15CC985200A686E9 /* AppDelegate.h */,
 				52B7E37E15CC985200A686E9 /* AppDelegate.m */,
@@ -236,14 +235,6 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		52CE3AEF15CDECB900375FA9 /* Scripted Applications */ = {
-			isa = PBXGroup;
-			children = (
-				52CE3AF015CDECD500375FA9 /* Mail.app */,
-			);
-			name = "Scripted Applications";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,7 +293,6 @@
 				52B7E38215CC985200A686E9 /* MainMenu.xib in Resources */,
 				526A585215CD53E200EB2D63 /* AddStoryView.xib in Resources */,
 				52593DC115CD917100282252 /* Settings.xib in Resources */,
-				52CE3AF115CDECD500375FA9 /* Mail.app in Resources */,
 				523D59A815CE7C5500ECE017 /* storyTemplate.html in Resources */,
 				523D59AA15CE7D8900ECE017 /* tocTemplate.html in Resources */,
 				523D59AC15CE7DC200ECE017 /* chapterTemplate.html in Resources */,
