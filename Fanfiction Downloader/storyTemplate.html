@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>{{title}}</title>
+		<style type="text/css">
+			p{text-indent:0;margin-top:1em;}
+		</style>
+	</head>
+	<body>
+		<a name="start" />
+		<h1 align="center">{{title}}</h1>
+		<br/>
+        <br/>
+        <b>Author:</b> {{author}}<br/>
+        <b>Category:</b> {{category}}<br/>
+        <b>Rated:</b> {{rating}}<br/>
+        <b>Language:</b> {{language}}<br/>
+        <b>Genre:</b> {{genre}}<br/>
+        <b>Characters:</b> {{characters}}<br/>
+        <b>Reviews:</b> {{reviewCount}}<br/>
+        <b>Updated:</b> {{updated}}<br/>
+        <b>Published:</b> {{published}}<br/>
+        <b>Status:</b> {{isComplete}}<br/>
+        <b>Chapters:</b> {{chapterCount}}<br/>
+        <b>Words:</b> {{wordCount}}<br/>
+        <br/>
+        <b>Summary:</b><br/>{{summary}}
+        <mbp:pagebreak/>
+		<div id="toc" align="center">
+            <h2>Table of Contents</h2><br/>
+			{{toc}}
+		</div>
+		{{chapters}}
+	</body>
+</html>
