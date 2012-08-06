@@ -130,6 +130,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		520624FA15CFDF4B0007C96D /* Story parsing */ = {
+			isa = PBXGroup;
+			children = (
+				52B7E38815CC987A00A686E9 /* StoryChapter.h */,
+				52B7E38915CC987A00A686E9 /* StoryChapter.m */,
+				52B7E38B15CC98A900A686E9 /* StoryOverview.h */,
+				52B7E38C15CC98A900A686E9 /* StoryOverview.m */,
+			);
+			name = "Story parsing";
+			sourceTree = "<group>";
+		};
+		520624FB15CFDF570007C96D /* Story List Management */ = {
+			isa = PBXGroup;
+			children = (
+				5275089515CD2CCE00927E69 /* StoryList.h */,
+				5275089615CD2CCE00927E69 /* StoryList.m */,
+				5275089915CD2CD800927E69 /* StoryListEntry.h */,
+				5275089A15CD2CD800927E69 /* StoryListEntry.m */,
+				52593DA515CD670300282252 /* StoryUpdater.h */,
+				52593DA615CD670300282252 /* StoryUpdater.m */,
+				523D59B715CF39EB00ECE017 /* LemonImporter.h */,
+				523D59B815CF39EB00ECE017 /* LemonImporter.m */,
+			);
+			name = "Story List Management";
+			sourceTree = "<group>";
+		};
+		520624FD15CFDF830007C96D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52B7E37D15CC985200A686E9 /* AppDelegate.h */,
+				52B7E37E15CC985200A686E9 /* AppDelegate.m */,
+				526A585415CD54D600EB2D63 /* AddStorySheetController.h */,
+				526A585515CD54D600EB2D63 /* AddStorySheetController.m */,
+				52593DAC15CD831000282252 /* StoryTableDataSource.h */,
+				52593DAD15CD831000282252 /* StoryTableDataSource.m */,
+				5266901515CF29CB000F5D0E /* UpdateProgressWindowController.h */,
+				5266901615CF29CB000F5D0E /* UpdateProgressWindowController.m */,
+				52593DBD15CD917100282252 /* Settings.h */,
+				52593DBE15CD917100282252 /* Settings.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		520624FE15CFDF950007C96D /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				526A585115CD53E200EB2D63 /* AddStoryView.xib */,
+				52B7E38015CC985200A686E9 /* MainMenu.xib */,
+				52593DBF15CD917100282252 /* Settings.xib */,
+				5266901715CF29CB000F5D0E /* UpdateProgressWindowController.xib */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		520624FF15CFDFB20007C96D /* Sending emails */ = {
+			isa = PBXGroup;
+			children = (
+				52BED9D315CFC08B004A2E96 /* Mail.h */,
+				52CE3AF415CDEF1E00375FA9 /* EmailSender.h */,
+				52CE3AF515CDEF1E00375FA9 /* EmailSender.m */,
+			);
+			name = "Sending emails";
+			sourceTree = "<group>";
+		};
+		5206250015CFDFE10007C96D /* Generate Kindle files */ = {
+			isa = PBXGroup;
+			children = (
+				5206250115CFE0060007C96D /* Templates */,
+				52593DA915CD671500282252 /* StoryRenderer.h */,
+				52593DAA15CD671500282252 /* StoryRenderer.m */,
+				523D59AD15CE7E3C00ECE017 /* FileTemplate.h */,
+				523D59AE15CE7E3C00ECE017 /* FileTemplate.m */,
+				523D59B015CE7EF300ECE017 /* FileTemplateMarker.h */,
+				523D59B115CE7EF300ECE017 /* FileTemplateMarker.m */,
+			);
+			name = "Generate Kindle files";
+			sourceTree = "<group>";
+		};
+		5206250115CFE0060007C96D /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				523D59A715CE7C5500ECE017 /* storyTemplate.html */,
+				523D59A915CE7D8900ECE017 /* tocTemplate.html */,
+				523D59AB15CE7DC200ECE017 /* chapterTemplate.html */,
+			);
+			name = Templates;
+			sourceTree = "<group>";
+		};
 		52B7E35C15CC985200A686E9 = {
 			isa = PBXGroup;
 			children = (
@@ -170,43 +258,14 @@
 		52B7E37115CC985200A686E9 /* Fanfiction Downloader */ = {
 			isa = PBXGroup;
 			children = (
-				52BED9D315CFC08B004A2E96 /* Mail.h */,
+				5206250015CFDFE10007C96D /* Generate Kindle files */,
+				520624FF15CFDFB20007C96D /* Sending emails */,
+				520624FE15CFDF950007C96D /* User Interface */,
+				520624FD15CFDF830007C96D /* Controllers */,
+				520624FB15CFDF570007C96D /* Story List Management */,
+				520624FA15CFDF4B0007C96D /* Story parsing */,
 				52B7E38E15CCA17100A686E9 /* Utils */,
-				52B7E37D15CC985200A686E9 /* AppDelegate.h */,
-				52B7E37E15CC985200A686E9 /* AppDelegate.m */,
-				526A585115CD53E200EB2D63 /* AddStoryView.xib */,
-				52B7E38015CC985200A686E9 /* MainMenu.xib */,
 				52B7E37215CC985200A686E9 /* Supporting Files */,
-				52B7E38815CC987A00A686E9 /* StoryChapter.h */,
-				52B7E38915CC987A00A686E9 /* StoryChapter.m */,
-				52B7E38B15CC98A900A686E9 /* StoryOverview.h */,
-				52B7E38C15CC98A900A686E9 /* StoryOverview.m */,
-				5275089515CD2CCE00927E69 /* StoryList.h */,
-				5275089615CD2CCE00927E69 /* StoryList.m */,
-				5275089915CD2CD800927E69 /* StoryListEntry.h */,
-				5275089A15CD2CD800927E69 /* StoryListEntry.m */,
-				526A585415CD54D600EB2D63 /* AddStorySheetController.h */,
-				526A585515CD54D600EB2D63 /* AddStorySheetController.m */,
-				52593DA515CD670300282252 /* StoryUpdater.h */,
-				52593DA615CD670300282252 /* StoryUpdater.m */,
-				52593DA915CD671500282252 /* StoryRenderer.h */,
-				52593DAA15CD671500282252 /* StoryRenderer.m */,
-				52593DAC15CD831000282252 /* StoryTableDataSource.h */,
-				52593DAD15CD831000282252 /* StoryTableDataSource.m */,
-				52593DBD15CD917100282252 /* Settings.h */,
-				52593DBE15CD917100282252 /* Settings.m */,
-				52593DBF15CD917100282252 /* Settings.xib */,
-				52CE3AF415CDEF1E00375FA9 /* EmailSender.h */,
-				52CE3AF515CDEF1E00375FA9 /* EmailSender.m */,
-				523D59AD15CE7E3C00ECE017 /* FileTemplate.h */,
-				523D59AE15CE7E3C00ECE017 /* FileTemplate.m */,
-				523D59B015CE7EF300ECE017 /* FileTemplateMarker.h */,
-				523D59B115CE7EF300ECE017 /* FileTemplateMarker.m */,
-				5266901515CF29CB000F5D0E /* UpdateProgressWindowController.h */,
-				5266901615CF29CB000F5D0E /* UpdateProgressWindowController.m */,
-				5266901715CF29CB000F5D0E /* UpdateProgressWindowController.xib */,
-				523D59B715CF39EB00ECE017 /* LemonImporter.h */,
-				523D59B815CF39EB00ECE017 /* LemonImporter.m */,
 			);
 			path = "Fanfiction Downloader";
 			sourceTree = "<group>";
@@ -219,9 +278,6 @@
 				52B7E37715CC985200A686E9 /* main.m */,
 				52B7E37915CC985200A686E9 /* Fanfiction Downloader-Prefix.pch */,
 				52B7E37A15CC985200A686E9 /* Credits.rtf */,
-				523D59A715CE7C5500ECE017 /* storyTemplate.html */,
-				523D59A915CE7D8900ECE017 /* tocTemplate.html */,
-				523D59AB15CE7DC200ECE017 /* chapterTemplate.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
