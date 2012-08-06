@@ -15,7 +15,7 @@ Getting started
 
 If you've previously used Lemon, you can import your stories.ini file here. Note that because this tool uses a different way of determining when a story has changed, it will initially send all stories to your Kindle again.
 
-Note: This app requires Mac OS X 10.8 "Mountain Lion". It might work on 10.7, too, but that is untested. It will not work on anything else at the moment.
+Note: This app requires Mac OS X 10.7 "Lion" or higher.
 
 Possible issues
 ---------------
