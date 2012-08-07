@@ -30,8 +30,9 @@
 			{
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
-					[self.delegate storyUpdaterEncounteredError:error];
-					[self.delegate storyUpdaterFinishedStory:entry];
+					__strong id strongDelegate = self.delegate;
+					[strongDelegate storyUpdaterEncounteredError:error];
+					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 				return;
 			}
@@ -49,8 +50,9 @@
 				{
 					dispatch_async(dispatch_get_main_queue(), ^{
 						_storiesUpdatedSoFar++;
-						[self.delegate storyUpdaterEncounteredError:error];
-						[self.delegate storyUpdaterFinishedStory:entry];
+						__strong id strongDelegate = self.delegate;
+						[strongDelegate storyUpdaterEncounteredError:error];
+						[strongDelegate storyUpdaterFinishedStory:entry];
 					});
 					return;
 				}
@@ -67,14 +69,16 @@
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
-					if (!success) [self.delegate storyUpdaterEncounteredError:mailError];
-					[self.delegate storyUpdaterFinishedStory:entry];
+					__strong id strongDelegate = self.delegate;
+					if (!success)[strongDelegate storyUpdaterEncounteredError:error];
+					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 			}
 			else
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
-					[self.delegate storyUpdaterFinishedStory:entry];
+					__strong id strongDelegate = self.delegate;
+					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 		}];
 	}

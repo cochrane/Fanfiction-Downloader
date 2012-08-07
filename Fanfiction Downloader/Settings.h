@@ -14,6 +14,6 @@
 
 - (id)init;
 
-@property (weak, nonatomic) IBOutlet NSUserDefaultsController *defaultsController;
+@property (retain, nonatomic) IBOutlet NSUserDefaultsController *defaultsController;
 
 @end
