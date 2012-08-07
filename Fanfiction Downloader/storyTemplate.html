@@ -5,11 +5,13 @@
 		<meta name="author" content="{{author}}" />
 		<style type="text/css">
 			p{text-indent:0;margin-top:1em;}
+			h3,#toc{ page-break-before:always; }
+			h1,#toc{ text-align:center; }
 		</style>
 	</head>
 	<body>
 		<a name="start" />
-		<h1 align="center">{{title}}</h1>
+		<h1>{{title}}</h1>
 		<br/>
         <br/>
         <b>Author:</b> {{author}}<br/>
@@ -27,7 +29,7 @@
         <br/>
         <b>Summary:</b><br/>{{summary}}
         <mbp:pagebreak/>
-		<div id="toc" align="center">
+		<div id="toc">
             <h2>Table of Contents</h2><br/>
 			{{toc}}
 		</div>
