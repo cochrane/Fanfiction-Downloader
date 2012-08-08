@@ -13,17 +13,21 @@
 #import "StoryRenderer.h"
 #import "EmailSender.h"
 
+@interface StoryUpdater ()
+
+- (void)updateStories:(NSArray *)stories onlyIfNeeded:(BOOL)ifNeeded;
+
+@end
+
 @implementation StoryUpdater
 
-- (void)update;
+- (void)updateStories:(NSArray *)stories onlyIfNeeded:(BOOL)onlyIfNeeded;
 {
 	_storiesToUpdate = self.list.countOfStories;
 	_storiesUpdatedSoFar = 0;
 	
-	for (NSUInteger i = 0; i < self.list.countOfStories; i++)
-	{
-		StoryListEntry *entry = [self.list objectInStoriesAtIndex:i];
-		
+	for (StoryListEntry *entry in stories)
+	{		
 		[entry loadOverviewFromCache:NO completionHandler:^(StoryOverview *overview, NSError *error){
 			// Error with loading
 			if (overview == nil)
@@ -37,10 +41,10 @@
 				return;
 			}
 			
-			if (entry.wordCountChangedSinceLastSend && entry.chapterCountChangedSinceLastSend)
+			if (!onlyIfNeeded || (entry.wordCountChangedSinceLastSend || entry.chapterCountChangedSinceLastSend))
 			{
 				// Load the chapters
-				BOOL useCache = !(entry.wordCountChangedSinceLastSend && !entry.chapterCountChangedSinceLastSend);
+				BOOL useCache = !(entry.wordCountChangedSinceLastSend && !entry.chapterCountChangedSinceLastSend) && onlyIfNeeded;
 				
 				NSError *error = nil;
 				NSArray *chapters = [entry loadChaptersFromCache:useCache error:&error];
@@ -82,6 +86,17 @@
 				});
 		}];
 	}
+
+}
+
+- (void)update;
+{
+	[self updateStories:[self valueForKeyPath:@"list.stories"] onlyIfNeeded:YES];
+}
+
+- (void)forceUpdate:(NSArray *)forceStories;
+{
+	[self updateStories:forceStories onlyIfNeeded:NO];
 }
 
 - (BOOL)isUpdating

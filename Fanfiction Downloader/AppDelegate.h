@@ -15,13 +15,16 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSTableView *tableView;
+@property (assign) IBOutlet NSArrayController *storyListController;
 
 @property (nonatomic, retain) StoryList *storyList;
 @property (nonatomic, retain) MainWindowController *mainWindowController;
 
 - (IBAction)add:(id)sender;
 - (IBAction)refresh:(id)sender;
+- (IBAction)resend:(id)sender;
 - (IBAction)showSettings:(id)sender;
 - (IBAction)importFromCryzedLemon:(id)sender;
+- (IBAction)showWindow:(id)sender;
 
 @end

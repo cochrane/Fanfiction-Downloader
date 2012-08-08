@@ -30,6 +30,8 @@ static NSString *storyListSuiteName = @"storylist";
 @property (nonatomic, retain) Settings *settingsController;
 @property (nonatomic, retain) EmailSender *sender;
 
+- (BOOL)openUpdateControllerIfPossible;
+
 @end
 
 @implementation AppDelegate
@@ -94,27 +96,27 @@ static NSString *storyListSuiteName = @"storylist";
 	}];
 }
 
-- (void)refresh:(id)sender
+- (BOOL)openUpdateControllerIfPossible;
 {
 	// Don't update twice at once
 	if (self.updater.isUpdating)
 	{
 		NSBeep();
-		return;
+		return NO;
 	}
 	
 	// Don't update if there are no stories
 	if (self.storyList.countOfStories == 0)
 	{
 		NSBeep();
-		return;
+		return NO;
 	}
 	
 	// Check whether sender and recipient have been set correctly.
 	if ([self.normalDefaults stringForKey:@"sender"] == nil || [[self.normalDefaults stringForKey:@"sender"] isEqual:@""] || [self.normalDefaults stringForKey:@"recipient"] == nil || [[self.normalDefaults stringForKey:@"recipient"] isEqual:@""])
 	{
 		[self.settingsController showWindow:self];
-		return;
+		return NO;
 	}
 	
 	self.sender.recipientAddress = [self.normalDefaults stringForKey:@"recipient"];
@@ -126,12 +128,35 @@ static NSString *storyListSuiteName = @"storylist";
 	
 	[controller startWithParent:self.mainWindowController];
 	
-	[self.updater update];
+	return YES;
+}
+
+- (void)refresh:(id)sender
+{
+	if ([self openUpdateControllerIfPossible])
+		[self.updater update];
+}
+
+- (void)resend:(id)sender
+{
+	NSArray *selectedStories = [self.storyListController valueForKeyPath:@"selectedObjects.self"];
+	if ([selectedStories count] == 0)
+	{
+		NSBeep();
+		return;
+	}
+	
+	if ([self openUpdateControllerIfPossible])
+		[self.updater forceUpdate:selectedStories];
 }
 
 - (IBAction)showSettings:(id)sender;
 {
 	[self.settingsController showWindow:sender];
+}
+- (IBAction)showWindow:(id)sender;
+{
+	[self.mainWindowController showWindow:sender];
 }
 
 - (IBAction)importFromCryzedLemon:(id)sender;

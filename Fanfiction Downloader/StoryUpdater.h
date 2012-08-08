@@ -31,5 +31,6 @@
 @property (readonly, assign, nonatomic) BOOL isUpdating;
 
 - (void)update;
+- (void)forceUpdate:(NSArray *)forceStories;
 
 @end
