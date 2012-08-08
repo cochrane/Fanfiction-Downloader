@@ -23,7 +23,7 @@
 
 - (void)updateStories:(NSArray *)stories onlyIfNeeded:(BOOL)onlyIfNeeded;
 {
-	_storiesToUpdate = self.list.countOfStories;
+	_storiesToUpdate = [stories count];
 	_storiesUpdatedSoFar = 0;
 	
 	for (StoryListEntry *entry in stories)
