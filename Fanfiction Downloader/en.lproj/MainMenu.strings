@@ -1,0 +1,249 @@
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"Bring All to Front" = "Bring All to Front";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"Window" = "Window";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"Minimize" = "Minimize";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"Window" = "Window";
+
+/* Class = "NSMenu"; title = "AMainMenu"; ObjectID = "29"; */
+"AMainMenu" = "AMainMenu";
+
+/* Class = "NSMenuItem"; title = "Fanfiction Downloader"; ObjectID = "56"; */
+"Fanfiction Downloader" = "Fanfiction Downloader";
+
+/* Class = "NSMenu"; title = "Fanfiction Downloader"; ObjectID = "57"; */
+"Fanfiction Downloader" = "Fanfiction Downloader";
+
+/* Class = "NSMenuItem"; title = "About Fanfiction Downloader"; ObjectID = "58"; */
+"About Fanfiction Downloader" = "About Fanfiction Downloader";
+
+/* Class = "NSMenuItem"; title = "Add Story…"; ObjectID = "72"; */
+"Add Story…" = "Add Story…";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
+"Close" = "Close";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "81"; */
+"File" = "File";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
+"File" = "File";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
+"Preferences…" = "Preferences…";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"Services" = "Services";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"Services" = "Services";
+
+/* Class = "NSMenuItem"; title = "Hide Fanfiction Downloader"; ObjectID = "134"; */
+"Hide Fanfiction Downloader" = "Hide Fanfiction Downloader";
+
+/* Class = "NSMenuItem"; title = "Quit Fanfiction Downloader"; ObjectID = "136"; */
+"Quit Fanfiction Downloader" = "Quit Fanfiction Downloader";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"Hide Others" = "Hide Others";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"Show All" = "Show All";
+
+/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "195"; */
+"Stop Speaking" = "Stop Speaking";
+
+/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "196"; */
+"Start Speaking" = "Start Speaking";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "197"; */
+"Copy" = "Copy";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "198"; */
+"Select All" = "Select All";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "199"; */
+"Cut" = "Cut";
+
+/* Class = "NSMenu"; title = "Spelling and Grammar"; ObjectID = "200"; */
+"Spelling and Grammar" = "Spelling and Grammar";
+
+/* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "201"; */
+"Check Document Now" = "Check Document Now";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "202"; */
+"Delete" = "Delete";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "203"; */
+"Paste" = "Paste";
+
+/* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "204"; */
+"Show Spelling and Grammar" = "Show Spelling and Grammar";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "205"; */
+"Edit" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "207"; */
+"Undo" = "Undo";
+
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "208"; */
+"Find Next" = "Find Next";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "209"; */
+"Find…" = "Find…";
+
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "210"; */
+"Jump to Selection" = "Jump to Selection";
+
+/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "211"; */
+"Speech" = "Speech";
+
+/* Class = "NSMenu"; title = "Speech"; ObjectID = "212"; */
+"Speech" = "Speech";
+
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "213"; */
+"Find Previous" = "Find Previous";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "215"; */
+"Redo" = "Redo";
+
+/* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "216"; */
+"Spelling and Grammar" = "Spelling and Grammar";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "217"; */
+"Edit" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "218"; */
+"Find" = "Find";
+
+/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "219"; */
+"Check Spelling While Typing" = "Check Spelling While Typing";
+
+/* Class = "NSMenu"; title = "Find"; ObjectID = "220"; */
+"Find" = "Find";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "221"; */
+"Use Selection for Find" = "Use Selection for Find";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "239"; */
+"Zoom" = "Zoom";
+
+/* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "346"; */
+"Check Grammar With Spelling" = "Check Grammar With Spelling";
+
+/* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "348"; */
+"Substitutions" = "Substitutions";
+
+/* Class = "NSMenu"; title = "Substitutions"; ObjectID = "349"; */
+"Substitutions" = "Substitutions";
+
+/* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "350"; */
+"Smart Copy/Paste" = "Smart Copy/Paste";
+
+/* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "351"; */
+"Smart Quotes" = "Smart Quotes";
+
+/* Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "354"; */
+"Smart Links" = "Smart Links";
+
+/* Class = "NSWindow"; title = "Fanfiction Downloader"; ObjectID = "371"; */
+"Fanfiction Downloader" = "Fanfiction Downloader";
+
+/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "450"; */
+"Transformations" = "Transformations";
+
+/* Class = "NSMenu"; title = "Transformations"; ObjectID = "451"; */
+"Transformations" = "Transformations";
+
+/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "452"; */
+"Make Upper Case" = "Make Upper Case";
+
+/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "454"; */
+"Correct Spelling Automatically" = "Correct Spelling Automatically";
+
+/* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "457"; */
+"Show Substitutions" = "Show Substitutions";
+
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "460"; */
+"Smart Dashes" = "Smart Dashes";
+
+/* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "462"; */
+"Text Replacement" = "Text Replacement";
+
+/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "465"; */
+"Make Lower Case" = "Make Lower Case";
+
+/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "466"; */
+"Capitalize" = "Capitalize";
+
+/* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "485"; */
+"Paste and Match Style" = "Paste and Match Style";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "490"; */
+"Help" = "Help";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "491"; */
+"Help" = "Help";
+
+/* Class = "NSMenuItem"; title = "Fanfiction Downloader Help"; ObjectID = "492"; */
+"Fanfiction Downloader Help" = "Fanfiction Downloader Help";
+
+/* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "534"; */
+"Find and Replace…" = "Find and Replace…";
+
+/* Class = "NSTableColumn"; headerCell.title = "Story"; ObjectID = "541"; */
+"Story" = "Story";
+
+/* Class = "NSTableColumn"; headerCell.title = "Author"; ObjectID = "542"; */
+"Author" = "Author";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "543"; */
+"Text Cell" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "544"; */
+"Text Cell" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Category"; ObjectID = "655"; */
+"Category" = "Category";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "656"; */
+"Text Cell" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Chapters"; ObjectID = "657"; */
+"Chapters" = "Chapters";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "658"; */
+"Text Cell" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Summary"; ObjectID = "677"; */
+"Summary" = "Summary";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "678"; */
+"Text Cell" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "Import from Lemon…"; ObjectID = "685"; */
+"Import from Lemon…" = "Import from Lemon…";
+
+/* Class = "NSMenuItem"; title = "Stories"; ObjectID = "691"; */
+"Stories" = "Stories";
+
+/* Class = "NSMenu"; title = "Stories"; ObjectID = "692"; */
+"Stories" = "Stories";
+
+/* Class = "NSMenuItem"; title = "Update"; ObjectID = "693"; */
+"Update" = "Update";
+
+/* Class = "NSMenuItem"; title = "Send selected again"; ObjectID = "694"; */
+"Send selected again" = "Send selected again";
+
+/* Class = "NSMenuItem"; title = "Remove"; ObjectID = "695"; */
+"Remove" = "Remove";
+
+/* Class = "NSMenuItem"; title = "Main Window"; ObjectID = "706"; */
+"Main Window" = "Main Window";
+

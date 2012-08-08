@@ -1,0 +1,17 @@
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "1"; */
+"Preferences" = "Preferences";
+
+/* Class = "NSTextFieldCell"; placeholderString = "john.doe@free.kindle.com"; ObjectID = "17"; */
+"john.doe@free.kindle.com" = "john.doe@free.kindle.com";
+
+/* Class = "NSTextFieldCell"; title = "Kindle email address:"; ObjectID = "24"; */
+"Kindle email address:" = "Kindle email address:";
+
+/* Class = "NSTextFieldCell"; title = "Sender address:"; ObjectID = "73"; */
+"Sender address:" = "Sender address:";
+
+/* Class = "NSTextFieldCell"; title = "Your Kindle must be configured to receive emails from this address."; ObjectID = "102"; */
+"Your Kindle must be configured to receive emails from this address." = "Your Kindle must be configured to receive emails from this address.";
+
+/* Class = "NSTextFieldCell"; placeholderString = "test@example.com"; ObjectID = "127"; */
+"test@example.com" = "test@example.com";

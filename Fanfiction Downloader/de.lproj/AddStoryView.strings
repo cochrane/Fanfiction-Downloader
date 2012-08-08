@@ -1,0 +1,15 @@
+/* Class = "NSTextFieldCell"; title = "Add a Story"; ObjectID = "8"; */
+"Add a Story" = "Geschichte hinzufügen";
+
+/* Class = "NSTextFieldCell"; title = "Enter the story's URL here"; ObjectID = "20"; */
+"Enter the story's URL here" = "Geben Sie die URL der Geschichte ein.";
+
+/* Class = "NSButtonCell"; title = "Add"; ObjectID = "25"; */
+"Add" = "Hinzufügen";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "30"; */
+"Cancel" = "Abbrechen";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "36"; */
+"Window" = "Fenster";
+
