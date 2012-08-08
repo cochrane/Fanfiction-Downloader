@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MainWindowController;
 @class StoryList;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
@@ -16,6 +17,7 @@
 @property (assign) IBOutlet NSTableView *tableView;
 
 @property (nonatomic, retain) StoryList *storyList;
+@property (nonatomic, retain) MainWindowController *mainWindowController;
 
 - (IBAction)add:(id)sender;
 - (IBAction)refresh:(id)sender;

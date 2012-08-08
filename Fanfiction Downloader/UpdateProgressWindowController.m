@@ -19,18 +19,13 @@
 
 @implementation UpdateProgressWindowController
 
-+ (id)runInWindow:(NSWindow *)window withUpdater:(StoryUpdater *)updater;
+- (void)setUpdater:(StoryUpdater *)updater
 {
-	UpdateProgressWindowController *instance = [[self alloc] init];
+	if (_updater)
+		_updater.delegate = nil;
 	
-	instance.updater = updater;
-	instance.updater.delegate = instance;
-	
-	[NSApp beginSheet:instance.window modalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-	
-	CFRetain((__bridge void *) instance);
-	
-	return instance;
+	_updater = updater;
+	_updater.delegate = self;
 }
 
 - (id)init
@@ -70,25 +65,20 @@
 	{
 		double delayInSeconds = 0.2;
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-
+		
 		dispatch_after(popTime, dispatch_get_main_queue(), ^{
-			[NSApp endSheet:self.window];
-			[self.window orderOut:self];
 			
 			if (self.errors.count == 1)
-			{
-				[NSApp presentError:self.errors.lastObject];
-			}
+				[self showError:self.errors.lastObject resumeAfter:NO];
 			else if (self.errors.count > 1)
 			{
-				NSAlert *alert = [[NSAlert alloc] init];
-				alert.messageText = NSLocalizedString(@"There were multiple errors", @"more than one error during update");
-				alert.informativeText = NSLocalizedString(@"Check your network connection and/or try again. I don't know.", @"more than one error during update");
-				[alert addButtonWithTitle:NSLocalizedString(@"OK", @"Alert button title")];
-				[alert runModal];
+				NSError *cumulativeError = [NSError errorWithDomain:@"domain" code:4512 userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"There were multiple errors", @"more than one error during update"),
+								  NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Check your network connection and/or try again. I don't know.", @"more than one error during update") }];
+				
+				[self showError:cumulativeError resumeAfter:NO];
 			}
-			
-			CFRelease((__bridge void *) self);
+			else
+				[self end];
 		});
 	}
 }

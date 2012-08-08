@@ -8,11 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "SheetController.h"
 #import "StoryUpdater.h"
 
-@interface UpdateProgressWindowController : NSWindowController <StoryUpdaterDelegate, NSWindowDelegate>
-
-+ (id)runInWindow:(NSWindow *)window withUpdater:(StoryUpdater *)updater;
+@interface UpdateProgressWindowController : SheetController <StoryUpdaterDelegate, NSWindowDelegate>
 
 @property (nonatomic, retain) StoryUpdater *updater;
 

@@ -8,9 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AddStorySheetController : NSWindowController
+#import "SheetController.h"
 
-+ (id)runInWindow:(NSWindow *)window completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
+@interface AddStorySheetController : SheetController
+
+- (id)init;
+
+- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
 
 @property (assign) IBOutlet NSTextField *urlField;
 

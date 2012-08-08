@@ -13,26 +13,29 @@
 @interface AddStorySheetController ()
 
 @property (copy, nonatomic) void (^completionHandler)(BOOL haveStory, NSUInteger storyID);
-@property (retain, nonatomic) NSWindow *parentWindow;
-
-- (void)showError:(NSError *)error;
 
 @end
 
 @implementation AddStorySheetController
 
-
-+ (id)runInWindow:(NSWindow *)window completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
+- (id)init;
 {
-	AddStorySheetController *instance = [[self alloc] initWithWindowNibName:@"AddStoryView"];
-	instance.completionHandler = handler;
-	instance.parentWindow = window;
+	if (!(self = [super initWithWindowNibName:@"AddStoryView"])) return nil;
 	
-	[NSApp beginSheet:instance.window modalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+	return self;
+}
+
+- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
+{
+	self.completionHandler = handler;
 	
-	CFRetain((__bridge CFTypeRef) instance);
-	
-	return instance;
+	[self startWithParent:parent];
+}
+
+- (void)end
+{
+	self.completionHandler = nil;
+	[super end];
 }
 
 - (void)add:(id)sender
@@ -43,36 +46,20 @@
 	
 	if (![StoryOverview URLisValidAndExistsForStory:url errorDescription:&error])
 	{
-		[self showError:error];
+		[self showError:error resumeAfter:YES];
 		return;
 	}
 	
 	NSUInteger storyID = [StoryOverview storyIDFromURL:url];
 	
-	[NSApp endSheet:self.window];
-	[self.window orderOut:self];
 	self.completionHandler(YES, storyID);
-	
-	CFRelease((__bridge CFTypeRef) self);
+	[self end];
 }
 
 - (void)cancel:(id)sender
 {
-	[NSApp endSheet:self.window];
-	[self.window orderOut:self];
 	self.completionHandler(NO, 0);
-	
-	CFRelease((__bridge CFTypeRef) self);
-}
-
-- (void)showError:(NSError *)error;
-{
-	[NSApp endSheet:self.window];
-	[self.window orderOut:self];
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.parentWindow presentError:error];
-		[NSApp beginSheet:self.window modalForWindow:self.parentWindow modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-	});
+	[self end];
 }
 
 @end

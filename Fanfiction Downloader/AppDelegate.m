@@ -10,6 +10,7 @@
 
 #import "AddStorySheetController.h"
 #import "EmailSender.h"
+#import "MainWindowController.h"
 #import "LemonImporter.h"
 #import "Settings.h"
 #import "StoryList.h"
@@ -35,6 +36,8 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	self.mainWindowController = [[MainWindowController alloc] initWithWindow:self.window];
+	
 	NSString *suiteName = [[NSBundle mainBundle].bundleIdentifier stringByAppendingFormat:@".%@", storyListSuiteName];
 	
 	self.storyDefaults = [[NSUserDefaults alloc] init];
@@ -80,7 +83,9 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)add:(id)sender
 {
-	[AddStorySheetController runInWindow:self.window completionHandler:^(BOOL haveStory, NSUInteger newStoryID){
+	AddStorySheetController *controller = [[AddStorySheetController alloc] init];
+	
+	[controller startWithParent:self.mainWindowController completionHandler:^(BOOL haveStory, NSUInteger newStoryID){
 		if (!haveStory) return;
 		
 		[self.storyList addStoryIfNotExists:newStoryID errorHandler:^(NSError *error){
@@ -115,7 +120,11 @@ static NSString *storyListSuiteName = @"storylist";
 	self.sender.recipientAddress = [self.normalDefaults stringForKey:@"recipient"];
 	self.sender.senderAddress = [self.normalDefaults stringForKey:@"sender"];
 	
-	[UpdateProgressWindowController runInWindow:self.window withUpdater:self.updater];
+	UpdateProgressWindowController *controller = [[UpdateProgressWindowController alloc] init];
+	
+	controller.updater = self.updater;
+	
+	[controller startWithParent:self.mainWindowController];
 	
 	[self.updater update];
 }
