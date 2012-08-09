@@ -698,6 +698,7 @@
 				52AD5FA515D29CEB0078531D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52B7E36115CC985200A686E9 /* Build configuration list for PBXProject "Fanfiction Downloader" */ = {
 			isa = XCConfigurationList;
