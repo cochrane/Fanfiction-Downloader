@@ -84,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5221B44A15D4790300ACD50A /* LIESMICH.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LIESMICH.md; sourceTree = "<group>"; };
 		523D59A715CE7C5500ECE017 /* storyTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = storyTemplate.html; sourceTree = "<group>"; };
 		523D59A915CE7D8900ECE017 /* tocTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = tocTemplate.html; sourceTree = "<group>"; };
 		523D59AB15CE7DC200ECE017 /* chapterTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = chapterTemplate.html; sourceTree = "<group>"; };
@@ -112,6 +113,9 @@
 		5275089615CD2CCE00927E69 /* StoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryList.m; sourceTree = "<group>"; };
 		5275089915CD2CD800927E69 /* StoryListEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryListEntry.h; sourceTree = "<group>"; };
 		5275089A15CD2CD800927E69 /* StoryListEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryListEntry.m; sourceTree = "<group>"; };
+		529984DD15D477AB00227F44 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		529984DF15D477BF00227F44 /* COPYING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.md; sourceTree = "<group>"; };
+		529984E115D4786900227F44 /* Development.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Development.md; sourceTree = "<group>"; };
 		52AD5F8315D29CAA0078531D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		52AD5F9815D29CEB0078531D /* xibLocalizationPostprocessor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xibLocalizationPostprocessor; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AD5F9A15D29CEB0078531D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -281,6 +285,10 @@
 		52B7E35C15CC985200A686E9 = {
 			isa = PBXGroup;
 			children = (
+				5221B44A15D4790300ACD50A /* LIESMICH.md */,
+				529984E115D4786900227F44 /* Development.md */,
+				529984DF15D477BF00227F44 /* COPYING.md */,
+				529984DD15D477AB00227F44 /* README.md */,
 				52AD5F9315D29CC20078531D /* New Group */,
 				52B7E37115CC985200A686E9 /* Fanfiction Downloader */,
 				52B7E36A15CC985200A686E9 /* Frameworks */,
