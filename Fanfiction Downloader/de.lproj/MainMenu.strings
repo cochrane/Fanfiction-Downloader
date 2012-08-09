@@ -247,3 +247,12 @@
 /* Class = "NSMenuItem"; title = "Main Window"; ObjectID = "706"; */
 "Main Window" = "Hauptfenster";
 
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Update"; ObjectID = "594"; */
+"Update" = "Aktualisieren";
+
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Add story"; ObjectID = "615"; */
+"Add story" = "Geschichte hinzufügen";
+
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Remove story"; ObjectID = "631"; */
+"Remove story" = "Geschichte entfernen";
+

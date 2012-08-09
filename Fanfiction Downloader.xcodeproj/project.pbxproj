@@ -24,16 +24,16 @@
 		526A585615CD54D600EB2D63 /* AddStorySheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526A585515CD54D600EB2D63 /* AddStorySheetController.m */; };
 		5275089715CD2CCE00927E69 /* StoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275089615CD2CCE00927E69 /* StoryList.m */; };
 		5275089B15CD2CD800927E69 /* StoryListEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275089A15CD2CD800927E69 /* StoryListEntry.m */; };
+		529984D215D4143000227F44 /* AddStoryView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FAD15D29DCC0078531D /* AddStoryView.strings */; };
+		529984D315D4143000227F44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB315D29DD20078531D /* InfoPlist.strings */; };
+		529984D415D4143000227F44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB615D29DD50078531D /* Localizable.strings */; };
+		529984D515D4143000227F44 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB915D29DDB0078531D /* MainMenu.strings */; };
+		529984D615D4143000227F44 /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FBC15D29DDF0078531D /* Settings.strings */; };
+		529984D715D4143000227F44 /* UpdateProgressWindowController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FBF15D29DE30078531D /* UpdateProgressWindowController.strings */; };
 		52AD5F8415D29CAA0078531D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5F8315D29CAA0078531D /* MainMenu.xib */; };
 		52AD5F9B15D29CEB0078531D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AD5F9A15D29CEB0078531D /* Foundation.framework */; };
 		52AD5FA715D29D060078531D /* xibLocalizationPostprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD5FA615D29D060078531D /* xibLocalizationPostprocessor.m */; };
-		52AD5FAB15D29DCC0078531D /* AddStoryView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FAD15D29DCC0078531D /* AddStoryView.strings */; };
 		52AD5FAE15D29DCF0078531D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB015D29DCF0078531D /* Credits.rtf */; };
-		52AD5FB115D29DD20078531D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB315D29DD20078531D /* InfoPlist.strings */; };
-		52AD5FB415D29DD50078531D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB615D29DD50078531D /* Localizable.strings */; };
-		52AD5FB715D29DDB0078531D /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FB915D29DDB0078531D /* MainMenu.strings */; };
-		52AD5FBA15D29DDF0078531D /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FBC15D29DDF0078531D /* Settings.strings */; };
-		52AD5FBD15D29DE30078531D /* UpdateProgressWindowController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52AD5FBF15D29DE30078531D /* UpdateProgressWindowController.strings */; };
 		52AD5FC815D2A14D0078531D /* DMLocalizedNibBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD5FC715D2A14D0078531D /* DMLocalizedNibBundle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B7E36C15CC985200A686E9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B7E36B15CC985200A686E9 /* Cocoa.framework */; };
 		52B7E37815CC985200A686E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7E37715CC985200A686E9 /* main.m */; };
@@ -439,13 +439,13 @@
 				523D59AC15CE7DC200ECE017 /* chapterTemplate.html in Resources */,
 				5266901915CF29CC000F5D0E /* UpdateProgressWindowController.xib in Resources */,
 				52AD5F8415D29CAA0078531D /* MainMenu.xib in Resources */,
-				52AD5FAB15D29DCC0078531D /* AddStoryView.strings in Resources */,
 				52AD5FAE15D29DCF0078531D /* Credits.rtf in Resources */,
-				52AD5FB115D29DD20078531D /* InfoPlist.strings in Resources */,
-				52AD5FB415D29DD50078531D /* Localizable.strings in Resources */,
-				52AD5FB715D29DDB0078531D /* MainMenu.strings in Resources */,
-				52AD5FBA15D29DDF0078531D /* Settings.strings in Resources */,
-				52AD5FBD15D29DE30078531D /* UpdateProgressWindowController.strings in Resources */,
+				529984D215D4143000227F44 /* AddStoryView.strings in Resources */,
+				529984D315D4143000227F44 /* InfoPlist.strings in Resources */,
+				529984D415D4143000227F44 /* Localizable.strings in Resources */,
+				529984D515D4143000227F44 /* MainMenu.strings in Resources */,
+				529984D615D4143000227F44 /* Settings.strings in Resources */,
+				529984D715D4143000227F44 /* UpdateProgressWindowController.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/zsh;
-			shellScript = "";
+			shellScript = "DEVELOPMENT_LANGUAGE=en\n${SRCROOT}/DMLocalizedNibBundle/slurpLocalizableStrings.zsh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
