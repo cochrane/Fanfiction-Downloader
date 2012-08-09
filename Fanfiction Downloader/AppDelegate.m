@@ -65,6 +65,11 @@ static NSString *storyListSuiteName = @"storylist";
 	self.updater = [[StoryUpdater alloc] init];
 	self.updater.sender = self.sender;
 	self.updater.list = self.storyList;
+	
+	
+	[self.addButton accessibilitySetOverrideValue:NSLocalizedString(@"Add story…", @"Add button accessibility description") forAttribute:NSAccessibilityDescriptionAttribute];
+	[self.updateButton accessibilitySetOverrideValue:NSLocalizedString(@"Update…", @"Update button accessibility description") forAttribute:NSAccessibilityDescriptionAttribute];
+	[self.removeButton accessibilitySetOverrideValue:NSLocalizedString(@"Remove story…", @"Remove button accessibility description") forAttribute:NSAccessibilityDescriptionAttribute];
 }
 
 - (void)deleteBackward:(id)sender

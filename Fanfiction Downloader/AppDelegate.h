@@ -27,4 +27,14 @@
 - (IBAction)importFromCryzedLemon:(id)sender;
 - (IBAction)showWindow:(id)sender;
 
+// For localization. Due to the way the IB handles accessibility strings, it is
+// not possible to read them later, so the normal approach to localize items via
+// strings fails for them. To avoid having multible .xibs, one per language, I'm
+// setting the description programmatically instead. Slightly more work, but not
+// that much.
+
+@property (retain, nonatomic) IBOutlet NSButton *addButton;
+@property (retain, nonatomic) IBOutlet NSButton *updateButton;
+@property (retain, nonatomic) IBOutlet NSButton *removeButton;
+
 @end
