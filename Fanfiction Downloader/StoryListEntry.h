@@ -33,6 +33,7 @@
 @property (copy, nonatomic, readonly) NSString *author;
 @property (copy, nonatomic, readonly) NSString *category;
 @property (copy, nonatomic, readonly) NSURL *imageURL;
+@property (retain, nonatomic, readonly) NSImage *image;
 @property (copy, nonatomic, readonly) NSString *summary;
 
 - (void)loadOverviewFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (StoryOverview *overview, NSError *error))handler;

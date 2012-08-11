@@ -856,7 +856,8 @@
 											</object>
 											<array class="NSMutableArray" key="NSTableColumns">
 												<object class="NSTableColumn" id="5013928">
-													<double key="NSWidth">42.9140625</double>
+													<string key="NSIdentifier">image</string>
+													<double key="NSWidth">22.421875</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -901,6 +902,7 @@
 													<reference key="NSTableView" ref="513504657"/>
 												</object>
 												<object class="NSTableColumn" id="850964078">
+													<string key="NSIdentifier">story</string>
 													<double key="NSWidth">199.7421875</double>
 													<double key="NSMinWidth">40</double>
 													<double key="NSMaxWidth">1000</double>
@@ -946,6 +948,7 @@
 													<reference key="NSTableView" ref="513504657"/>
 												</object>
 												<object class="NSTableColumn" id="898258120">
+													<string key="NSIdentifier">author</string>
 													<double key="NSWidth">75.3359375</double>
 													<double key="NSMinWidth">40</double>
 													<double key="NSMaxWidth">1000</double>
@@ -971,6 +974,7 @@
 													<reference key="NSTableView" ref="513504657"/>
 												</object>
 												<object class="NSTableColumn" id="624171975">
+													<string key="NSIdentifier">category</string>
 													<double key="NSWidth">145.91796875</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -996,6 +1000,7 @@
 													<reference key="NSTableView" ref="513504657"/>
 												</object>
 												<object class="NSTableColumn" id="325880313">
+													<string key="NSIdentifier">chapters</string>
 													<double key="NSWidth">62.3671875</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -1021,7 +1026,8 @@
 													<reference key="NSTableView" ref="513504657"/>
 												</object>
 												<object class="NSTableColumn" id="405785327">
-													<double key="NSWidth">101</double>
+													<string key="NSIdentifier">summary</string>
+													<double key="NSWidth">122</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1059,9 +1065,10 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">20</double>
-											<int key="NSTvFlags">-557842432</int>
+											<int key="NSTvFlags">-541065216</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
+											<string key="NSAutosaveName">maintable</string>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1231,7 +1238,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="457713656"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">mainWindow</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -1249,6 +1256,7 @@
 					<string>category</string>
 					<string>lastChapterCount</string>
 					<string>lastWordCount</string>
+					<string>imageURL</string>
 				</array>
 				<string key="NSObjectClassName">StoryListEntry</string>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
@@ -1790,19 +1798,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">valueURL: arrangedObjects.imageURL</string>
+						<string key="label">value: arrangedObjects.image</string>
 						<reference key="source" ref="5013928"/>
 						<reference key="destination" ref="1060587499"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="5013928"/>
 							<reference key="NSDestination" ref="1060587499"/>
-							<string key="NSLabel">valueURL: arrangedObjects.imageURL</string>
-							<string key="NSBinding">valueURL</string>
-							<string key="NSKeyPath">arrangedObjects.imageURL</string>
+							<string key="NSLabel">value: arrangedObjects.image</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">arrangedObjects.image</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">681</int>
+					<int key="connectionID">714</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3110,7 +3118,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">712</int>
+			<int key="maxID">714</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

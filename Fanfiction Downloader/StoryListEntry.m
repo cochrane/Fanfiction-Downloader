@@ -22,7 +22,10 @@
 @property (copy, nonatomic, readwrite) NSString *author;
 @property (copy, nonatomic, readwrite) NSString *category;
 @property (copy, nonatomic, readwrite) NSURL *imageURL;
+@property (retain, nonatomic, readwrite) NSImage *image;
 @property (copy, nonatomic, readwrite) NSString *summary;
+
+- (void)loadImage;
 
 @end
 
@@ -43,6 +46,8 @@
 	self.category = [plist objectForKey:@"category"];
 	self.imageURL = [NSURL URLWithString:[plist objectForKey:@"image"]];
 	self.summary = [plist objectForKey:@"summary"];
+	
+	[self loadImage];
 	
 	return self;
 }
@@ -125,6 +130,8 @@
 		self.summary = overview.summary;
 		self.isComplete = overview.isComplete;
 		
+		[self loadImage];
+		
 		// Inform caller
 		handler(overview, error);
 	}];
@@ -161,6 +168,27 @@
 	}
 
 	return chapters;
+}
+
+- (void)loadImage
+{
+	if (self.imageURL == nil)
+	{
+		self.image = nil;
+		return;
+	}
+	
+	// Use default caching here.
+	NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
+	
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+		// Handle load error
+		if (!data) return;
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.image = [[NSImage alloc] initWithData:data];
+		});
+	}];
 }
 
 @end
