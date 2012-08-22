@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) StoryUpdater *updater;
 
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *progress;
-@property (nonatomic, weak) IBOutlet NSTextField *statusText;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator *progress;
+@property (nonatomic, retain) IBOutlet NSTextField *statusText;
 
 @end

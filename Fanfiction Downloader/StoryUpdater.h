@@ -22,7 +22,7 @@
 @interface StoryUpdater : NSObject
 
 @property (retain, nonatomic) StoryList *list;
-@property (weak, nonatomic) id<StoryUpdaterDelegate> delegate;
+@property (assign, nonatomic) id<StoryUpdaterDelegate> delegate;
 @property (retain, nonatomic) EmailSender *sender;
 
 @property (readonly, assign, nonatomic) NSUInteger storiesToUpdate;
