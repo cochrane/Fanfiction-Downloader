@@ -11,6 +11,8 @@
 #import "StoryChapter.h"
 #import "StoryOverview.h"
 
+static dispatch_queue_t imageLoadingQueue;
+
 @interface StoryListEntry ()
 
 @property (assign, nonatomic, readwrite) NSUInteger storyID;
@@ -181,14 +183,22 @@
 	// Use default caching here.
 	NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
 	
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-		// Handle load error
+	// Set up the queue, if necessary.
+	// Note that all loading is done serially. Anything else risks blocks when there are too many parallel loads going on at once and thread limits get exhausted.
+	if (!imageLoadingQueue)
+		imageLoadingQueue = dispatch_queue_create("image loading", DISPATCH_QUEUE_SERIAL);
+	
+	dispatch_async(imageLoadingQueue, ^{
+		NSURLResponse *response;
+		NSError *error;
+		NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+		
 		if (!data) return;
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.image = [[NSImage alloc] initWithData:data];
 		});
-	}];
+	});
 }
 
 @end
