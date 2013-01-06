@@ -17,8 +17,8 @@
 - (NSData *)renderedStory;
 
 // For use by the email sender
-@property (readonly, copy) NSString *author;
-@property (readonly, copy) NSString *title;
-@property (readonly, copy) NSString *summary;
+@property (nonatomic, readonly, copy) NSString *author;
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *summary;
 
 @end

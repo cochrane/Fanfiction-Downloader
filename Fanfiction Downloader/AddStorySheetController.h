@@ -16,7 +16,7 @@
 
 - (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
 
-@property (assign) IBOutlet NSTextField *urlField;
+@property (nonatomic, assign) IBOutlet NSTextField *urlField;
 
 - (IBAction)add:(id)sender;
 - (IBAction)cancel:(id)sender;

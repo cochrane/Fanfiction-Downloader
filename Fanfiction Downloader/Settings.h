@@ -15,7 +15,7 @@
 
 - (id)init;
 
-@property (weak) AppDelegate *appDelegate;
+@property (nonatomic, weak) AppDelegate *appDelegate;
 
 @property (retain, nonatomic) IBOutlet NSUserDefaultsController *defaultsController;
 

@@ -14,8 +14,8 @@
 @interface StoryList ()
 
 @property (nonatomic, retain) NSMutableArray *stories;
-@property NSDate *fileModificationDate;
-@property NSOperationQueue *privateQueue;
+@property (nonatomic) NSDate *fileModificationDate;
+@property (nonatomic) NSOperationQueue *privateQueue;
 
 @end
 

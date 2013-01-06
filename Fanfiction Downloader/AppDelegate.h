@@ -13,9 +13,9 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet NSArrayController *storyListController;
+@property (nonatomic, assign) IBOutlet NSWindow *window;
+@property (nonatomic, assign) IBOutlet NSTableView *tableView;
+@property (nonatomic, assign) IBOutlet NSArrayController *storyListController;
 
 @property (nonatomic, retain) StoryList *storyList;
 @property (nonatomic, retain) MainWindowController *mainWindowController;

@@ -13,7 +13,7 @@
 
 @interface UpdateProgressWindowController ()
 
-@property NSMutableArray *errors;
+@property (nonatomic) NSMutableArray *errors;
 
 @end
 
