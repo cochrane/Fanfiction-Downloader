@@ -8,6 +8,7 @@
 
 #import "StoryList.h"
 
+#import "NSArray+Map.h"
 #import "StoryListEntry.h"
 
 @interface StoryList ()
@@ -24,24 +25,14 @@
 	
 	NSAssert(plist == nil || [plist isKindOfClass:[NSArray class]], @"If there is a plist, it has to be a dictionary, not %@", [plist class]);
 	
-	self.stories = [[NSMutableArray alloc] initWithCapacity:[plist count]];
-	
-	for (id entryPlist in plist)
-	{
-		[self.stories addObject:[[StoryListEntry alloc] initWithPlist:entryPlist]];
-	}
+	self.stories = [plist mapMutable:^(id entry){ return [[StoryListEntry alloc] initWithPlist:entry]; }];
 	
 	return self;
 }
 
-- (id)writeToPropertyList;
+- (id)propertyListRepresentation;
 {
-	NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.stories.count];
-	
-	for (StoryListEntry *entry in self.stories)
-		[result addObject:[entry writeToPlist]];
-	
-	return [result copy];
+	return [self.stories valueForKey:@"propertyListRepresentation"];
 }
 
 - (BOOL)hasStory:(NSUInteger)storyID;

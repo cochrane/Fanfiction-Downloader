@@ -14,7 +14,7 @@
 
 - (id)initWithPropertyList:(id)plist;
 
-- (id)writeToPropertyList;
+- (id)propertyListRepresentation;
 
 
 - (void)addStoryIfNotExists:(NSUInteger)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;

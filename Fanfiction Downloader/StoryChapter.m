@@ -68,15 +68,9 @@ static NSRegularExpression *chapterTitleExpression;
 	if (story == nil) return nil;
 	
 	// Strip all attributes from hr elements.
-	for (NSXMLNode *node in story.children)
-	{
-		if (node.kind != NSXMLElementKind) continue;
-		if (![node.name isEqual:@"hr"]) continue;
-		
-		NSXMLElement *hrElement = (NSXMLElement *) node;
-		[hrElement removeAttributeForName:@"size"];
-		[hrElement removeAttributeForName:@"noshade"];
-	}
+	NSArray *hrElements = [story nodesForXPath:@"//hr" error:error];
+	[hrElements makeObjectsPerformSelector:@selector(removeAttributeForName:) withObject:@"size"];
+	[hrElements makeObjectsPerformSelector:@selector(removeAttributeForName:) withObject:@"noshade"];
 	
 	self.text = [story XMLStringWithOptions:NSXMLDocumentTidyHTML];
 	

@@ -84,7 +84,7 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-	[self.storyDefaults setObject:[self.storyList writeToPropertyList] forKey:userDefaultsStoryListKey];
+	[self.storyDefaults setObject:[self.storyList propertyListRepresentation] forKey:userDefaultsStoryListKey];
 	[self.storyDefaults synchronize];
 }
 

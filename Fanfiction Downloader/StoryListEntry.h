@@ -15,7 +15,7 @@
 
 // Read initial values from property list.
 - (id)initWithPlist:(id)plist;
-- (id)writeToPlist;
+- (id)propertyListRepresentation;
 
 // Do not use any initial values at all.
 - (id)initWithStoryID:(NSUInteger)storyID;

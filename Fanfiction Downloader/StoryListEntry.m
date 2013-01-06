@@ -61,7 +61,7 @@
 	return self;
 }
 
-- (id)writeToPlist
+- (id)propertyListRepresentation
 {
 	NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithCapacity:8];
 	
