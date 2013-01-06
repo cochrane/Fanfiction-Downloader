@@ -10,11 +10,18 @@
 
 @class StoryListEntry;
 
-@interface StoryList : NSObject
+@interface StoryList : NSObject <NSFilePresenter>
 
 - (id)initWithPropertyList:(id)plist;
+- (id)initWithContentsOfURL:(NSURL *)url;
 
-- (id)propertyListRepresentation;
+@property NSURL *propertyListURL;
+@property BOOL isLocked;
+
+@property (nonatomic) id propertyListRepresentation;
+
+- (BOOL)readFromFileWithError:(NSError *__autoreleasing *)error;
+- (BOOL)writeToFileWithError:(NSError *__autoreleasing*)error;
 
 
 - (void)addStoryIfNotExists:(NSUInteger)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;
@@ -27,5 +34,17 @@
 - (void)insertObject:(StoryListEntry *)entry inStoriesAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromStoriesAtIndex:(NSUInteger)idx;
 - (void)replaceObjectInStoriesAtIndex:(NSUInteger)idx withObject:(StoryListEntry *)entry;
+
+// File presenter
+- (NSURL *)presentedItemURL;
+- (NSOperationQueue *)presentedItemOperationQueue;
+
+- (void)relinquishPresentedItemToReader:(void (^)(void (^reacquirer)(void)))reader;
+- (void)relinquishPresentedItemToWriter:(void (^)(void (^reacquirer)(void)))writer;
+- (void)savePresentedItemChangesWithCompletionHandler:(void (^)(NSError *errorOrNil))completionHandler;
+- (void)accommodatePresentedItemDeletionWithCompletionHandler:(void (^)(NSError *errorOrNil))completionHandler;
+- (void)presentedItemDidMoveToURL:(NSURL *)newURL;
+- (void)presentedItemDidChange;
+
 
 @end
