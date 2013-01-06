@@ -141,8 +141,12 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)refresh:(id)sender
 {
+	[self.storyList writeToFileWithError:NULL];
+	
 	if ([self openUpdateControllerIfPossible])
 		[self.updater update];
+	
+	[self.storyList writeToFileWithError:NULL];
 }
 
 - (void)resend:(id)sender
