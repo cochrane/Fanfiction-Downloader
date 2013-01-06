@@ -31,15 +31,8 @@
 }
 
 - (NSString *)allTextForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
-{
-	NSArray *results = [self nodesForXPath:xpath error:error];
-	if (!results) return nil;
-	
-	NSMutableString *string = [NSMutableString string];
-	for (NSXMLNode *node in results)
-		[string appendString:node.stringValue];
-	
-	return [string copy];
+{	
+	return [[[self nodesForXPath:xpath error:error] valueForKeyPath:@"stringValue"] componentsJoinedByString:@""];
 }
 
 @end
