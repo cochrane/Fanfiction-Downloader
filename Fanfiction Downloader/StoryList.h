@@ -13,7 +13,7 @@
 @interface StoryList : NSObject <NSFilePresenter>
 
 - (id)initWithPropertyList:(id)plist;
-- (id)initWithContentsOfURL:(NSURL *)url;
+- (id)initWithContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
 
 @property NSURL *propertyListURL;
 @property BOOL isLocked;

@@ -35,12 +35,13 @@
 	
 	return self;
 }
-- (id)initWithContentsOfURL:(NSURL *)url;
+- (id)initWithContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
 {
 	if (!(self = [super init])) return nil;
 	
 	self.propertyListURL = url;
-	[self readFromFileWithError:NULL];
+	if (![self readFromFileWithError:error])
+		return nil;
 	
 	return self;
 }
