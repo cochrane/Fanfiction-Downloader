@@ -86,6 +86,18 @@ static NSString *storyListSuiteName = @"storylist";
 
 #pragma mark - Changes from the settings controller
 
+- (BOOL)openNewURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
+{
+	StoryList *newList = [[StoryList alloc] initWithContentsOfURL:url error:error];
+	if (!newList) return NO;
+	
+	self.storyList = newList;
+	self.tableDataSource.storyList = self.storyList;
+	self.updater.list = self.storyList;
+	
+	return YES;
+}
+
 - (void)changeToURL:(NSURL *)url;
 {
 	self.storyList.propertyListURL = url;

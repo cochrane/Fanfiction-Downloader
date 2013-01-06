@@ -37,6 +37,7 @@
 @property (retain, nonatomic) IBOutlet NSButton *updateButton;
 @property (retain, nonatomic) IBOutlet NSButton *removeButton;
 
+- (BOOL)openNewURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
 - (void)changeToURL:(NSURL *)url;
 - (void)changeToDefaultURL;
 - (void)changeToStoredURL;

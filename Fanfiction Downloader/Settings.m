@@ -85,7 +85,7 @@
 	[self.defaultsController commitEditing];
 }
 
-- (void)choosePath:(id)sender
+- (void)createANewFile:(id)sender
 {
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
 	savePanel.allowedFileTypes = @[ @"com.apple.property-list" ];
@@ -114,6 +114,49 @@
 		
 		// Get localized name and image
 		NSDictionary *values = [savePanel.URL resourceValuesForKeys:@[ NSURLEffectiveIconKey, NSURLLocalizedNameKey ] error:NULL];
+		if (values)
+		{
+			locationMarkerItem.image = [values objectForKey:NSURLEffectiveIconKey];
+			locationMarkerItem.title = [values objectForKey:NSURLLocalizedNameKey];
+		}
+	}];
+}
+
+- (IBAction)chooseAnExistingFile:(id)sender;
+{
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	openPanel.allowedFileTypes = @[ @"com.apple.property-list" ];
+	openPanel.allowsOtherFileTypes = YES;
+	openPanel.title = NSLocalizedString(@"Choose an existing story list", @"Story list open panel");
+	openPanel.prompt = NSLocalizedString(@"Choose", @"Story list open panel");
+	openPanel.nameFieldStringValue = NSLocalizedString(@"Story List", @"Story list open panel");
+	openPanel.allowsMultipleSelection = NO;
+	
+	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
+		if (result != NSOKButton) return;
+		
+		// Tell app delegate about it.
+		NSError *error = nil;
+		AppDelegate *delegate = self.appDelegate;
+		if (delegate && ![delegate openNewURL:openPanel.URL error:&error])
+		{
+			[self presentError:error modalForWindow:self.window delegate:nil didPresentSelector:NULL contextInfo:NULL];
+			return;
+		}
+		
+		// Set menu
+		NSMenuItem *locationMarkerItem = [self.storyListPopup itemAtIndex:[self.storyListPopup indexOfItemWithTag:2]];
+		locationMarkerItem.hidden = NO;
+		locationMarkerItem.title = openPanel.URL.lastPathComponent;
+		[self.storyListPopup selectItem:locationMarkerItem];
+		
+		// Store as default
+		NSData *data = [openPanel.URL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+		[[NSUserDefaults standardUserDefaults] setObject:data forKey:DefaultsExternalStoreBookmarkKey];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:DefaultsUseExternalStoreKey];
+		
+		// Get localized name and image
+		NSDictionary *values = [openPanel.URL resourceValuesForKeys:@[ NSURLEffectiveIconKey, NSURLLocalizedNameKey ] error:NULL];
 		if (values)
 		{
 			locationMarkerItem.image = [values objectForKey:NSURLEffectiveIconKey];

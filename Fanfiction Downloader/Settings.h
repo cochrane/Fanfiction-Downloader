@@ -21,7 +21,8 @@
 
 @property (retain, nonatomic) IBOutlet NSPopUpButton *storyListPopup;
 
-- (IBAction)choosePath:(id)sender;
+- (IBAction)createANewFile:(id)sender;
+- (IBAction)chooseAnExistingFile:(id)sender;
 - (IBAction)chooseDefault:(id)sender;
 - (IBAction)selectExistingPath:(id)sender;
 
