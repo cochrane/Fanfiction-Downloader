@@ -15,8 +15,8 @@
 - (id)initWithPropertyList:(id)plist;
 - (id)initWithContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
 
-@property NSURL *propertyListURL;
-@property BOOL isLocked;
+@property (nonatomic) NSURL *propertyListURL;
+@property (nonatomic) BOOL isLocked;
 
 @property (nonatomic) id propertyListRepresentation;
 

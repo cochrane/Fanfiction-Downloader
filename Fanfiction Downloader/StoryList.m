@@ -25,11 +25,16 @@
 	return [NSSet setWithObject:@"stories"];
 }
 
++ (NSSet *)keyPathsForValuesAffectingPresentedItemURL
+{
+	return [NSSet setWithObject:@"propertyListURL"];
+}
+
 - (id)initWithPropertyList:(id)plist;
 {
 	if (!(self = [super init])) return nil;
 	
-	NSAssert(plist == nil || [plist isKindOfClass:[NSArray class]], @"If there is a plist, it has to be an array, not %@", [plist class]);
+	[NSFileCoordinator addFilePresenter:self];
 	
 	self.propertyListRepresentation = plist;
 	
@@ -38,6 +43,8 @@
 - (id)initWithContentsOfURL:(NSURL *)url error:(NSError *__autoreleasing*)error;
 {
 	if (!(self = [super init])) return nil;
+	
+	[NSFileCoordinator addFilePresenter:self];
 	
 	self.propertyListURL = url;
 	if (![self readFromFileWithError:error])
@@ -75,7 +82,7 @@
 	if (error != NULL)
 		*error = internalError;
 	
-	return internalError != NULL;
+	return internalError == NULL;
 }
 - (BOOL)writeToFileWithError:(NSError *__autoreleasing *)error
 {
@@ -92,7 +99,7 @@
 	if (error != NULL)
 		*error = internalError;
 	
-	return internalError != NULL;
+	return internalError == NULL;
 }
 
 #pragma mark - Management
@@ -167,6 +174,13 @@
 }
 
 #pragma mark - File Presenter
+
+- (void)setPropertyListURL:(NSURL *)propertyListURL
+{
+	[NSFileCoordinator removeFilePresenter:self];
+	_propertyListURL = propertyListURL;
+	[NSFileCoordinator addFilePresenter:self];
+}
 
 - (NSURL *)presentedItemURL
 {
