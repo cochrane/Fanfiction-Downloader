@@ -5,7 +5,7 @@
 "john.doe@free.kindle.com" = "max.mustermann@free.kindle.com";
 
 /* Class = "NSTextFieldCell"; title = "Kindle email address:"; ObjectID = "24"; */
-"Kindle email address:" = "Kindle Email Addresse";
+"Kindle email address:" = "Kindle Email Addresse:";
 
 /* Class = "NSTextFieldCell"; title = "Sender address:"; ObjectID = "73"; */
 "Sender address:" = "Absenderadresse:";
