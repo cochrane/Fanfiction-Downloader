@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSMutableArray *stories;
 @property NSDate *fileModificationDate;
+@property NSOperationQueue *privateQueue;
 
 @end
 
@@ -67,8 +68,9 @@
 	NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
 	
 	__block NSError *internalError = nil;
+	NSError *coordinationError = nil;
 	
-	[coordinator coordinateReadingItemAtURL:self.propertyListURL options:NSFileCoordinatorReadingResolvesSymbolicLink error:&internalError byAccessor:^(NSURL *targetURL){
+	[coordinator coordinateReadingItemAtURL:self.propertyListURL options:NSFileCoordinatorReadingResolvesSymbolicLink error:&coordinationError byAccessor:^(NSURL *targetURL){
 		
 		NSData *data = [NSData dataWithContentsOfURL:targetURL options:0 error:&internalError];
 		if (!data) return;
@@ -78,6 +80,9 @@
 		
 		self.propertyListRepresentation = plist;
 	}];
+	
+	if (coordinationError)
+		internalError = coordinationError;
 	
 	if (error != NULL)
 		*error = internalError;
@@ -89,12 +94,16 @@
 	NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
 	
 	__block NSError *internalError = nil;
+	NSError *coordinationError = nil;
 	
-	[coordinator coordinateWritingItemAtURL:self.propertyListURL options:0 error:&internalError byAccessor:^(NSURL *targetURL){
+	[coordinator coordinateWritingItemAtURL:self.propertyListURL options:0 error:&coordinationError byAccessor:^(NSURL *targetURL){
 		
 		NSData *data = [NSPropertyListSerialization dataWithPropertyList:self.propertyListRepresentation format:NSPropertyListXMLFormat_v1_0 options:0 error:&internalError];
 		[data writeToURL:targetURL options:NSDataWritingAtomic error:&internalError];
 	}];
+	
+	if (coordinationError)
+		internalError = coordinationError;
 	
 	if (error != NULL)
 		*error = internalError;
@@ -175,13 +184,6 @@
 
 #pragma mark - File Presenter
 
-- (void)setPropertyListURL:(NSURL *)propertyListURL
-{
-	[NSFileCoordinator removeFilePresenter:self];
-	_propertyListURL = propertyListURL;
-	[NSFileCoordinator addFilePresenter:self];
-}
-
 - (NSURL *)presentedItemURL
 {
 	return self.propertyListURL;
@@ -189,7 +191,12 @@
 
 - (NSOperationQueue *)presentedItemOperationQueue
 {
-	return [NSOperationQueue mainQueue];
+	if (!self.privateQueue)
+	{
+		self.privateQueue = [[NSOperationQueue alloc] init];
+		self.privateQueue.maxConcurrentOperationCount = 1;
+	}
+	return self.privateQueue;
 }
 
 - (void)relinquishPresentedItemToReader:(void (^)(void (^)(void)))reader
