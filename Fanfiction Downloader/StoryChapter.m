@@ -53,8 +53,8 @@ static NSRegularExpression *chapterTitleExpression;
 
 - (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
 {	
+	// Create document. Turn into string by hand, since NSXMLDocument can't deal with HTML5-style encoding declarations.
 	NSString *dataAsUTF8 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
 	if (!document) return NO;
 
@@ -75,6 +75,7 @@ static NSRegularExpression *chapterTitleExpression;
 		self.title = [document firstTextForXPath:titleXPath error:error];
 	}
 	
+	// Find story
 	NSXMLNode *story = [document firstNodeForXPath:contentXPath error:error];
 	if (story == nil) return NO;
 	

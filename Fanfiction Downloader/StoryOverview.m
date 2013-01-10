@@ -79,8 +79,8 @@ static NSArray *genres = nil;
 
 - (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
 {
+	// Create document. Turn into string by hand, since NSXMLDocument can't deal with HTML5-style encoding declarations.
 	NSString *dataAsUTF8 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
 	if (!document) return NO;
 	
@@ -99,6 +99,7 @@ static NSArray *genres = nil;
 	// Things that require more involved parsing here.
 	[self _parseTokens:[document firstTextForXPath:tokenListXPath error:error]];
 	
+	// Optional tokens that still need some value filled in
 	if (self.chapterCount == 0) self.chapterCount = 1;
 	if (self.updated == nil) self.updated = self.published;
 	if (self.genre == nil) self.genre = @"Unspecified";
@@ -110,6 +111,13 @@ static NSArray *genres = nil;
 - (void)_parseTokens:(NSString *)tokenString
 {
 	if (!tokenString) return;
+	
+	/* Tokens come in two kinds: Those that have the form Key: Value, and those
+	 * that are just random text. The first kind is split and processed based
+	 * on the key. The second kind is either genre (that's handled by another
+	 * method) or language or characters. A simple state machine is used to
+	 * deal with the last case.
+	 */
 	
 	NSArray *tokens = [tokenString componentsSeparatedByString:tokenSeparator];
 	
