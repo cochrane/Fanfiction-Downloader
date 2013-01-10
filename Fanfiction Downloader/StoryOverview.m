@@ -26,7 +26,6 @@ static NSString *tokenSeparator = @" - ";
 
 static NSString *chapterPattern = @"/s/%lu/%lu/";
 static NSURL *baseURL = nil;
-static NSArray *genres = nil;
 
 @interface StoryOverview ()
 {
@@ -34,7 +33,6 @@ static NSArray *genres = nil;
 }
 
 - (void)_parseTokens:(NSString *)tokenString;
-- (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
 
 @property (readwrite, copy, nonatomic) NSString *author;
 @property (readwrite, copy, nonatomic) NSURL *authorURL;
@@ -64,7 +62,6 @@ static NSArray *genres = nil;
 + (void)initialize
 {
 	baseURL = [NSURL URLWithString:@"http://www.fanfiction.net/"];
-	genres = @[ @"General", @"Romance", @"Humor", @"Drama", @"Poetry", @"Adventure", @"Mystery", @"Horror", @"Parody", @"Angst", @"Supernatural", @"Suspense", @"Sci-Fi", @"Fantasy", @"Spiritual", @"Tragedy", @"Western", @"Crime", @"Family", @"Hurt", @"Comfort", @"Friendship" ];
 }
 
 - (id)initWithStoryID:(StoryID *)storyID;
@@ -114,9 +111,8 @@ static NSArray *genres = nil;
 	
 	/* Tokens come in two kinds: Those that have the form Key: Value, and those
 	 * that are just random text. The first kind is split and processed based
-	 * on the key. The second kind is either genre (that's handled by another
-	 * method) or language or characters. A simple state machine is used to
-	 * deal with the last case.
+	 * on the key. The second kind is language, genre or characters.. A simple
+	 * state machine is used to separate them.
 	 */
 	
 	NSArray *tokens = [tokenString componentsSeparatedByString:tokenSeparator];
@@ -124,8 +120,9 @@ static NSArray *genres = nil;
 	enum {
 		Start,
 		Language,
+		Genre,
 		Characters
-	} uncategorizedState = Start;
+	} lastUncategorizedState = Start;
 	
 	NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
 	numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en-US"];
@@ -174,39 +171,27 @@ static NSArray *genres = nil;
 		
 		else
 		{
-			if (self.genre == nil && [self _isTokenGenre:token])
+			switch (lastUncategorizedState)
 			{
-				self.genre = token;
-			}
-			else
-			{
-				switch (uncategorizedState)
-				{
-					case Start:
-						self.language = token;
-						uncategorizedState = Language;
-						break;
-					case Language:
-						self.characters = token;
-						uncategorizedState = Characters;
-						break;
-					case Characters:
-					default:
-						NSLog(@"Found more than three uncategorized tokens. Surplus: %@", token);
-						break;
-				}
+				case Start:
+					self.language = token;
+					lastUncategorizedState = Language;
+					break;
+				case Language:
+					self.genre = token;
+					lastUncategorizedState = Genre;
+					break;
+				case Genre:
+					self.characters = token;
+					lastUncategorizedState = Characters;
+					break;
+				case Characters:
+				default:
+					NSLog(@"Found more than three uncategorized tokens. Surplus: %@", token);
+					break;
 			}
 		}
 	}
-}
-
-- (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
-{
-	for (NSString *part in [mightDescribeGenre componentsSeparatedByString:@"/"])
-		if (![genres containsObject:part])
-			return NO;
-	
-	return YES;
 }
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
