@@ -180,14 +180,22 @@ static dispatch_queue_t imageLoadingQueue;
 		return;
 	}
 	
-	// Use default caching here.
 	NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
+	
+	// Check the cache first.
+	NSCachedURLResponse *cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
+	if (cachedResponse)
+	{
+		self.image = [[NSImage alloc] initWithData:cachedResponse.data];
+		return;
+	}
 	
 	// Set up the queue, if necessary.
 	// Note that all loading is done serially. Anything else risks blocks when there are too many parallel loads going on at once and thread limits get exhausted.
 	if (!imageLoadingQueue)
 		imageLoadingQueue = dispatch_queue_create("image loading", DISPATCH_QUEUE_SERIAL);
 	
+	// Send the request on the background thread.
 	dispatch_async(imageLoadingQueue, ^{
 		NSURLResponse *response;
 		NSError *error;
