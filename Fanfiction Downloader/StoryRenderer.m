@@ -19,7 +19,6 @@ static FileTemplate *storyTemplate;
 @interface StoryRenderer ()
 
 @property (retain, nonatomic) StoryOverview *overview;
-@property (retain, nonatomic) NSArray *chapters;
 
 @end
 
@@ -37,12 +36,11 @@ static FileTemplate *storyTemplate;
 	storyTemplate = [[FileTemplate alloc] initWithTemplateString:storyTemplateText startMarker:@"{{" endMarker:@"}}"];
 }
 
-- (id)initWithStoryOverview:(StoryOverview *)overview chapters:(NSArray *)chapters;
+- (id)initWithStoryOverview:(StoryOverview *)overview;
 {
 	if (!(self = [super init])) return nil;
 	
 	self.overview = overview;
-	self.chapters = chapters;
 	
 	return self;
 }
@@ -66,7 +64,7 @@ static FileTemplate *storyTemplate;
 	dateFormatter.dateStyle = NSDateFormatterLongStyle;
 	dateFormatter.locale = usEnglish;
 	
-	for (StoryChapter *chapter in self.chapters)
+	for (StoryChapter *chapter in [self.overview valueForKey:@"chapters"])
 	{
 		NSDictionary *values = @{
 			@"number" : [chapterNumberFormatter stringFromNumber:@(chapter.number)],

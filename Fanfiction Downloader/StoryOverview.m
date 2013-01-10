@@ -221,6 +221,15 @@ static NSURL *baseURL = nil;
 		handler(nil);
 	}];
 }
+- (BOOL)loadChapterDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
+{
+	for (StoryChapter *chapter in [self valueForKey:@"chapters"])
+	{
+		BOOL success = [chapter loadDataFromCache:useCacheWherePossible error:error];
+		if (!success) return NO;
+	}
+	return YES;
+}
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter
 {

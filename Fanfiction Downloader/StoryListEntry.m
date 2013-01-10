@@ -102,13 +102,13 @@ static dispatch_queue_t imageLoadingQueue;
 	return result;
 }
 
-- (void)loadOverviewFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (StoryOverview *overview, NSError *error))handler;
+- (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 {
 	[self.overview loadDataFromCache:useCacheWherePossible completionHandler:^(NSError *error) {
 		// Handle load error
 		if (error)
 		{
-			handler(nil, error);
+			handler(error);
 			return;
 		};
 		
@@ -136,29 +136,16 @@ static dispatch_queue_t imageLoadingQueue;
 		[self loadImage];
 		
 		// Inform caller
-		handler(self.overview, error);
+		handler(error);
 	}];
 }
 
 - (void)loadDisplayValuesErrorHandler:(void (^) (NSError *error)) handler;
 {
-	[self loadOverviewFromCache:YES completionHandler:^(StoryOverview *overview, NSError *error){
+	[self loadDataFromCache:YES completionHandler:^(NSError *error){
 		if (error != nil && handler != NULL)
 			handler(error);
 	}];
-}
-
-- (NSArray *)loadChaptersFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
-{
-	NSArray *chapters = [self.overview valueForKey:@"chapters"];
-	
-	for (NSUInteger i = 0; i < chapters.count; i++)
-	{
-		BOOL success = [[chapters objectAtIndex:i] loadDataFromCache:useCacheWherePossible error:error];
-		if (!success) return nil;
-	}
-
-	return chapters;
 }
 
 - (void)loadImage

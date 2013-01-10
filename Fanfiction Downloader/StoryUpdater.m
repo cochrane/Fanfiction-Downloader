@@ -8,8 +8,10 @@
 
 #import "StoryUpdater.h"
 
+#import "StoryChapter.h"
 #import "StoryList.h"
 #import "StoryListEntry.h"
+#import "StoryOverview.h"
 #import "StoryRenderer.h"
 #import "EmailSender.h"
 
@@ -27,10 +29,10 @@
 	_storiesUpdatedSoFar = 0;
 	
 	for (StoryListEntry *entry in stories)
-	{		
-		[entry loadOverviewFromCache:NO completionHandler:^(StoryOverview *overview, NSError *error){
+	{
+		[entry loadDataFromCache:NO completionHandler:^(NSError *error){
 			// Error with loading
-			if (overview == nil)
+			if (error != nil)
 			{
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
@@ -47,10 +49,10 @@
 				BOOL useCache = !(entry.wordCountChangedSinceLastSend && !entry.chapterCountChangedSinceLastSend) && onlyIfNeeded;
 				
 				NSError *error = nil;
-				NSArray *chapters = [entry loadChaptersFromCache:useCache error:&error];
+				BOOL couldLoadChapters = [entry.overview loadChapterDataFromCache:useCache error:&error];
 				
 				// Could not load them.
-				if (chapters == nil)
+				if (!couldLoadChapters)
 				{
 					dispatch_async(dispatch_get_main_queue(), ^{
 						_storiesUpdatedSoFar++;
@@ -61,7 +63,7 @@
 					return;
 				}
 				
-				StoryRenderer *renderer = [[StoryRenderer alloc] initWithStoryOverview:overview chapters:chapters];
+				StoryRenderer *renderer = [[StoryRenderer alloc] initWithStoryOverview:entry.overview];
 				NSError *mailError = nil;
 				BOOL success = [self.sender sendStory:renderer error:&mailError];
 				

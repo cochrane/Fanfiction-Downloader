@@ -12,7 +12,7 @@
 
 @interface StoryRenderer : NSObject
 
-- (id)initWithStoryOverview:(StoryOverview *)overview chapters:(NSArray *)chapters;
+- (id)initWithStoryOverview:(StoryOverview *)overview;
 
 - (NSData *)renderedStory;
 

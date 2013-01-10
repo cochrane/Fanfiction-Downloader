@@ -40,7 +40,6 @@
 
 @property (nonatomic, readonly) StoryOverview *overview;
 
-- (void)loadOverviewFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (StoryOverview *overview, NSError *error))handler;
-- (NSArray *)loadChaptersFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
+- (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 
 @end

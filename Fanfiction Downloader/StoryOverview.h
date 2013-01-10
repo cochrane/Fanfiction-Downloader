@@ -16,6 +16,7 @@
 - (id)initWithStoryID:(StoryID *)storyID;
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
+- (BOOL)loadChapterDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
 - (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
 
 @property (readonly, nonatomic) StoryID *storyID;
