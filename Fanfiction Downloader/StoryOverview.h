@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class StoryChapter;
 @class StoryID;
 
 @interface StoryOverview : NSObject
@@ -41,5 +42,10 @@
 @property (readonly, assign, nonatomic) NSUInteger wordCount;
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter;
+
+- (NSUInteger)countOfChapters;
+- (StoryChapter *)objectInChaptersAtIndex:(NSUInteger)index;
+- (void)insertObject:(StoryChapter *)object inChaptersAtIndex:(NSUInteger)index;
+- (void)removeObjectFromChaptersAtIndex:(NSUInteger)index;
 
 @end

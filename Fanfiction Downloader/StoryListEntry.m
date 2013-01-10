@@ -150,23 +150,12 @@ static dispatch_queue_t imageLoadingQueue;
 
 - (NSArray *)loadChaptersFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
 {
-	NSURLCacheStoragePolicy policy = useCacheWherePossible ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringLocalCacheData;
-
-	NSMutableArray *chapters = [NSMutableArray arrayWithCapacity:self.lastChapterCount];
-	for (NSUInteger i = 0; i < self.lastChapterCount; i++)
+	NSArray *chapters = [self.overview valueForKey:@"chapters"];
+	
+	for (NSUInteger i = 0; i < chapters.count; i++)
 	{
-		NSURL *chapterURL = [self.overview urlForChapter:i+1];
-		
-		NSURLRequest *request = [NSURLRequest requestWithURL:chapterURL cachePolicy:policy timeoutInterval:5.0];
-		
-		NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:NULL error:error];
-		
-		if (!data) return nil;
-			
-		StoryChapter *chapter = [[StoryChapter alloc] initWithHTMLData:data error:error];
-		if (!chapter) return nil;
-		
-		[chapters addObject:chapter];
+		BOOL success = [[chapters objectAtIndex:i] loadDataFromCache:useCacheWherePossible error:error];
+		if (!success) return nil;
 	}
 
 	return chapters;

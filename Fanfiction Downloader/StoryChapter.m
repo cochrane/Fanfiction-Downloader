@@ -9,6 +9,7 @@
 #import "StoryChapter.h"
 
 #import "NSXMLNode+QuickerXPath.h"
+#import "StoryOverview.h"
 
 static NSString *chapterTitleXPath = @"//select[@id='chap_select']//option[@selected]";
 static NSString *chapterTitleRegexp = @"^(\\d+)\\. (.+)$";
@@ -21,6 +22,7 @@ static NSRegularExpression *chapterTitleExpression;
 
 @interface StoryChapter ()
 
+@property (readwrite, weak, nonatomic) StoryOverview *overview;
 @property (readwrite, assign, nonatomic) NSUInteger number;
 @property (readwrite, copy, nonatomic) NSString *title;
 @property (readwrite, copy, nonatomic) NSString *text;
@@ -37,14 +39,24 @@ static NSRegularExpression *chapterTitleExpression;
 	NSAssert(chapterTitleExpression != nil, @"Chapter title regular expression could not be created. Reason: %@", error);
 }
 
-- (id)initWithHTMLData:(NSData *)data error:(NSError * __autoreleasing *)error
+- (id)initWithOverview:(StoryOverview *)overview chapterNumber:(NSUInteger)number;
 {
+	NSParameterAssert(overview);
+	
 	if (!(self = [super init])) return nil;
 	
+	self.overview = overview;
+	self.number = number;
+	
+	return self;
+}
+
+- (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
+{	
 	NSString *dataAsUTF8 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
-	if (!document) return nil;
+	if (!document) return NO;
 
 	// Find chapter title
 	NSString *chapterLabel = [document firstTextForXPath:chapterTitleXPath error:error];
@@ -63,9 +75,8 @@ static NSRegularExpression *chapterTitleExpression;
 		self.title = [document firstTextForXPath:titleXPath error:error];
 	}
 	
-	
 	NSXMLNode *story = [document firstNodeForXPath:contentXPath error:error];
-	if (story == nil) return nil;
+	if (story == nil) return NO;
 	
 	// Strip all attributes from hr elements.
 	NSArray *hrElements = [story nodesForXPath:@"//hr" error:error];
@@ -74,7 +85,21 @@ static NSRegularExpression *chapterTitleExpression;
 	
 	self.text = [story XMLStringWithOptions:NSXMLDocumentTidyHTML];
 	
-	return self;
+	return YES;
+}
+
+- (BOOL)loadDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing *)error;
+{
+	StoryOverview *overview = self.overview;
+	
+	NSURL *chapterURL = [overview urlForChapter:self.number];
+	NSURLCacheStoragePolicy policy = useCacheWherePossible ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringLocalCacheData;
+
+	NSURLRequest *request = [NSURLRequest requestWithURL:chapterURL cachePolicy:policy timeoutInterval:5.0];
+	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:NULL error:error];
+	if (!data) return NO;
+	
+	return [self updateWithHTMLData:data error:error];
 }
 
 @end

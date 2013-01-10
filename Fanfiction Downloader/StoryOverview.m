@@ -9,6 +9,7 @@
 #import "StoryOverview.h"
 
 #import "NSXMLNode+QuickerXPath.h"
+#import "StoryChapter.h"
 #import "StoryID.h"
 
 static NSString *titleXPath = @"//table[@id='gui_table1i']//b[1]";
@@ -28,6 +29,9 @@ static NSURL *baseURL = nil;
 static NSArray *genres = nil;
 
 @interface StoryOverview ()
+{
+	NSMutableArray *_chapters;
+}
 
 - (void)_parseTokens:(NSString *)tokenString;
 - (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
@@ -53,7 +57,6 @@ static NSArray *genres = nil;
 
 @property (readwrite, assign, nonatomic) NSUInteger wordCount;
 
-
 @end
 
 @implementation StoryOverview
@@ -69,6 +72,7 @@ static NSArray *genres = nil;
 	if (!(self = [super init])) return nil;
 	
 	_storyID = storyID;
+	_chapters = [NSMutableArray array];
 	
 	return self;
 }
@@ -147,6 +151,10 @@ static NSArray *genres = nil;
 		else if ([key isEqual:@"Follows"])
 			self.followerCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
+		else if ([key isEqual:@"id"])
+			; // Ignore
+
+		
 		else if ([key isEqual:@"Updated"])
 			self.updated = [dateFormatter dateFromString:value];
 		
@@ -224,6 +232,41 @@ static NSArray *genres = nil;
 - (NSURL *)urlForChapter:(NSUInteger)chapter
 {
 	return [NSURL URLWithString:[NSString stringWithFormat:chapterPattern, self.storyID.siteSpecificID, chapter] relativeToURL:baseURL];
+}
+
+- (void)setChapterCount:(NSUInteger)chapterCount
+{
+	_chapterCount = chapterCount;
+	
+	NSMutableArray *chapters = [self mutableArrayValueForKey:@"chapters"];
+	if (chapterCount > chapters.count)
+	{
+		for (NSUInteger i = chapters.count; i < chapterCount; ++i)
+			[chapters addObject:[[StoryChapter alloc] initWithOverview:self chapterNumber:i + 1]];
+	}
+	else if (chapterCount < chapters.count)
+	{
+		[chapters removeObjectsInRange:NSMakeRange(chapterCount, chapters.count - chapterCount)];
+	}
+}
+
+#pragma mark - Chapter accessors
+
+- (NSUInteger)countOfChapters;
+{
+	return _chapters.count;
+}
+- (StoryChapter *)objectInChaptersAtIndex:(NSUInteger)index;
+{
+	return [_chapters objectAtIndex:index];
+}
+- (void)insertObject:(StoryChapter *)object inChaptersAtIndex:(NSUInteger)index;
+{
+	[_chapters insertObject:object atIndex:index];
+}
+- (void)removeObjectFromChaptersAtIndex:(NSUInteger)index;
+{
+	[_chapters removeObjectAtIndex:index];
 }
 
 @end
