@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class StoryOverview;
 @class StoryChapter;
+@class StoryID;
+@class StoryOverview;
 
 @interface StoryListEntry : NSObject
 
@@ -18,10 +19,11 @@
 - (id)propertyListRepresentation;
 
 // Do not use any initial values at all.
-- (id)initWithStoryID:(NSUInteger)storyID;
+- (id)initWithStoryID:(StoryID *)storyID;
 - (void)loadDisplayValuesErrorHandler:(void (^) (NSError *error)) handler;
 
-@property (assign, nonatomic, readonly) NSUInteger storyID;
+@property (nonatomic, readonly) StoryID *storyID;
+
 @property (assign, nonatomic, readonly) NSUInteger lastChapterCount;
 @property (assign, nonatomic, readonly) NSUInteger lastWordCount;
 @property (assign, nonatomic, readonly) BOOL isComplete;
@@ -35,6 +37,8 @@
 @property (copy, nonatomic, readonly) NSURL *imageURL;
 @property (retain, nonatomic, readonly) NSImage *image;
 @property (copy, nonatomic, readonly) NSString *summary;
+
+@property (nonatomic, readonly) StoryOverview *overview;
 
 - (void)loadOverviewFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (StoryOverview *overview, NSError *error))handler;
 - (NSArray *)loadChaptersFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;

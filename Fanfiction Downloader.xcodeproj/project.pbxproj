@@ -47,6 +47,7 @@
 		52ED9E31169998F20082EABB /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E30169998F20082EABB /* NSArray+Map.m */; };
 		52F92C3815D1E71A0037648F /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3715D1E71A0037648F /* MainWindowController.m */; };
 		52F92C3C15D1E8890037648F /* SheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3B15D1E8890037648F /* SheetController.m */; };
+		52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CDF169F5EF600CE57DA /* StoryID.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -165,6 +166,8 @@
 		52F92C3715D1E71A0037648F /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		52F92C3A15D1E8890037648F /* SheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetController.h; sourceTree = "<group>"; };
 		52F92C3B15D1E8890037648F /* SheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetController.m; sourceTree = "<group>"; };
+		52FA2CDE169F5EF600CE57DA /* StoryID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryID.h; sourceTree = "<group>"; };
+		52FA2CDF169F5EF600CE57DA /* StoryID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryID.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +213,8 @@
 				52593DA615CD670300282252 /* StoryUpdater.m */,
 				523D59B715CF39EB00ECE017 /* LemonImporter.h */,
 				523D59B815CF39EB00ECE017 /* LemonImporter.m */,
+				52FA2CDE169F5EF600CE57DA /* StoryID.h */,
+				52FA2CDF169F5EF600CE57DA /* StoryID.m */,
 			);
 			name = "Story List Management";
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				52AD5FC815D2A14D0078531D /* DMLocalizedNibBundle.m in Sources */,
 				52ED9E31169998F20082EABB /* NSArray+Map.m in Sources */,
 				52BBA6D01699DE3500DF3140 /* UserDefaultsKeys.m in Sources */,
+				52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

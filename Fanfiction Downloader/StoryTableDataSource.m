@@ -8,6 +8,7 @@
 
 #import "StoryTableDataSource.h"
 
+#import "StoryID.h"
 #import "StoryList.h"
 #import "StoryOverview.h"
 
@@ -17,42 +18,39 @@
 {
 	NSPasteboard *pboard = info.draggingPasteboard;
 	
-	if ([[pboard types] containsObject:(id) kUTTypeURL])
-	{
-		NSURL *url = [NSURL URLFromPasteboard:pboard];
-		
-		if ([StoryOverview URLisValidForStory:url errorDescription:NULL])
-		{
-			if (dropOperation == NSTableViewDropOn)
-				[self.tableView setDropRow:row dropOperation:NSTableViewDropAbove];
-			
-			return NSDragOperationCopy;
-		}
-	}
+	if (![[pboard types] containsObject:(id) kUTTypeURL])
+		return NSDragOperationNone;
 	
-	return NSDragOperationNone;
+	NSURL *url = [NSURL URLFromPasteboard:pboard];
+	
+	StoryID *storyID = [[StoryID alloc] initWithURL:url error:NULL];
+	if (!storyID)
+		return NSDragOperationNone;
+	
+	if (dropOperation == NSTableViewDropOn)
+		[self.tableView setDropRow:row dropOperation:NSTableViewDropAbove];
+		
+	return NSDragOperationCopy;
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 {
 	NSPasteboard *pboard = info.draggingPasteboard;
 	
-	if ([[pboard types] containsObject:(id) kUTTypeURL])
-	{
-		NSURL *url = [NSURL URLFromPasteboard:pboard];
-		
-		if (![StoryOverview URLisValidAndExistsForStory:url errorDescription:NULL]) return NO;
-		
-		NSUInteger storyID = [StoryOverview storyIDFromURL:url];
-		
-		[self.storyList addStoryIfNotExists:storyID atIndex:row errorHandler:^(NSError *error){
-			[NSApp presentError:error];
-		}];
-		
-		return YES;
-	}
+	if (![[pboard types] containsObject:(id) kUTTypeURL])
+		return NO;
 	
-	return NO;
+	NSURL *url = [NSURL URLFromPasteboard:pboard];
+	
+	StoryID *storyID = [[StoryID alloc] initWithURL:url error:NULL];
+	if (!storyID || ![storyID checkIsReachableWithError:NULL])
+		return NO;
+	
+	[self.storyList addStoryIfNotExists:storyID atIndex:row errorHandler:^(NSError *error){
+		[NSApp presentError:error];
+	}];
+	
+	return YES;
 }
 
 - (void)setTableView:(NSTableView *)view

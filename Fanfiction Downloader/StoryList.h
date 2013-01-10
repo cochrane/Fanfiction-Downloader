@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class StoryID;
 @class StoryListEntry;
 
 @interface StoryList : NSObject <NSFilePresenter>
@@ -24,10 +25,10 @@
 - (BOOL)writeToFileWithError:(NSError *__autoreleasing*)error;
 
 
-- (void)addStoryIfNotExists:(NSUInteger)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;
-- (void)addStoryIfNotExists:(NSUInteger)storyID errorHandler:(void(^)(NSError *))handler;
+- (void)addStoryIfNotExists:(StoryID *)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;
+- (void)addStoryIfNotExists:(StoryID *)storyID errorHandler:(void(^)(NSError *))handler;
 
-- (BOOL)hasStory:(NSUInteger)storyID;
+- (BOOL)hasStory:(StoryID *)storyID;
 
 - (NSUInteger)countOfStories;
 - (StoryListEntry *)objectInStoriesAtIndex:(NSUInteger)idx;

@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class StoryID;
+
 @interface StoryOverview : NSObject
 
-- (id)initWithHTMLData:(NSData *)data error:(NSError * __autoreleasing *)error;
+- (id)initWithStoryID:(StoryID *)storyID;
 
-@property (readonly, assign, nonatomic) NSUInteger storyID;
+- (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
+- (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
+
+@property (readonly, nonatomic) StoryID *storyID;
 
 @property (readonly, copy, nonatomic) NSString *author;
 @property (readonly, copy, nonatomic) NSURL *authorURL;
@@ -35,10 +40,6 @@
 
 @property (readonly, assign, nonatomic) NSUInteger wordCount;
 
-+ (NSURL *)urlForStoryID:(NSUInteger)story chapter:(NSUInteger)chapter;
 - (NSURL *)urlForChapter:(NSUInteger)chapter;
-+ (BOOL)URLisValidForStory:(NSURL *)storyURL errorDescription:(NSError * __autoreleasing *)error;
-+ (BOOL)URLisValidAndExistsForStory:(NSURL *)storyURL errorDescription:(NSError * __autoreleasing *)error;
-+ (NSUInteger)storyIDFromURL:(NSURL *)url;
 
 @end

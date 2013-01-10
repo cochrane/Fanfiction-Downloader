@@ -9,6 +9,7 @@
 #import "StoryList.h"
 
 #import "NSArray+Map.h"
+#import "StoryID.h"
 #import "StoryListEntry.h"
 
 @interface StoryList ()
@@ -113,15 +114,15 @@
 
 #pragma mark - Management
 
-- (BOOL)hasStory:(NSUInteger)storyID;
+- (BOOL)hasStory:(StoryID *)storyID;
 {
 	for (StoryListEntry *entry in self.stories)
-		if (entry.storyID == storyID) return YES;
+		if ([entry.storyID isEqual:storyID]) return YES;
 	
 	return NO;
 }
 
-- (void)addStoryIfNotExists:(NSUInteger)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;
+- (void)addStoryIfNotExists:(StoryID *)storyID atIndex:(NSUInteger)index errorHandler:(void(^)(NSError *))handler;
 {
 	if ([self hasStory:storyID]) return;
 	
@@ -131,7 +132,7 @@
 	[self insertObject:entry inStoriesAtIndex:index];
 }
 
-- (void)addStoryIfNotExists:(NSUInteger)storyID errorHandler:(void(^)(NSError *))handler;
+- (void)addStoryIfNotExists:(StoryID *)storyID errorHandler:(void(^)(NSError *))handler;
 {
 	[self addStoryIfNotExists:storyID atIndex:[self countOfStories] errorHandler:handler];
 }

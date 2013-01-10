@@ -130,7 +130,7 @@ static NSString *storyListSuiteName = @"storylist";
 {
 	AddStorySheetController *controller = [[AddStorySheetController alloc] init];
 	
-	[controller startWithParent:self.mainWindowController completionHandler:^(BOOL haveStory, NSUInteger newStoryID){
+	[controller startWithParent:self.mainWindowController completionHandler:^(BOOL haveStory, StoryID *newStoryID){
 		if (!haveStory) return;
 		
 		[self.storyList addStoryIfNotExists:newStoryID errorHandler:^(NSError *error){

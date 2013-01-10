@@ -8,6 +8,7 @@
 
 #import "LemonImporter.h"
 
+#import "StoryID.h"
 #import "StoryList.h"
 #import "StoryOverview.h"
 
@@ -28,8 +29,8 @@
 		[scanner scanUpToString:@"]" intoString:&storyURL];
 		[scanner scanString:@"]" intoString:NULL];
 		
-		NSUInteger storyID = [StoryOverview storyIDFromURL:[NSURL URLWithString:storyURL]];
-		if (storyID == 0)
+		StoryID *storyID = [[StoryID alloc] initWithURL:[NSURL URLWithString:storyURL] error:NULL];
+		if (!storyID)
 		{
 			NSLog(@"Skipped %@", storyURL);
 			continue;

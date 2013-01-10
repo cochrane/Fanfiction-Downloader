@@ -8,11 +8,11 @@
 
 #import "AddStorySheetController.h"
 
-#import "StoryOverview.h"
+#import "StoryID.h"
 
 @interface AddStorySheetController ()
 
-@property (copy, nonatomic) void (^completionHandler)(BOOL haveStory, NSUInteger storyID);
+@property (copy, nonatomic) void (^completionHandler)(BOOL haveStory, StoryID *storyID);
 
 @end
 
@@ -25,7 +25,7 @@
 	return self;
 }
 
-- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
+- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, StoryID *storyID))handler;
 {
 	self.completionHandler = handler;
 	
@@ -44,13 +44,12 @@
 	
 	NSError *error = nil;
 	
-	if (![StoryOverview URLisValidAndExistsForStory:url errorDescription:&error])
+	StoryID *storyID = [[StoryID alloc] initWithURL:url error:&error];
+	if (!storyID || ![storyID checkIsReachableWithError:&error])
 	{
 		[self showError:error resumeAfter:YES];
 		return;
 	}
-	
-	NSUInteger storyID = [StoryOverview storyIDFromURL:url];
 	
 	self.completionHandler(YES, storyID);
 	[self end];

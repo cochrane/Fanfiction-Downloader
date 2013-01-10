@@ -10,11 +10,13 @@
 
 #import "SheetController.h"
 
+@class StoryID;
+
 @interface AddStorySheetController : SheetController
 
 - (id)init;
 
-- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, NSUInteger storyID))handler;
+- (void)startWithParent:(MainWindowController *)parent completionHandler:(void (^)(BOOL haveStory, StoryID *storyID))handler;
 
 @property (nonatomic, assign) IBOutlet NSTextField *urlField;
 

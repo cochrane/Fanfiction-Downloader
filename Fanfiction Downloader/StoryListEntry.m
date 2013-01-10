@@ -9,13 +9,14 @@
 #import "StoryListEntry.h"
 
 #import "StoryChapter.h"
+#import "StoryID.h"
 #import "StoryOverview.h"
 
 static dispatch_queue_t imageLoadingQueue;
 
 @interface StoryListEntry ()
 
-@property (assign, nonatomic, readwrite) NSUInteger storyID;
+@property (nonatomic, readwrite) StoryID *storyID;
 @property (assign, nonatomic, readwrite) NSUInteger lastChapterCount;
 @property (assign, nonatomic, readwrite) NSUInteger lastWordCount;
 @property (assign, nonatomic, readwrite) BOOL isComplete;
@@ -27,6 +28,8 @@ static dispatch_queue_t imageLoadingQueue;
 @property (retain, nonatomic, readwrite) NSImage *image;
 @property (copy, nonatomic, readwrite) NSString *summary;
 
+@property (nonatomic, readwrite) StoryOverview *overview;
+
 - (void)loadImage;
 
 @end
@@ -37,7 +40,18 @@ static dispatch_queue_t imageLoadingQueue;
 {
 	if (!(self = [super init])) return nil;
 	
-	self.storyID = [[plist objectForKey:@"storyid"] unsignedIntegerValue];
+	if ([plist objectForKey:@"storydescription"] != nil)
+	{
+		self.storyID = [[StoryID alloc] initWithPropertyListRepresentation:[plist objectForKey:@"storydescription"]];
+	}
+	else
+	{
+		// Old-style representation. Means Fanfiction.net
+		NSUInteger siteSpecificID = [[plist objectForKey:@"storyid"] unsignedIntegerValue];
+		self.storyID = [[StoryID alloc] initWithID:siteSpecificID site:StorySiteFFNet];
+	}
+	
+	
 	self.lastChapterCount = [[plist objectForKey:@"chapters"] unsignedIntegerValue];
 	self.lastWordCount = [[plist objectForKey:@"words"] unsignedIntegerValue];
 	self.chapterCountChangedSinceLastSend = [[plist objectForKey:@"chaptersChanged"] boolValue];
@@ -49,16 +63,18 @@ static dispatch_queue_t imageLoadingQueue;
 	self.imageURL = [NSURL URLWithString:[plist objectForKey:@"image"]];
 	self.summary = [plist objectForKey:@"summary"];
 	
+	self.overview = [[StoryOverview alloc] initWithStoryID:self.storyID];
+	
 	[self loadImage];
 	
 	return self;
 }
 
-- (id)initWithStoryID:(NSUInteger)storyID
+- (id)initWithStoryID:(StoryID *)storyID
 {
 	if (!(self = [super init])) return nil;
 	
-	self.storyID = storyID;
+	self.overview = [[StoryOverview alloc] initWithStoryID:self.storyID];
 	
 	return self;
 }
@@ -69,7 +85,7 @@ static dispatch_queue_t imageLoadingQueue;
 	
 	// Always included
 	[result addEntriesFromDictionary:@{
-		@"storyid" : @(self.storyID),
+		@"storydescription" : self.storyID.propertyListRepresentation,
 		@"words" : @(self.lastWordCount),
 		@"chapters" : @(self.lastChapterCount),
 		@"chaptersChanged" : @(self.chapterCountChangedSinceLastSend),
@@ -88,56 +104,40 @@ static dispatch_queue_t imageLoadingQueue;
 
 - (void)loadOverviewFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (StoryOverview *overview, NSError *error))handler;
 {
-	NSURLCacheStoragePolicy policy = useCacheWherePossible ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringLocalCacheData;
-	NSURL *url = [StoryOverview urlForStoryID:self.storyID chapter:1];
-	
-	NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:policy timeoutInterval:5.0];
-	
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+	[self.overview loadDataFromCache:useCacheWherePossible completionHandler:^(NSError *error) {
 		// Handle load error
-		if (!data)
+		if (error)
 		{
 			handler(nil, error);
 			return;
 		};
 		
-		// Get overview
-		NSError *parseError = nil;
-		StoryOverview *overview = [[StoryOverview alloc] initWithHTMLData:data error:&parseError];
-		
-		if (!overview)
-		{
-			handler(nil, parseError);
-			return;
-		}
-		
 		// Check whether anything changed.
-		if (overview.chapterCount != self.lastChapterCount)
+		if (self.overview.chapterCount != self.lastChapterCount)
 		{
 			self.chapterCountChangedSinceLastSend = YES;
-			self.lastChapterCount = overview.chapterCount;
+			self.lastChapterCount = self.overview.chapterCount;
 		}
 		
-		if (overview.wordCount != self.lastWordCount)
+		if (self.overview.wordCount != self.lastWordCount)
 		{
 			self.wordCountChangedSinceLastSend = YES;
-			self.lastWordCount = overview.wordCount;
+			self.lastWordCount = self.overview.wordCount;
 		}
 		
 		// Update display values
-		self.title = overview.title;
-		self.author = overview.author;
-		self.category = overview.category;
-		self.imageURL = overview.imageURL;
-		self.summary = overview.summary;
-		self.isComplete = overview.isComplete;
+		self.title = self.overview.title;
+		self.author = self.overview.author;
+		self.category = self.overview.category;
+		self.imageURL = self.overview.imageURL;
+		self.summary = self.overview.summary;
+		self.isComplete = self.overview.isComplete;
 		
 		[self loadImage];
 		
 		// Inform caller
-		handler(overview, error);
+		handler(self.overview, error);
 	}];
-
 }
 
 - (void)loadDisplayValuesErrorHandler:(void (^) (NSError *error)) handler;
@@ -155,7 +155,7 @@ static dispatch_queue_t imageLoadingQueue;
 	NSMutableArray *chapters = [NSMutableArray arrayWithCapacity:self.lastChapterCount];
 	for (NSUInteger i = 0; i < self.lastChapterCount; i++)
 	{
-		NSURL *chapterURL = [StoryOverview urlForStoryID:self.storyID chapter:i+1];
+		NSURL *chapterURL = [self.overview urlForChapter:i+1];
 		
 		NSURLRequest *request = [NSURLRequest requestWithURL:chapterURL cachePolicy:policy timeoutInterval:5.0];
 		

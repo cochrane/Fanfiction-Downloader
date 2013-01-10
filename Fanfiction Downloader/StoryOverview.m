@@ -9,6 +9,7 @@
 #import "StoryOverview.h"
 
 #import "NSXMLNode+QuickerXPath.h"
+#import "StoryID.h"
 
 static NSString *titleXPath = @"//table[@id='gui_table1i']//b[1]";
 static NSString *authorNameXPath = @"//table[@id='gui_table1i']//a[1]";
@@ -31,6 +32,28 @@ static NSArray *genres = nil;
 - (void)_parseTokens:(NSString *)tokenString;
 - (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
 
+@property (readwrite, copy, nonatomic) NSString *author;
+@property (readwrite, copy, nonatomic) NSURL *authorURL;
+@property (readwrite, assign, nonatomic) NSUInteger chapterCount;
+@property (readwrite, copy, nonatomic) NSString *characters;
+@property (readwrite, copy, nonatomic) NSString *category;
+@property (readwrite, copy, nonatomic) NSURL *categoryURL;
+@property (readwrite, assign, nonatomic) NSUInteger favoriteCount;
+@property (readwrite, assign, nonatomic) NSUInteger followerCount;
+@property (readwrite, copy, nonatomic) NSString *genre;
+@property (readwrite, copy, nonatomic) NSURL *imageURL;
+@property (readwrite, assign, nonatomic) BOOL isComplete;
+@property (readwrite, copy, nonatomic) NSString *language;
+@property (readwrite, copy, nonatomic) NSDate *published;
+@property (readwrite, copy, nonatomic) NSString *rating;
+@property (readwrite, assign, nonatomic) NSUInteger reviewCount;
+@property (readwrite, copy, nonatomic) NSString *summary;
+@property (readwrite, copy, nonatomic) NSString *title;
+@property (readwrite, copy, nonatomic) NSDate *updated;
+
+@property (readwrite, assign, nonatomic) NSUInteger wordCount;
+
+
 @end
 
 @implementation StoryOverview
@@ -41,36 +64,43 @@ static NSArray *genres = nil;
 	genres = @[ @"General", @"Romance", @"Humor", @"Drama", @"Poetry", @"Adventure", @"Mystery", @"Horror", @"Parody", @"Angst", @"Supernatural", @"Suspense", @"Sci-Fi", @"Fantasy", @"Spiritual", @"Tragedy", @"Western", @"Crime", @"Family", @"Hurt", @"Comfort", @"Friendship" ];
 }
 
-- (id)initWithHTMLData:(NSData *)data error:(NSError * __autoreleasing *)error;
+- (id)initWithStoryID:(StoryID *)storyID;
 {
 	if (!(self = [super init])) return nil;
 	
+	_storyID = storyID;
+	
+	return self;
+}
+
+- (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
+{
 	NSString *dataAsUTF8 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
-	if (!document) return nil;
+	if (!document) return NO;
 	
 	// Data that can be easily gotten via XPath (at the moment)
-	_title = [document firstTextForXPath:titleXPath error:error];
-	_author = [document firstTextForXPath:authorNameXPath error:error];
-	_authorURL = [document firstURLForXPath:authorURLXPath relativeToBase:baseURL error:error];
-	_imageURL = [document firstURLForXPath:imageURLXPath relativeToBase:baseURL error:error];
+	self.title = [document firstTextForXPath:titleXPath error:error];
+	self.author = [document firstTextForXPath:authorNameXPath error:error];
+	self.authorURL = [document firstURLForXPath:authorURLXPath relativeToBase:baseURL error:error];
+	self.imageURL = [document firstURLForXPath:imageURLXPath relativeToBase:baseURL error:error];
 	
-	_summary = [document firstTextForXPath:summaryXPath error:error];
+	self.summary = [document firstTextForXPath:summaryXPath error:error];
 	
-	_category = [document allTextForXPath:categoryXPath error:error];
+	self.category = [document allTextForXPath:categoryXPath error:error];
 	
-	_categoryURL = [document firstURLForXPath:categoryURLXPath relativeToBase:baseURL error:error];
+	self.categoryURL = [document firstURLForXPath:categoryURLXPath relativeToBase:baseURL error:error];
 	
 	// Things that require more involved parsing here.
 	[self _parseTokens:[document firstTextForXPath:tokenListXPath error:error]];
 	
-	if (self.chapterCount == 0) _chapterCount = 1;
-	if (self.updated == nil) _updated = self.published;
-	if (self.genre == nil) _genre = @"Unspecified";
-	if (self.characters == nil) _characters = @"Unspecified";
+	if (self.chapterCount == 0) self.chapterCount = 1;
+	if (self.updated == nil) self.updated = self.published;
+	if (self.genre == nil) self.genre = @"Unspecified";
+	if (self.characters == nil) self.characters = @"Unspecified";
 	
-	return self;
+	return YES;
 }
 
 - (void)_parseTokens:(NSString *)tokenString
@@ -100,51 +130,48 @@ static NSArray *genres = nil;
 		NSString *value = [token substringFromIndex: separatorRange.location != NSNotFound ? NSMaxRange(separatorRange) : 0];
 		
 		if ([key isEqual:@"Rated"])
-			_rating = [token substringFromIndex:[@"Rated: " length]];
+			self.rating = [token substringFromIndex:[@"Rated: " length]];
 		
 		else if ([key isEqual:@"Chapters"])
-			_chapterCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
+			self.chapterCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
 		else if ([key isEqual:@"Words"])
-			_wordCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
+			self.wordCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
 		else if ([key isEqual:@"Reviews"])
-			_reviewCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
+			self.reviewCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
 		else if ([key isEqual:@"Favs"])
-			_favoriteCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
+			self.favoriteCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
 		else if ([key isEqual:@"Follows"])
-			_followerCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
-		
-		else if ([key isEqual:@"id"])
-			_storyID = [[numberFormatter numberFromString:value] unsignedIntegerValue];
+			self.followerCount = [[numberFormatter numberFromString:value] unsignedIntegerValue];
 		
 		else if ([key isEqual:@"Updated"])
-			_updated = [dateFormatter dateFromString:value];
+			self.updated = [dateFormatter dateFromString:value];
 		
 		else if ([key isEqual:@"Published"])
-			_published = [dateFormatter dateFromString:value];
+			self.published = [dateFormatter dateFromString:value];
 		
 		else if ([key isEqual:@"Status"])
-			_isComplete = [value isEqual:@"Complete"];
+			self.isComplete = [value isEqual:@"Complete"];
 		
 		else
 		{
 			if (self.genre == nil && [self _isTokenGenre:token])
 			{
-				_genre = token;
+				self.genre = token;
 			}
 			else
 			{
 				switch (uncategorizedState)
 				{
 					case Start:
-						_language = token;
+						self.language = token;
 						uncategorizedState = Language;
 						break;
 					case Language:
-						_characters = token;
+						self.characters = token;
 						uncategorizedState = Characters;
 						break;
 					case Characters:
@@ -166,85 +193,37 @@ static NSArray *genres = nil;
 	return YES;
 }
 
-+ (NSURL *)urlForStoryID:(NSUInteger)story chapter:(NSUInteger)chapter;
+- (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 {
-	return [NSURL URLWithString:[NSString stringWithFormat:chapterPattern, story, chapter] relativeToURL:baseURL];
+	NSURLCacheStoragePolicy policy = useCacheWherePossible ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringLocalCacheData;
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:self.storyID.overviewURL cachePolicy:policy timeoutInterval:5.0];
+	
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+		// Handle load error
+		if (!data)
+		{
+			handler(error);
+			return;
+		};
+		
+		// Get overview
+		NSError *parseError = nil;
+		BOOL success = [self updateWithHTMLData:data error:&parseError];
+		if (!success)
+		{
+			handler(parseError);
+			return;
+		}
+		
+		// Inform caller
+		handler(nil);
+	}];
 }
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter
 {
-	return [[self class] urlForStoryID:self.storyID chapter:chapter];
-}
-
-+ (BOOL)URLisValidForStory:(NSURL *)storyURL errorDescription:(NSError * __autoreleasing *)error
-{
-	if (!storyURL)
-	{
-		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
-						  NSLocalizedDescriptionKey : NSLocalizedString(@"Not a valid URL", @"Cannot create NSURL from entered string"),
-			  NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"Please enter a valid web address", @"Works better that way.")}];
-		return NO;
-	}
-	
-	NSString *host = storyURL.host;
-	if (![host hasSuffix:@"fanfiction.net"])
-	{
-		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
-						  NSLocalizedDescriptionKey : NSLocalizedString(@"Not a FanFiction.net URL", @"Entered wrong host"),
-			  NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"Only Fanfiction.net is supported at the moment.", @"Use correct host instead")}];
-		return NO;
-	}
-	NSArray *pathComponents = storyURL.pathComponents;
-	if (pathComponents.count < 3 || ![[pathComponents objectAtIndex:1] isEqual:@"s"])
-	{
-		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
-						  NSLocalizedDescriptionKey : NSLocalizedString(@"Not a story URL", @"Path doesn't start with /s/ or is too short"),
-			  NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"This URL does not point to a story.", @"Give correct URL")}];
-		return NO;
-	}
-	
-	NSInteger storyID = [[pathComponents objectAtIndex:2] integerValue];
-	if (storyID == 0)
-	{
-		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
-						  NSLocalizedDescriptionKey : NSLocalizedString(@"The URL has no story ID", @"Path[1] is not a number or 0."),
-			  NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"This URL does not point to a story.", @"Give correct URL")}];
-		return NO;
-	}
-	
-	// Check whether we can find anything under the corresponding URL
-	
-	return YES;
-}
-
-+ (NSUInteger)storyIDFromURL:(NSURL *)storyURL
-{
-	NSArray *pathComponents = storyURL.pathComponents;
-	if (pathComponents.count < 3 || ![[pathComponents objectAtIndex:1] isEqual:@"s"]) return 0;
-	return (NSUInteger) [[pathComponents objectAtIndex:2] integerValue];
-}
-
-+ (BOOL)URLisValidAndExistsForStory:(NSURL *)storyURL errorDescription:(NSError * __autoreleasing *)error
-{
-	if (![self URLisValidForStory:storyURL errorDescription:error]) return NO;
-	
-	NSURL *firstChapterURL = [StoryOverview urlForStoryID:[self storyIDFromURL:storyURL] chapter:1];
-	
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:firstChapterURL];
-	request.HTTPMethod = @"HEAD";
-	
-	NSHTTPURLResponse *response;
-	NSError *loadError;
-	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&loadError];
-	if (!data || response.statusCode != 200)
-	{
-		if (error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{
-						  NSLocalizedDescriptionKey : NSLocalizedString(@"Could not find the story", @"Download returned no data or status code != 200"),
-			  NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"The story at this location could not be retrieved. Maybe it was deleted, or the internet connection is down.", @"Give correct URL"),
-						   NSUnderlyingErrorKey : loadError }];
-		return NO;
-	}
-	return YES;
+	return [NSURL URLWithString:[NSString stringWithFormat:chapterPattern, self.storyID.siteSpecificID, chapter] relativeToURL:baseURL];
 }
 
 @end
