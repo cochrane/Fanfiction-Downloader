@@ -77,28 +77,32 @@ static FileTemplate *storyTemplate;
 		[chapters appendString:[chapterTemplate instantiateWithValues:values]];
 	}
 	
-	NSString *result = [storyTemplate instantiateWithValues:@{
-						@"toc" : tableOfContents,
-						@"chapters" : chapters,
-						
-						@"author" : self.overview.author,
-						@"authorURL" : self.overview.authorURL.absoluteString,
-						@"chapterCount" : [countNumberFormatter stringFromNumber:@(self.overview.chapterCount)],
-						@"characters" : [self.overview.characters componentsJoinedByString:@", "],
-						@"category" : self.overview.category,
-						@"categoryURL" : self.overview.categoryURL.absoluteString,
-						@"favoriteCount" : [countNumberFormatter stringFromNumber:@(self.overview.favoriteCount)],
-						@"followerCount" : [countNumberFormatter stringFromNumber:@(self.overview.followerCount)],
-						@"genre" : self.overview.genre,
-						@"isComplete" : self.overview.isComplete ? NSLocalizedString(@"Complete", @"story status") : NSLocalizedString(@"In progress", @"story status"),
-						@"language" : self.overview.language,
-						@"published" : [dateFormatter stringFromDate:self.overview.published],
-						@"rating" : self.overview.rating,
-						@"reviewCount" : [countNumberFormatter stringFromNumber:@(self.overview.reviewCount)],
-						@"summary" : self.overview.summary,
-						@"title" : self.overview.title,
-						@"updated" : [dateFormatter stringFromDate:self.overview.updated],
-						@"wordCount" : [countNumberFormatter stringFromNumber:@(self.overview.wordCount)] }];
+	NSMutableDictionary *values = [NSMutableDictionary dictionaryWithDictionary:@{
+								   @"toc" : tableOfContents,
+								   @"chapters" : chapters,
+								   
+								   @"author" : self.overview.author,
+								   @"authorURL" : self.overview.authorURL.absoluteString,
+								   @"chapterCount" : [countNumberFormatter stringFromNumber:@(self.overview.chapterCount)],
+								   @"characters" : [self.overview.characters componentsJoinedByString:@", "],
+								   @"category" : self.overview.category,
+								   @"categoryURL" : self.overview.categoryURL.absoluteString,
+								   @"favoriteCount" : [countNumberFormatter stringFromNumber:@(self.overview.favoriteCount)],
+								   @"followerCount" : [countNumberFormatter stringFromNumber:@(self.overview.followerCount)],
+								   @"isComplete" : self.overview.isComplete ? NSLocalizedString(@"Complete", @"story status") : NSLocalizedString(@"In progress", @"story status"),
+								   @"language" : self.overview.language,
+								   @"published" : [dateFormatter stringFromDate:self.overview.published],
+								   @"rating" : self.overview.rating,
+								   @"reviewCount" : [countNumberFormatter stringFromNumber:@(self.overview.reviewCount)],
+								   @"summary" : self.overview.summary,
+								   @"title" : self.overview.title,
+								   @"updated" : [dateFormatter stringFromDate:self.overview.updated],
+								   @"wordCount" : [countNumberFormatter stringFromNumber:@(self.overview.wordCount)] }];
+	
+	if ([self.overview respondsToSelector:@selector(genre)] && [self.overview genre])
+		[values setObject:[self.overview genre] forKey:@"genre"];
+	
+	NSString *result = [storyTemplate instantiateWithValues:values];
 	
 	return [result dataUsingEncoding:NSUTF8StringEncoding];
 }

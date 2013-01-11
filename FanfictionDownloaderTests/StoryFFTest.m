@@ -10,6 +10,7 @@
 
 #import "StoryID.h"
 #import "StoryOverview.h"
+#import "StoryRenderer.h"
 #import "MockURLProtocol.h"
 
 @implementation StoryFFTest
@@ -112,6 +113,17 @@
 	STAssertEquals(overview.characters.count, 2UL, @"Wrong number of characters");
 	STAssertEqualObjects([overview.characters objectAtIndex:0], @"Oga T.", @"First character wrong");
 	STAssertEqualObjects([overview.characters objectAtIndex:1], @"Hildagarde/Hilda", @"Second character wrong");
+	
+	// Check whether it renders anything
+	success = [[[overview valueForKeyPath:@"chapters"] objectAtIndex:0] updateWithHTMLData:self.testData error:&error];
+	STAssertTrue(success, @"Chapter updated didn't work.");
+	STAssertNil(error, @"Chapter update error should be nil, is %@", error);
+	
+	StoryRenderer *renderer = [[StoryRenderer alloc] initWithStoryOverview:overview];
+	STAssertNotNil(renderer, @"Should create renderer");
+	
+	NSData *resultData = renderer.renderedStory;
+	STAssertNotNil(resultData, @"Did not render story");
 }
 
 @end
