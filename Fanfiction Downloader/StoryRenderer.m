@@ -11,6 +11,7 @@
 #import "FileTemplate.h"
 #import "StoryChapter.h"
 #import "StoryOverview.h"
+#import "StoryOverviewFF.h"
 
 static FileTemplate *tocTemplate;
 static FileTemplate *chapterTemplate;
@@ -87,20 +88,29 @@ static FileTemplate *storyTemplate;
 								   @"characters" : [self.overview.characters componentsJoinedByString:@", "],
 								   @"category" : self.overview.category,
 								   @"categoryURL" : self.overview.categoryURL.absoluteString,
-								   @"favoriteCount" : [countNumberFormatter stringFromNumber:@(self.overview.favoriteCount)],
-								   @"followerCount" : [countNumberFormatter stringFromNumber:@(self.overview.followerCount)],
 								   @"isComplete" : self.overview.isComplete ? NSLocalizedString(@"Complete", @"story status") : NSLocalizedString(@"In progress", @"story status"),
-								   @"language" : self.overview.language,
 								   @"published" : [dateFormatter stringFromDate:self.overview.published],
 								   @"rating" : self.overview.rating,
-								   @"reviewCount" : [countNumberFormatter stringFromNumber:@(self.overview.reviewCount)],
 								   @"summary" : self.overview.summary,
 								   @"title" : self.overview.title,
 								   @"updated" : [dateFormatter stringFromDate:self.overview.updated],
 								   @"wordCount" : [countNumberFormatter stringFromNumber:@(self.overview.wordCount)] }];
 	
-	if ([self.overview respondsToSelector:@selector(genre)] && [self.overview genre])
-		[values setObject:[self.overview genre] forKey:@"genre"];
+	if ([self.overview isKindOfClass:[StoryOverviewFF class]])
+	{
+		StoryOverviewFF *ffOverview = (StoryOverviewFF *) self.overview;
+		
+		[values addEntriesFromDictionary:@{
+		 @"favoriteCount" : [countNumberFormatter stringFromNumber:@(ffOverview.favoriteCount)],
+		 @"followerCount" : [countNumberFormatter stringFromNumber:@(ffOverview.followerCount)],
+		 @"language" : ffOverview.language,
+		 @"reviewCount" : [countNumberFormatter stringFromNumber:@(ffOverview.reviewCount)],
+		 }];
+		
+		if (ffOverview.genre)
+			[values setObject:ffOverview.genre forKey:@"genre"];
+	}
+	
 	
 	NSString *result = [storyTemplate instantiateWithValues:values];
 	

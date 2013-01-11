@@ -10,4 +10,11 @@
 
 @interface StoryOverviewFF : StoryOverview
 
+// FF-Net specific
+@property (nonatomic) NSUInteger favoriteCount;
+@property (nonatomic) NSUInteger followerCount;
+@property (copy, nonatomic) NSString *genre;
+@property (copy, nonatomic) NSString *language;
+@property (nonatomic) NSUInteger reviewCount;
+
 @end

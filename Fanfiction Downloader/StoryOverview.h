@@ -30,6 +30,7 @@
 @property (copy, nonatomic) NSURL *authorURL;
 @property (copy, nonatomic) NSString *category;
 @property (copy, nonatomic) NSURL *categoryURL;
+@property (copy, nonatomic) NSArray *characters;
 @property (nonatomic) BOOL isComplete;
 @property (copy, nonatomic) NSDate *published;
 @property (copy, nonatomic) NSString *rating;
@@ -38,16 +39,8 @@
 @property (copy, nonatomic) NSDate *updated;
 @property (nonatomic) NSUInteger wordCount;
 
-// Unsure what to do with these and stuff 
-@property (copy, nonatomic) NSArray *characters;
-
-// FF-Net specific
-@property (nonatomic) NSUInteger favoriteCount;
-@property (nonatomic) NSUInteger followerCount;
-@property (copy, nonatomic) NSString *genre;
+// AO3 doesn't have this, but the UI uses it (and allows it to be 0)
 @property (copy, nonatomic) NSURL *imageURL;
-@property (copy, nonatomic) NSString *language;
-@property (nonatomic) NSUInteger reviewCount;
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter;
 

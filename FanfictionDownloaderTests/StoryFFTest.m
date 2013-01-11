@@ -10,6 +10,7 @@
 
 #import "StoryID.h"
 #import "StoryOverview.h"
+#import "StoryOverviewFF.h"
 #import "StoryRenderer.h"
 #import "MockURLProtocol.h"
 
@@ -24,8 +25,9 @@
 - (void)testStoryOverview;
 {
 	StoryID *storyID = [[StoryID alloc] initWithID:1 site:StorySiteFFNet];
-	StoryOverview *overview = [[StoryOverview alloc] initWithStoryID:storyID];
+	StoryOverviewFF *overview = (StoryOverviewFF *) [[StoryOverview alloc] initWithStoryID:storyID];
 	STAssertNotNil(overview, @"Overview should exist here");
+	STAssertEqualObjects(overview.className, @"StoryOverviewFF", @"Should be FF-specific subclass");
 	
 	NSError *error = nil;
 	BOOL success = [overview updateWithHTMLData:self.testData error:&error];
@@ -97,7 +99,7 @@
 	NSData *testData = [NSData dataWithContentsOfURL:testTextURL];
 
 	StoryID *storyID = [[StoryID alloc] initWithID:1 site:StorySiteFFNet];
-	StoryOverview *overview = [[StoryOverview alloc] initWithStoryID:storyID];
+	StoryOverviewFF *overview = (StoryOverviewFF *) [[StoryOverview alloc] initWithStoryID:storyID];
 	STAssertNotNil(overview, @"Overview should exist here");
 	
 	NSError *error = nil;

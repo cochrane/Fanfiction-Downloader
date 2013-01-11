@@ -99,6 +99,8 @@ static NSArray *genres;
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"MM-dd-yy";
 	
+	self.characters = @[];
+	
 	for (NSString *token in tokens)
 	{
 		NSRange separatorRange = [token rangeOfString:@": "];
