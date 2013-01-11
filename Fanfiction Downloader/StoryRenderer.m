@@ -70,11 +70,16 @@ static FileTemplate *storyTemplate;
 	
 	for (StoryChapter *chapter in [self.overview valueForKey:@"chapters"])
 	{
-		NSDictionary *values = @{
+		NSMutableDictionary *values = [NSMutableDictionary dictionaryWithDictionary:@{
 			@"number" : [chapterNumberFormatter stringFromNumber:@(chapter.number)],
 			@"title" : chapter.title,
 			@"text" : chapter.text
-		};
+		}];
+		
+		if (chapter.startNotes)
+			[values setObject:chapter.startNotes forKey:@"startnotes"];
+		if (chapter.endNotes)
+			[values setObject:chapter.endNotes forKey:@"endnotes"];
 		
 		[tableOfContents appendString:[tocTemplate instantiateWithValues:values]];
 		

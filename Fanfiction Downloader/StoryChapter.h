@@ -16,6 +16,8 @@
 @property (nonatomic) NSUInteger number;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *startNotes;
+@property (nonatomic, copy) NSString *endNotes;
 
 - (id)initWithOverview:(StoryOverview *)overview chapterNumber:(NSUInteger)number;
 
