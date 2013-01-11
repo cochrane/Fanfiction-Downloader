@@ -21,32 +21,32 @@
 - (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
 
 // Necessary and with special functions
-@property (readonly, assign, nonatomic) NSUInteger chapterCount;
-@property (readonly, nonatomic) StoryID *storyID;
+@property (nonatomic) NSUInteger chapterCount;
+@property (nonatomic) StoryID *storyID;
 
 // Common (though actual text values may differ between sites)
-@property (readonly, copy, nonatomic) NSString *author;
-@property (readonly, copy, nonatomic) NSURL *authorURL;
-@property (readonly, copy, nonatomic) NSString *category;
-@property (readonly, copy, nonatomic) NSURL *categoryURL;
-@property (readonly, assign, nonatomic) BOOL isComplete;
-@property (readonly, copy, nonatomic) NSDate *published;
-@property (readonly, copy, nonatomic) NSString *rating;
-@property (readonly, copy, nonatomic) NSString *summary;
-@property (readonly, copy, nonatomic) NSString *title;
-@property (readonly, copy, nonatomic) NSDate *updated;
-@property (readonly, assign, nonatomic) NSUInteger wordCount;
+@property (copy, nonatomic) NSString *author;
+@property (copy, nonatomic) NSURL *authorURL;
+@property (copy, nonatomic) NSString *category;
+@property (copy, nonatomic) NSURL *categoryURL;
+@property (nonatomic) BOOL isComplete;
+@property (copy, nonatomic) NSDate *published;
+@property (copy, nonatomic) NSString *rating;
+@property (copy, nonatomic) NSString *summary;
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSDate *updated;
+@property (nonatomic) NSUInteger wordCount;
 
 // Unsure what to do with these and stuff 
-@property (readonly, copy, nonatomic) NSString *characters;
+@property (copy, nonatomic) NSArray *characters;
 
 // FF-Net specific
-@property (readonly, assign, nonatomic) NSUInteger favoriteCount;
-@property (readonly, assign, nonatomic) NSUInteger followerCount;
-@property (readonly, copy, nonatomic) NSString *genre;
-@property (readonly, copy, nonatomic) NSURL *imageURL;
-@property (readonly, copy, nonatomic) NSString *language;
-@property (readonly, assign, nonatomic) NSUInteger reviewCount;
+@property (nonatomic) NSUInteger favoriteCount;
+@property (nonatomic) NSUInteger followerCount;
+@property (copy, nonatomic) NSString *genre;
+@property (copy, nonatomic) NSURL *imageURL;
+@property (copy, nonatomic) NSString *language;
+@property (nonatomic) NSUInteger reviewCount;
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter;
 
