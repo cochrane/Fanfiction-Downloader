@@ -74,6 +74,7 @@ static dispatch_queue_t imageLoadingQueue;
 {
 	if (!(self = [super init])) return nil;
 	
+	self.storyID = storyID;
 	self.overview = [[StoryOverview alloc] initWithStoryID:self.storyID];
 	
 	return self;

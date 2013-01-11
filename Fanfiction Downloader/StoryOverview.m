@@ -66,6 +66,8 @@ static NSURL *baseURL = nil;
 
 - (id)initWithStoryID:(StoryID *)storyID;
 {
+	NSParameterAssert(storyID);
+	
 	if (!(self = [super init])) return nil;
 	
 	_storyID = storyID;
