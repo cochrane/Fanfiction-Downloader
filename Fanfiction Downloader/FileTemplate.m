@@ -14,15 +14,24 @@
 
 @property (nonatomic, copy, readonly) NSArray *components;
 
+- (id)initWithTemplateScanner:(NSScanner *)scanner startMarker:(NSString *)startMarker endMarker:(NSString *)endMarker;
+
 @end
 
 @implementation FileTemplate
 
 - (id)initWithTemplateString:(NSString *)template startMarker:(NSString *)startMarker endMarker:(NSString *)endMarker;
 {
+	NSScanner *scanner = [NSScanner scannerWithString:template];
+	scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@""];
+	
+	return [self initWithTemplateScanner:scanner startMarker:startMarker endMarker:endMarker];
+}
+
+- (id)initWithTemplateScanner:(NSScanner *)scanner startMarker:(NSString *)startMarker endMarker:(NSString *)endMarker;
+{
 	if (!(self = [super init])) return nil;
 	
-	NSScanner *scanner = [NSScanner scannerWithString:template];
 	NSMutableArray *components = [NSMutableArray array];
 	while (![scanner isAtEnd])
 	{
@@ -35,12 +44,18 @@
 		
 		NSString *marker;
 		[scanner scanUpToString:endMarker intoString:&marker];
-		[components addObject:[[FileTemplateMarker alloc] initWithName:marker]];
+		
+		if ([marker isEqual:@"endif"])
+			[components addObject:[[FileTemplateEndIfMarker alloc] init]];
+		else if ([marker hasPrefix:@"ifdef "])
+			[components addObject:[[FileTemplateIfMarker alloc] initWithProperty:[marker substringFromIndex:[@"ifdef " length]]]];
+		else
+			[components addObject:[[FileTemplateMarker alloc] initWithName:marker]];
 		
 		[scanner scanString:endMarker intoString:NULL];
 	}
 	
-	_components = components;
+	_components = [components copy];
 	
 	return self;
 }
@@ -49,8 +64,10 @@
 {
 	NSMutableString *result = [NSMutableString string];
 	
-	for (id component in self.components)
+	for (NSUInteger i = 0; i < self.components.count; i++)
 	{
+		id component = [self.components objectAtIndex:i];
+		
 		if ([component isKindOfClass:[NSString class]])
 			[result appendString:component];
 		else if ([component isKindOfClass:[FileTemplateMarker class]])
@@ -62,6 +79,26 @@
 				replacement = NSLocalizedString(@"Template error: No replacement specified", @"Forgot replacement in a template");
 			}
 			[result appendString:replacement];
+		}
+		else if ([component isKindOfClass:[FileTemplateIfMarker class]])
+		{
+			if (![values objectForKey:[component property]])
+			{
+				NSUInteger ifsEncountered = 1;
+				while (ifsEncountered > 0)
+				{
+					i += 1;
+					component = [self.components objectAtIndex:i];
+					if ([component isKindOfClass:[FileTemplateIfMarker class]])
+						ifsEncountered += 1;
+					else if ([component isKindOfClass:[FileTemplateEndIfMarker class]])
+						ifsEncountered -= 1;
+				}
+			}
+		}
+		else if ([component isKindOfClass:[FileTemplateEndIfMarker class]])
+		{
+			// Ignore
 		}
 	}
 	

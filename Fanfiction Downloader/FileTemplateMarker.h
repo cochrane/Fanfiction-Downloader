@@ -15,3 +15,15 @@
 - (id)initWithName:(NSString *)name;
 
 @end
+
+@interface FileTemplateIfMarker : NSObject
+
+@property (copy, nonatomic, readonly) NSString *property;
+
+- (id)initWithProperty:(NSString *)property;
+
+@end
+
+@interface FileTemplateEndIfMarker : NSObject
+
+@end

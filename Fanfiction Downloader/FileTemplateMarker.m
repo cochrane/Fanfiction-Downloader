@@ -20,3 +20,20 @@
 }
 
 @end
+
+@implementation FileTemplateIfMarker
+
+- (id)initWithProperty:(NSString *)property;
+{
+	if (!(self = [super init])) return nil;
+	
+	_property = property;
+	
+	return self;
+}
+
+@end
+
+@implementation FileTemplateEndIfMarker
+
+@end
