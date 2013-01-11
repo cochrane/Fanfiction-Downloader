@@ -71,6 +71,7 @@ static NSURL *baseURL = nil;
 	{
 		case StorySiteFFNet:
 			self = [[StoryOverviewFF alloc] init];
+			break;
 		case StorySiteAO3:
 		default:
 			return nil;
