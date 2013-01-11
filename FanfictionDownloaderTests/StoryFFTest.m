@@ -10,6 +10,7 @@
 
 #import "StoryID.h"
 #import "StoryOverview.h"
+#import "MockURLProtocol.h"
 
 @implementation StoryFFTest
 
@@ -66,6 +67,27 @@
 	STAssertEqualObjects(overview.imageURL.absoluteString, @"http://ffcdn2012.fictionpressllc.netdna-cdn.com/image/507976/75/", @"image url is wrong");
 	STAssertEqualObjects(overview.language, @"English", @"language wrong");
 	STAssertEquals(overview.reviewCount, (NSUInteger)12, @"review count is off");
+}
+
+- (void)testOverviewNetwork
+{
+	StoryID *storyID = [[StoryID alloc] initWithID:1 site:StorySiteFFNet];
+	StoryOverview *overview = [[StoryOverview alloc] initWithStoryID:storyID];
+	STAssertNotNil(overview, @"Overview should exist here");
+
+	[NSURLProtocol registerClass:[MockURLProtocol class]];
+	[MockURLProtocol setData:self.testData forURL:[NSURL URLWithString:@"http://fanfiction.net/s/1/1"]];
+	
+	NSError *loadingError = nil;
+	BOOL success = [overview loadDataFromCache:NO error:&loadingError];
+	STAssertTrue(success, @"Should load without trouble");
+	STAssertNil(loadingError, @"Should load without error");
+	
+	STAssertEquals(overview.chapterCount, (NSUInteger)1, @"incorrect number of chapters");
+	STAssertEqualObjects(overview.author, @"Testperson", @"incorrect author");
+	
+	[MockURLProtocol clearMockData];
+	[NSURLProtocol unregisterClass:[MockURLProtocol class]];
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "StoryID.h"
 #import "StoryOverviewFF.h"
 
+static dispatch_queue_t textLoadingQueue;
 
 @interface StoryOverview ()
 {
@@ -22,6 +23,11 @@
 @end
 
 @implementation StoryOverview
+
++ (void)initialize
+{
+	textLoadingQueue = dispatch_queue_create("text loading queue", DISPATCH_QUEUE_SERIAL);
+}
 
 - (id)initWithStoryID:(StoryID *)storyID;
 {
@@ -52,30 +58,25 @@
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 {
+	dispatch_async(textLoadingQueue, ^{
+		NSError *error = nil;
+		BOOL success = [self loadDataFromCache:useCacheWherePossible error:&error];
+		
+		dispatch_async(dispatch_get_main_queue(), ^(){
+			handler(success ? nil : error);
+		});
+	});
+}
+
+- (BOOL)loadDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing *)error;
+{
 	NSURLCacheStoragePolicy policy = useCacheWherePossible ? NSURLRequestReturnCacheDataElseLoad : NSURLRequestReloadIgnoringLocalCacheData;
 	
 	NSURLRequest *request = [NSURLRequest requestWithURL:self.storyID.overviewURL cachePolicy:policy timeoutInterval:5.0];
 	
-	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-		// Handle load error
-		if (!data)
-		{
-			handler(error);
-			return;
-		};
-		
-		// Get overview
-		NSError *parseError = nil;
-		BOOL success = [self updateWithHTMLData:data error:&parseError];
-		if (!success)
-		{
-			handler(parseError);
-			return;
-		}
-		
-		// Inform caller
-		handler(nil);
-	}];
+	NSData *result = [NSURLConnection sendSynchronousRequest:request returningResponse:NULL error:error];
+	if (!result) return NO;
+	return [self updateWithHTMLData:result error:error];
 }
 - (BOOL)loadChapterDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing*)error;
 {
