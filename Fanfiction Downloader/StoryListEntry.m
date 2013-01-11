@@ -129,7 +129,7 @@ static dispatch_queue_t imageLoadingQueue;
 		// Update display values
 		self.title = self.overview.title;
 		self.author = self.overview.author;
-		self.category = self.overview.category;
+		self.category = [self.overview.fandoms componentsJoinedByString:@", "];
 		self.imageURL = self.overview.imageURL;
 		self.summary = self.overview.summary;
 		self.isComplete = self.overview.isComplete;

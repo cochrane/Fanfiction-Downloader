@@ -28,9 +28,8 @@
 // Common (though actual text values may differ between sites)
 @property (copy, nonatomic) NSString *author;
 @property (copy, nonatomic) NSURL *authorURL;
-@property (copy, nonatomic) NSString *category;
-@property (copy, nonatomic) NSURL *categoryURL;
 @property (copy, nonatomic) NSArray *characters;
+@property (copy, nonatomic) NSArray *fandoms;
 @property (nonatomic) BOOL isComplete;
 @property (copy, nonatomic) NSDate *published;
 @property (copy, nonatomic) NSString *rating;

@@ -59,10 +59,8 @@ static NSArray *genres;
 	
 	self.summary = [document firstTextForXPath:summaryXPath error:error];
 	
-	self.category = [document allTextForXPath:categoryXPath error:error];
-	
-	self.categoryURL = [document firstURLForXPath:categoryURLXPath relativeToBase:baseURL error:error];
-	
+	self.fandoms = @[ [document allTextForXPath:categoryXPath error:error] ];
+		
 	// Things that require more involved parsing here.
 	[self _parseTokens:[document firstTextForXPath:tokenListXPath error:error]];
 	

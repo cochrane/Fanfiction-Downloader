@@ -11,6 +11,7 @@
 #import "NSXMLNode+QuickerXPath.h"
 #import "StoryChapter.h"
 #import "StoryID.h"
+#import "StoryOverviewAO3.h"
 #import "StoryOverviewFF.h"
 
 static dispatch_queue_t textLoadingQueue;
@@ -39,6 +40,8 @@ static dispatch_queue_t textLoadingQueue;
 			self = [[StoryOverviewFF alloc] init];
 			break;
 		case StorySiteAO3:
+			self = [[StoryOverviewAO3 alloc] init];
+			break;
 		default:
 			return nil;
 	}

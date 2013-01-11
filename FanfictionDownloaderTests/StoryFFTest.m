@@ -38,8 +38,7 @@
 	
 	STAssertEqualObjects(overview.author, @"Testperson", @"incorrect author");
 	STAssertEqualObjects(overview.authorURL.absoluteString, @"http://www.fanfiction.net/u/1/Testperson", @"incorrect author url");
-	STAssertEqualObjects(overview.category, @"Beelzebub/べるぜバブ", @"incorrect category");
-	STAssertEqualObjects(overview.categoryURL.absoluteString, @"http://www.fanfiction.net/anime/Beelzebub-%E3%81%B9%E3%82%8B%E3%81%9C%E3%83%90%E3%83%96/", @"incorrect category url");
+	STAssertEqualObjects([overview.fandoms objectAtIndex:0], @"Beelzebub/べるぜバブ", @"incorrect category");
 	STAssertEquals(overview.isComplete, (BOOL) NO, @"incorrect completeness");
 	STAssertEqualObjects(overview.rating, @"Fiction T", @"Incorrect rating");
 	STAssertEqualObjects(overview.summary, @"A story!\n", @"incorrect summary");
