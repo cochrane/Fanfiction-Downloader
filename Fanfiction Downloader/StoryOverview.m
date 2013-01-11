@@ -11,6 +11,7 @@
 #import "NSXMLNode+QuickerXPath.h"
 #import "StoryChapter.h"
 #import "StoryID.h"
+#import "StoryOverviewFF.h"
 
 static NSString *titleXPath = @"//table[@id='gui_table1i']//b[1]";
 static NSString *authorNameXPath = @"//table[@id='gui_table1i']//a[1]";
@@ -66,7 +67,15 @@ static NSURL *baseURL = nil;
 
 - (id)initWithStoryID:(StoryID *)storyID;
 {
-	if (!(self = [super init])) return nil;
+	switch (storyID.site)
+	{
+		case StorySiteFFNet:
+			self = [[StoryOverviewFF alloc] init];
+		case StorySiteAO3:
+		default:
+			return nil;
+	}
+	if (!self) return nil;
 	
 	_storyID = storyID;
 	_chapters = [NSMutableArray array];

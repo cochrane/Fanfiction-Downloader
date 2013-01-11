@@ -45,6 +45,7 @@
 		52CE3AF315CDED0200375FA9 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CE3AF215CDED0200375FA9 /* ScriptingBridge.framework */; };
 		52CE3AF615CDEF1E00375FA9 /* EmailSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3AF515CDEF1E00375FA9 /* EmailSender.m */; };
 		52ED9E31169998F20082EABB /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E30169998F20082EABB /* NSArray+Map.m */; };
+		52ED9E49169F896D0082EABB /* StoryOverviewFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E48169F896D0082EABB /* StoryOverviewFF.m */; };
 		52F92C3815D1E71A0037648F /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3715D1E71A0037648F /* MainWindowController.m */; };
 		52F92C3C15D1E8890037648F /* SheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3B15D1E8890037648F /* SheetController.m */; };
 		52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CDF169F5EF600CE57DA /* StoryID.m */; };
@@ -162,6 +163,8 @@
 		52CE3AF515CDEF1E00375FA9 /* EmailSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSender.m; sourceTree = "<group>"; };
 		52ED9E2F169998F20082EABB /* NSArray+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
 		52ED9E30169998F20082EABB /* NSArray+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
+		52ED9E47169F896D0082EABB /* StoryOverviewFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryOverviewFF.h; sourceTree = "<group>"; };
+		52ED9E48169F896D0082EABB /* StoryOverviewFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryOverviewFF.m; sourceTree = "<group>"; };
 		52F92C3615D1E71A0037648F /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		52F92C3715D1E71A0037648F /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		52F92C3A15D1E8890037648F /* SheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetController.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				52B7E38915CC987A00A686E9 /* StoryChapter.m */,
 				52B7E38B15CC98A900A686E9 /* StoryOverview.h */,
 				52B7E38C15CC98A900A686E9 /* StoryOverview.m */,
+				52ED9E47169F896D0082EABB /* StoryOverviewFF.h */,
+				52ED9E48169F896D0082EABB /* StoryOverviewFF.m */,
 			);
 			name = "Story parsing";
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				52ED9E31169998F20082EABB /* NSArray+Map.m in Sources */,
 				52BBA6D01699DE3500DF3140 /* UserDefaultsKeys.m in Sources */,
 				52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */,
+				52ED9E49169F896D0082EABB /* StoryOverviewFF.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
