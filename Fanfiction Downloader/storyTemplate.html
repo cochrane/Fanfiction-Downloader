@@ -15,12 +15,12 @@
 		<br/>
         <br/>
         <b>Author:</b> {{author}}<br/>
-        <b>Category:</b> {{category}}<br/>
+        {{#ifdef category}}<b>Category:</b> {{category}}<br/>{{#endif}}
         <b>Rated:</b> {{rating}}<br/>
-        <b>Language:</b> {{language}}<br/>
-        <b>Genre:</b> {{genre}}<br/>
+        {{#ifdef language}}<b>Language:</b> {{language}}<br/>{{#endif}}
+		{{#ifdef genre}}<b>Genre:</b> {{genre}}<br/>{{#endif}}
         <b>Characters:</b> {{characters}}<br/>
-        <b>Reviews:</b> {{reviewCount}}<br/>
+        {{#ifdef reviewCount}}<b>Reviews:</b> {{reviewCount}}<br/>{{#endif}}
         <b>Updated:</b> {{updated}}<br/>
         <b>Published:</b> {{published}}<br/>
         <b>Status:</b> {{isComplete}}<br/>
