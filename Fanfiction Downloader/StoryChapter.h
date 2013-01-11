@@ -12,10 +12,10 @@
 
 @interface StoryChapter : NSObject
 
-@property (readonly, weak, nonatomic) StoryOverview *overview;
-@property (readonly, assign, nonatomic) NSUInteger number;
-@property (readonly, copy, nonatomic) NSString *title;
-@property (readonly, copy, nonatomic) NSString *text;
+@property (nonatomic, weak) StoryOverview *overview;
+@property (nonatomic) NSUInteger number;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *text;
 
 - (id)initWithOverview:(StoryOverview *)overview chapterNumber:(NSUInteger)number;
 

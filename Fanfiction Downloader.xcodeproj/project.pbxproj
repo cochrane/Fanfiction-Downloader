@@ -60,6 +60,7 @@
 		52FA2CED16A0165700CE57DA /* StoryListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CEC16A0165700CE57DA /* StoryListEntryTest.m */; };
 		52FA2CF016A03E8C00CE57DA /* StoryRendererTestFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CEF16A03E8C00CE57DA /* StoryRendererTestFF.m */; };
 		52FA2CF216A0403500CE57DA /* ffteststory.expected.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CF116A0403500CE57DA /* ffteststory.expected.html */; };
+		52FA2CF516A0458C00CE57DA /* StoryChapterFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CF416A0458C00CE57DA /* StoryChapterFF.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -208,6 +209,8 @@
 		52FA2CEE16A03E8C00CE57DA /* StoryRendererTestFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryRendererTestFF.h; sourceTree = "<group>"; };
 		52FA2CEF16A03E8C00CE57DA /* StoryRendererTestFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryRendererTestFF.m; sourceTree = "<group>"; };
 		52FA2CF116A0403500CE57DA /* ffteststory.expected.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ffteststory.expected.html; sourceTree = "<group>"; };
+		52FA2CF316A0458C00CE57DA /* StoryChapterFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryChapterFF.h; sourceTree = "<group>"; };
+		52FA2CF416A0458C00CE57DA /* StoryChapterFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryChapterFF.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,8 @@
 				52B7E38915CC987A00A686E9 /* StoryChapter.m */,
 				52B7E38B15CC98A900A686E9 /* StoryOverview.h */,
 				52B7E38C15CC98A900A686E9 /* StoryOverview.m */,
+				52FA2CF316A0458C00CE57DA /* StoryChapterFF.h */,
+				52FA2CF416A0458C00CE57DA /* StoryChapterFF.m */,
 				52ED9E47169F896D0082EABB /* StoryOverviewFF.h */,
 				52ED9E48169F896D0082EABB /* StoryOverviewFF.m */,
 			);
@@ -657,6 +662,7 @@
 				52BBA6D01699DE3500DF3140 /* UserDefaultsKeys.m in Sources */,
 				52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */,
 				52ED9E49169F896D0082EABB /* StoryOverviewFF.m in Sources */,
+				52FA2CF516A0458C00CE57DA /* StoryChapterFF.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

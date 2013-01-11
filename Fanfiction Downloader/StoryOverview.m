@@ -101,12 +101,18 @@
 	if (chapterCount > chapters.count)
 	{
 		for (NSUInteger i = chapters.count; i < chapterCount; ++i)
-			[chapters addObject:[[StoryChapter alloc] initWithOverview:self chapterNumber:i + 1]];
+			[chapters addObject:[self createChapterWithNumber:i + 1]];
 	}
 	else if (chapterCount < chapters.count)
 	{
 		[chapters removeObjectsInRange:NSMakeRange(chapterCount, chapters.count - chapterCount)];
 	}
+}
+
+- (StoryChapter *)createChapterWithNumber:(NSUInteger)number;
+{
+	[self doesNotRecognizeSelector:_cmd];
+	return nil;
 }
 
 #pragma mark - Chapter accessors

@@ -10,6 +10,7 @@
 
 #import "NSXMLNode+QuickerXPath.h"
 #import "StoryID.h"
+#import "StoryChapterFF.h"
 
 static NSString *titleXPath = @"//table[@id='gui_table1i']//b[1]";
 static NSString *authorNameXPath = @"//table[@id='gui_table1i']//a[1]";
@@ -173,6 +174,11 @@ static NSURL *baseURL = nil;
 - (NSURL *)urlForChapter:(NSUInteger)chapter
 {
 	return [NSURL URLWithString:[NSString stringWithFormat:chapterPattern, self.storyID.siteSpecificID, chapter] relativeToURL:baseURL];
+}
+
+- (StoryChapter *)createChapterWithNumber:(NSUInteger)number;
+{
+	return [[StoryChapterFF alloc] initWithOverview:self chapterNumber:number];
 }
 
 @end

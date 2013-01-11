@@ -55,4 +55,7 @@
 - (void)insertObject:(StoryChapter *)object inChaptersAtIndex:(NSUInteger)index;
 - (void)removeObjectFromChaptersAtIndex:(NSUInteger)index;
 
+// Create specific chapter subclass.
+- (StoryChapter *)createChapterWithNumber:(NSUInteger)number;
+
 @end
