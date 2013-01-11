@@ -56,6 +56,8 @@
 		52F92C3815D1E71A0037648F /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3715D1E71A0037648F /* MainWindowController.m */; };
 		52F92C3C15D1E8890037648F /* SheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3B15D1E8890037648F /* SheetController.m */; };
 		52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CDF169F5EF600CE57DA /* StoryID.m */; };
+		52FA2CE916A015D500CE57DA /* StoryOverviewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CE816A015D500CE57DA /* StoryOverviewTest.m */; };
+		52FA2CED16A0165700CE57DA /* StoryListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CEC16A0165700CE57DA /* StoryListEntryTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -197,6 +199,10 @@
 		52F92C3B15D1E8890037648F /* SheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetController.m; sourceTree = "<group>"; };
 		52FA2CDE169F5EF600CE57DA /* StoryID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryID.h; sourceTree = "<group>"; };
 		52FA2CDF169F5EF600CE57DA /* StoryID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryID.m; sourceTree = "<group>"; };
+		52FA2CE716A015D500CE57DA /* StoryOverviewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryOverviewTest.h; sourceTree = "<group>"; };
+		52FA2CE816A015D500CE57DA /* StoryOverviewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryOverviewTest.m; sourceTree = "<group>"; };
+		52FA2CEB16A0165700CE57DA /* StoryListEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryListEntryTest.h; sourceTree = "<group>"; };
+		52FA2CEC16A0165700CE57DA /* StoryListEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryListEntryTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +443,10 @@
 				52ED9E65169F8F0F0082EABB /* FileTemplateTest.m */,
 				52ED9E67169F99C10082EABB /* StoryFFTest.h */,
 				52ED9E68169F99C20082EABB /* StoryFFTest.m */,
+				52FA2CE716A015D500CE57DA /* StoryOverviewTest.h */,
+				52FA2CE816A015D500CE57DA /* StoryOverviewTest.m */,
+				52FA2CEB16A0165700CE57DA /* StoryListEntryTest.h */,
+				52FA2CEC16A0165700CE57DA /* StoryListEntryTest.m */,
 			);
 			path = FanfictionDownloaderTests;
 			sourceTree = "<group>";
@@ -648,6 +658,8 @@
 				52ED9E5C169F8ED60082EABB /* FanfictionDownloaderTests.m in Sources */,
 				52ED9E66169F8F0F0082EABB /* FileTemplateTest.m in Sources */,
 				52ED9E69169F99C20082EABB /* StoryFFTest.m in Sources */,
+				52FA2CE916A015D500CE57DA /* StoryOverviewTest.m in Sources */,
+				52FA2CED16A0165700CE57DA /* StoryListEntryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,6 +937,7 @@
 				52ED9E60169F8ED60082EABB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
