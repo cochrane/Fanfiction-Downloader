@@ -26,11 +26,13 @@ static NSString *tokenSeparator = @" - ";
 
 static NSString *chapterPattern = @"/s/%lu/%lu/";
 static NSURL *baseURL = nil;
+static NSArray *genres;
 
 @interface StoryOverviewFF ()
 
 - (void)_parseTokens:(NSString *)tokenString;
 - (NSArray *)_parseCharacters:(NSString *)characters;
+- (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
 
 @end
 
@@ -39,6 +41,7 @@ static NSURL *baseURL = nil;
 + (void)initialize
 {
 	baseURL = [NSURL URLWithString:@"http://www.fanfiction.net/"];
+	genres = @[ @"General", @"Romance", @"Humor", @"Drama", @"Poetry", @"Adventure", @"Mystery", @"Horror", @"Parody", @"Angst", @"Supernatural", @"Suspense", @"Sci-Fi", @"Fantasy", @"Spiritual", @"Tragedy", @"Western", @"Crime", @"Family", @"Hurt", @"Comfort", @"Friendship" ];
 }
 
 - (BOOL)updateWithHTMLData:(NSData *)data error:(NSError *__autoreleasing *)error;
@@ -143,8 +146,16 @@ static NSURL *baseURL = nil;
 					lastUncategorizedState = Language;
 					break;
 				case Language:
-					self.genre = token;
-					lastUncategorizedState = Genre;
+					if ([self _isTokenGenre:token])
+					{
+						self.genre = token;
+						lastUncategorizedState = Genre;
+					}
+					else
+					{
+						self.characters = [self _parseCharacters:token];
+						lastUncategorizedState = Characters;
+					}
 					break;
 				case Genre:
 					self.characters = [self _parseCharacters:token];
@@ -157,6 +168,15 @@ static NSURL *baseURL = nil;
 			}
 		}
 	}
+}
+
+- (BOOL)_isTokenGenre:(NSString *)mightDescribeGenre;
+{
+	for (NSString *part in [mightDescribeGenre componentsSeparatedByString:@"/"])
+		if (![genres containsObject:part])
+			return NO;
+	
+	return YES;
 }
 
 - (NSArray *)_parseCharacters:(NSString *)characters;

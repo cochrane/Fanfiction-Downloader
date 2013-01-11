@@ -65,6 +65,7 @@
 		52FA2CF916A0498400CE57DA /* ao3teststory.navigate.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CF816A0498400CE57DA /* ao3teststory.navigate.html */; };
 		52FA2CFB16A0499300CE57DA /* ao3teststory.chapter.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CFA16A0499300CE57DA /* ao3teststory.chapter.html */; };
 		52FA2CFE16A058AE00CE57DA /* MockURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CFD16A058AE00CE57DA /* MockURLProtocol.m */; };
+		52FA2D0016A0624200CE57DA /* ffnogenre.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CFF16A0624200CE57DA /* ffnogenre.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -220,6 +221,7 @@
 		52FA2CFA16A0499300CE57DA /* ao3teststory.chapter.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ao3teststory.chapter.html; sourceTree = "<group>"; };
 		52FA2CFC16A058AE00CE57DA /* MockURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockURLProtocol.h; sourceTree = "<group>"; };
 		52FA2CFD16A058AE00CE57DA /* MockURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockURLProtocol.m; sourceTree = "<group>"; };
+		52FA2CFF16A0624200CE57DA /* ffnogenre.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ffnogenre.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +456,7 @@
 		52ED9E54169F8ED50082EABB /* FanfictionDownloaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				52FA2CFF16A0624200CE57DA /* ffnogenre.html */,
 				52ED9E6A169F9A090082EABB /* ffteststory.html */,
 				52ED9E5A169F8ED60082EABB /* FanfictionDownloaderTests.h */,
 				52ED9E5B169F8ED60082EABB /* FanfictionDownloaderTests.m */,
@@ -607,6 +610,7 @@
 				52FA2CF716A0497300CE57DA /* ao3teststory.expected.html in Resources */,
 				52FA2CF916A0498400CE57DA /* ao3teststory.navigate.html in Resources */,
 				52FA2CFB16A0499300CE57DA /* ao3teststory.chapter.html in Resources */,
+				52FA2D0016A0624200CE57DA /* ffnogenre.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

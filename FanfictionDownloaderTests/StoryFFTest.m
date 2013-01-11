@@ -90,4 +90,28 @@
 	[NSURLProtocol unregisterClass:[MockURLProtocol class]];
 }
 
+- (void)testStoryWithoutGenre
+{
+	NSURL *testTextURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"ffnogenre" withExtension:@"html"];
+	NSData *testData = [NSData dataWithContentsOfURL:testTextURL];
+
+	StoryID *storyID = [[StoryID alloc] initWithID:1 site:StorySiteFFNet];
+	StoryOverview *overview = [[StoryOverview alloc] initWithStoryID:storyID];
+	STAssertNotNil(overview, @"Overview should exist here");
+	
+	NSError *error = nil;
+	BOOL success = [overview updateWithHTMLData:testData error:&error];
+	STAssertTrue(success, @"Should have worked");
+	STAssertNil(error, @"Should be nil, is %@", error);
+	
+	STAssertEquals(overview.chapterCount, (NSUInteger)1, @"incorrect number of chapters");
+
+	STAssertNil(overview.genre, @"Should not have a genre");
+	
+	STAssertNotNil(overview.characters, @"Should have some characters");
+	STAssertEquals(overview.characters.count, 2UL, @"Wrong number of characters");
+	STAssertEqualObjects([overview.characters objectAtIndex:0], @"Oga T.", @"First character wrong");
+	STAssertEqualObjects([overview.characters objectAtIndex:1], @"Hildagarde/Hilda", @"Second character wrong");
+}
+
 @end
