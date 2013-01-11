@@ -46,6 +46,11 @@
 		52CE3AF615CDEF1E00375FA9 /* EmailSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3AF515CDEF1E00375FA9 /* EmailSender.m */; };
 		52ED9E31169998F20082EABB /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E30169998F20082EABB /* NSArray+Map.m */; };
 		52ED9E49169F896D0082EABB /* StoryOverviewFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E48169F896D0082EABB /* StoryOverviewFF.m */; };
+		52ED9E52169F8ED50082EABB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ED9E51169F8ED50082EABB /* SenTestingKit.framework */; };
+		52ED9E53169F8ED50082EABB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B7E36B15CC985200A686E9 /* Cocoa.framework */; };
+		52ED9E59169F8ED60082EABB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52ED9E57169F8ED60082EABB /* InfoPlist.strings */; };
+		52ED9E5C169F8ED60082EABB /* FanfictionDownloaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E5B169F8ED60082EABB /* FanfictionDownloaderTests.m */; };
+		52ED9E66169F8F0F0082EABB /* FileTemplateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED9E65169F8F0F0082EABB /* FileTemplateTest.m */; };
 		52F92C3815D1E71A0037648F /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3715D1E71A0037648F /* MainWindowController.m */; };
 		52F92C3C15D1E8890037648F /* SheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F92C3B15D1E8890037648F /* SheetController.m */; };
 		52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CDF169F5EF600CE57DA /* StoryID.m */; };
@@ -72,6 +77,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52AD5F9715D29CEB0078531D;
 			remoteInfo = xibLocalizationPostprocessor;
+		};
+		52ED9E61169F8EEE0082EABB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52B7E35E15CC985200A686E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52B7E36615CC985200A686E9;
+			remoteInfo = "Fanfiction Downloader";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -165,6 +177,15 @@
 		52ED9E30169998F20082EABB /* NSArray+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
 		52ED9E47169F896D0082EABB /* StoryOverviewFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryOverviewFF.h; sourceTree = "<group>"; };
 		52ED9E48169F896D0082EABB /* StoryOverviewFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryOverviewFF.m; sourceTree = "<group>"; };
+		52ED9E50169F8ED50082EABB /* FanfictionDownloaderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FanfictionDownloaderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52ED9E51169F8ED50082EABB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		52ED9E56169F8ED60082EABB /* FanfictionDownloaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FanfictionDownloaderTests-Info.plist"; sourceTree = "<group>"; };
+		52ED9E58169F8ED60082EABB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52ED9E5A169F8ED60082EABB /* FanfictionDownloaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanfictionDownloaderTests.h; sourceTree = "<group>"; };
+		52ED9E5B169F8ED60082EABB /* FanfictionDownloaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FanfictionDownloaderTests.m; sourceTree = "<group>"; };
+		52ED9E5D169F8ED60082EABB /* FanfictionDownloaderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FanfictionDownloaderTests-Prefix.pch"; sourceTree = "<group>"; };
+		52ED9E64169F8F0F0082EABB /* FileTemplateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplateTest.h; sourceTree = "<group>"; };
+		52ED9E65169F8F0F0082EABB /* FileTemplateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplateTest.m; sourceTree = "<group>"; };
 		52F92C3615D1E71A0037648F /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		52F92C3715D1E71A0037648F /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		52F92C3A15D1E8890037648F /* SheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetController.h; sourceTree = "<group>"; };
@@ -188,6 +209,15 @@
 			files = (
 				52CE3AF315CDED0200375FA9 /* ScriptingBridge.framework in Frameworks */,
 				52B7E36C15CC985200A686E9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ED9E4C169F8ED50082EABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ED9E52169F8ED50082EABB /* SenTestingKit.framework in Frameworks */,
+				52ED9E53169F8ED50082EABB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +339,7 @@
 				529984DD15D477AB00227F44 /* README.md */,
 				52AD5F9315D29CC20078531D /* New Group */,
 				52B7E37115CC985200A686E9 /* Fanfiction Downloader */,
+				52ED9E54169F8ED50082EABB /* FanfictionDownloaderTests */,
 				52B7E36A15CC985200A686E9 /* Frameworks */,
 				52B7E36815CC985200A686E9 /* Products */,
 			);
@@ -319,6 +350,7 @@
 			children = (
 				52B7E36715CC985200A686E9 /* Fanfiction Downloader.app */,
 				52AD5F9815D29CEB0078531D /* xibLocalizationPostprocessor */,
+				52ED9E50169F8ED50082EABB /* FanfictionDownloaderTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -329,6 +361,7 @@
 				52CE3AF215CDED0200375FA9 /* ScriptingBridge.framework */,
 				52B7E36B15CC985200A686E9 /* Cocoa.framework */,
 				52AD5F9A15D29CEB0078531D /* Foundation.framework */,
+				52ED9E51169F8ED50082EABB /* SenTestingKit.framework */,
 				52B7E36D15CC985200A686E9 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -388,6 +421,28 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		52ED9E54169F8ED50082EABB /* FanfictionDownloaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				52ED9E5A169F8ED60082EABB /* FanfictionDownloaderTests.h */,
+				52ED9E5B169F8ED60082EABB /* FanfictionDownloaderTests.m */,
+				52ED9E55169F8ED60082EABB /* Supporting Files */,
+				52ED9E64169F8F0F0082EABB /* FileTemplateTest.h */,
+				52ED9E65169F8F0F0082EABB /* FileTemplateTest.m */,
+			);
+			path = FanfictionDownloaderTests;
+			sourceTree = "<group>";
+		};
+		52ED9E55169F8ED60082EABB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52ED9E56169F8ED60082EABB /* FanfictionDownloaderTests-Info.plist */,
+				52ED9E57169F8ED60082EABB /* InfoPlist.strings */,
+				52ED9E5D169F8ED60082EABB /* FanfictionDownloaderTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -428,6 +483,25 @@
 			productReference = 52B7E36715CC985200A686E9 /* Fanfiction Downloader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		52ED9E4F169F8ED50082EABB /* FanfictionDownloaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52ED9E5E169F8ED60082EABB /* Build configuration list for PBXNativeTarget "FanfictionDownloaderTests" */;
+			buildPhases = (
+				52ED9E4B169F8ED50082EABB /* Sources */,
+				52ED9E4C169F8ED50082EABB /* Frameworks */,
+				52ED9E4D169F8ED50082EABB /* Resources */,
+				52ED9E4E169F8ED50082EABB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52ED9E62169F8EEE0082EABB /* PBXTargetDependency */,
+			);
+			name = FanfictionDownloaderTests;
+			productName = FanfictionDownloaderTests;
+			productReference = 52ED9E50169F8ED50082EABB /* FanfictionDownloaderTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -451,6 +525,7 @@
 			targets = (
 				52B7E36615CC985200A686E9 /* Fanfiction Downloader */,
 				52AD5F9715D29CEB0078531D /* xibLocalizationPostprocessor */,
+				52ED9E4F169F8ED50082EABB /* FanfictionDownloaderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -477,6 +552,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52ED9E4D169F8ED50082EABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ED9E59169F8ED60082EABB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -493,6 +576,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/zsh;
 			shellScript = "DEVELOPMENT_LANGUAGE=en\n${SRCROOT}/DMLocalizedNibBundle/slurpLocalizableStrings.zsh";
+		};
+		52ED9E4E169F8ED50082EABB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -536,6 +632,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52ED9E4B169F8ED50082EABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ED9E5C169F8ED60082EABB /* FanfictionDownloaderTests.m in Sources */,
+				52ED9E66169F8F0F0082EABB /* FileTemplateTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -543,6 +648,11 @@
 			isa = PBXTargetDependency;
 			target = 52AD5F9715D29CEB0078531D /* xibLocalizationPostprocessor */;
 			targetProxy = 52AD5FA815D29D0F0078531D /* PBXContainerItemProxy */;
+		};
+		52ED9E62169F8EEE0082EABB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52B7E36615CC985200A686E9 /* Fanfiction Downloader */;
+			targetProxy = 52ED9E61169F8EEE0082EABB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -608,6 +718,14 @@
 				52AD5FC615D29DF90078531D /* de */,
 			);
 			name = UpdateProgressWindowController.strings;
+			sourceTree = "<group>";
+		};
+		52ED9E57169F8ED60082EABB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52ED9E58169F8ED60082EABB /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -720,6 +838,46 @@
 			};
 			name = Release;
 		};
+		52ED9E5F169F8ED60082EABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fanfiction Downloader.app/Contents/MacOS/Fanfiction Downloader";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FanfictionDownloaderTests/FanfictionDownloaderTests-Prefix.pch";
+				GCC_WARN_PEDANTIC = NO;
+				INFOPLIST_FILE = "FanfictionDownloaderTests/FanfictionDownloaderTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		52ED9E60169F8ED60082EABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fanfiction Downloader.app/Contents/MacOS/Fanfiction Downloader";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FanfictionDownloaderTests/FanfictionDownloaderTests-Prefix.pch";
+				GCC_WARN_PEDANTIC = NO;
+				INFOPLIST_FILE = "FanfictionDownloaderTests/FanfictionDownloaderTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -749,6 +907,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		52ED9E5E169F8ED60082EABB /* Build configuration list for PBXNativeTarget "FanfictionDownloaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52ED9E5F169F8ED60082EABB /* Debug */,
+				52ED9E60169F8ED60082EABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
