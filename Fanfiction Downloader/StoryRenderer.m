@@ -84,7 +84,7 @@ static FileTemplate *storyTemplate;
 						@"author" : self.overview.author,
 						@"authorURL" : self.overview.authorURL.absoluteString,
 						@"chapterCount" : [countNumberFormatter stringFromNumber:@(self.overview.chapterCount)],
-						@"characters" : self.overview.characters,
+						@"characters" : [self.overview.characters componentsJoinedByString:@", "],
 						@"category" : self.overview.category,
 						@"categoryURL" : self.overview.categoryURL.absoluteString,
 						@"favoriteCount" : [countNumberFormatter stringFromNumber:@(self.overview.favoriteCount)],

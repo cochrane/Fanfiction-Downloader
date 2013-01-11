@@ -29,6 +29,7 @@ static NSURL *baseURL = nil;
 @interface StoryOverviewFF ()
 
 - (void)_parseTokens:(NSString *)tokenString;
+- (NSArray *)_parseCharacters:(NSString *)characters;
 
 @end
 
@@ -145,7 +146,7 @@ static NSURL *baseURL = nil;
 					lastUncategorizedState = Genre;
 					break;
 				case Genre:
-					self.characters = token;
+					self.characters = [self _parseCharacters:token];
 					lastUncategorizedState = Characters;
 					break;
 				case Characters:
@@ -155,6 +156,18 @@ static NSURL *baseURL = nil;
 			}
 		}
 	}
+}
+
+- (NSArray *)_parseCharacters:(NSString *)characters;
+{
+	NSRange ampersandLocation = [characters rangeOfString:@" & "];
+	
+	if (ampersandLocation.location == NSNotFound)
+		return @[ characters ];
+	
+	NSString *char1 = [characters substringToIndex:ampersandLocation.location];
+	NSString *char2 = [characters substringFromIndex:NSMaxRange(ampersandLocation)];
+	return @[ char1, char2 ];
 }
 
 - (NSURL *)urlForChapter:(NSUInteger)chapter

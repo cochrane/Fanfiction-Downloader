@@ -29,7 +29,7 @@
 
 - (void)testSimpleConditionals
 {
-	NSString *templateText = @"testing {{ifdef text1}}<b>{{text1}}</b>{{endif}} and {{ifdef text2}}<i>{{text2}}</i>{{endif}}.";
+	NSString *templateText = @"testing {{#ifdef text1}}<b>{{text1}}</b>{{#endif}} and {{#ifdef text2}}<i>{{text2}}</i>{{#endif}}.";
 	
 	NSDictionary *replacements = @{
 		@"text1" : @"ABC",
@@ -44,7 +44,7 @@
 
 - (void)testNestedConditionalsFailing
 {
-	NSString *templateText = @"testing {{ifdef text1}}<b>{{ifdef text2}} blub {{endif}}</b>{{endif}}.";
+	NSString *templateText = @"testing {{#ifdef text1}}<b>{{#ifdef text2}} blub {{#endif}}</b>{{#endif}}.";
 	
 	NSDictionary *replacements = @{ };
 	
@@ -57,7 +57,7 @@
 
 - (void)testNestedConditionalsSucceeding
 {
-	NSString *templateText = @"testing {{ifdef text1}}<b>{{ifdef text2}} blub {{endif}}</b>{{endif}}.";
+	NSString *templateText = @"testing {{#ifdef text1}}<b>{{#ifdef text2}} blub {{#endif}}</b>{{#endif}}.";
 	
 	NSDictionary *replacements = @{
 		@"text1" : @"ABC",

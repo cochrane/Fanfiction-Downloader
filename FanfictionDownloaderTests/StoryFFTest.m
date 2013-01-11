@@ -42,6 +42,10 @@
 	STAssertEqualObjects(overview.title, @"The Test Story", @"Incorrect title");
 	STAssertEquals(overview.wordCount, (NSUInteger)20, @"incorrect word count");
 	
+	STAssertEquals(overview.characters.count, 2UL, @"Wrong number of characters");
+	STAssertEqualObjects([overview.characters objectAtIndex:0], @"Oga T.", @"First character wrong");
+	STAssertEqualObjects([overview.characters objectAtIndex:1], @"Hildagarde/Hilda", @"Second character wrong");
+	
 	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 	
 	NSDateComponents *published = [[NSDateComponents alloc] init];
@@ -56,14 +60,6 @@
 	updated.day = 2;
 	STAssertEqualObjects(overview.updated, [calendar dateFromComponents:updated], @"Updated date is off");
 
-	/*
-	 @property (readonly, assign, nonatomic) NSUInteger favoriteCount;
-	 @property (readonly, assign, nonatomic) NSUInteger followerCount;
-	 @property (readonly, copy, nonatomic) NSString *genre;
-	 @property (readonly, copy, nonatomic) NSURL *imageURL;
-	 @property (readonly, copy, nonatomic) NSString *language;
-	 @property (readonly, assign, nonatomic) NSUInteger reviewCount;
-	 */
 	STAssertEquals(overview.favoriteCount, (NSUInteger)7, @"favorite count is off");
 	STAssertEquals(overview.followerCount, (NSUInteger)19, @"follower count is off");
 	STAssertEqualObjects(overview.genre, @"Humor/Romance", @"genre is wrong");

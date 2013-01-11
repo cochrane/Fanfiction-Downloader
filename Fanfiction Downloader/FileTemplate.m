@@ -45,10 +45,10 @@
 		NSString *marker;
 		[scanner scanUpToString:endMarker intoString:&marker];
 		
-		if ([marker isEqual:@"endif"])
+		if ([marker isEqual:@"#endif"])
 			[components addObject:[[FileTemplateEndIfMarker alloc] init]];
-		else if ([marker hasPrefix:@"ifdef "])
-			[components addObject:[[FileTemplateIfMarker alloc] initWithProperty:[marker substringFromIndex:[@"ifdef " length]]]];
+		else if ([marker hasPrefix:@"#ifdef "])
+			[components addObject:[[FileTemplateIfMarker alloc] initWithProperty:[marker substringFromIndex:[@"#ifdef " length]]]];
 		else
 			[components addObject:[[FileTemplateMarker alloc] initWithName:marker]];
 		
