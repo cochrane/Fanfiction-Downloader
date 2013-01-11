@@ -12,6 +12,7 @@
 
 static NSString *titleXPath = @"//div[@class='chapter preface group']/h3[@class='title'][1]";
 static NSString *textXPath = @"//div[@class='userstuff module'][1]";
+static NSString *startNotesXPath = @"//div[@class='preface group']/div[@class='notes module']/blockquote/*";
 static NSString *endNotesXPath = @"//div[@id='work_endnotes']/blockquote[@class='userstuff'][1]/*";
 
 @implementation StoryChapterAO3
@@ -24,7 +25,11 @@ static NSString *endNotesXPath = @"//div[@id='work_endnotes']/blockquote[@class=
 	if (!document) return NO;
 
 	self.title = [document firstTextForXPath:titleXPath error:error];
+	self.startNotes = [document allTextForXPath:startNotesXPath error:error];
 	self.endNotes = [document allTextForXPath:endNotesXPath error:error];
+	
+	if (self.startNotes.length == 0) self.startNotes = nil;
+	if (self.endNotes.length == 0) self.endNotes = nil;
 	
 	// Remove the first element, which is an H3 element containing simply the heading Chapter Text
 	NSXMLElement *textElement = (NSXMLElement *)[document firstNodeForXPath:textXPath error:error];
