@@ -39,6 +39,8 @@ static FileTemplate *storyTemplate;
 
 - (id)initWithStoryOverview:(StoryOverview *)overview;
 {
+	NSParameterAssert(overview);
+	
 	if (!(self = [super init])) return nil;
 	
 	self.overview = overview;

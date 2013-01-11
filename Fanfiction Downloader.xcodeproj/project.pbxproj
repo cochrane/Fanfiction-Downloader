@@ -66,6 +66,7 @@
 		52FA2CFB16A0499300CE57DA /* ao3teststory.chapter.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CFA16A0499300CE57DA /* ao3teststory.chapter.html */; };
 		52FA2CFE16A058AE00CE57DA /* MockURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2CFD16A058AE00CE57DA /* MockURLProtocol.m */; };
 		52FA2D0016A0624200CE57DA /* ffnogenre.html in Resources */ = {isa = PBXBuildFile; fileRef = 52FA2CFF16A0624200CE57DA /* ffnogenre.html */; };
+		52FA2D0316A06FE600CE57DA /* StoryRendererTestAO3.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2D0216A06FE600CE57DA /* StoryRendererTestAO3.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -222,6 +223,8 @@
 		52FA2CFC16A058AE00CE57DA /* MockURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockURLProtocol.h; sourceTree = "<group>"; };
 		52FA2CFD16A058AE00CE57DA /* MockURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockURLProtocol.m; sourceTree = "<group>"; };
 		52FA2CFF16A0624200CE57DA /* ffnogenre.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ffnogenre.html; sourceTree = "<group>"; };
+		52FA2D0116A06FE600CE57DA /* StoryRendererTestAO3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryRendererTestAO3.h; sourceTree = "<group>"; };
+		52FA2D0216A06FE600CE57DA /* StoryRendererTestAO3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryRendererTestAO3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,6 +480,8 @@
 				52FA2CFA16A0499300CE57DA /* ao3teststory.chapter.html */,
 				52FA2CFC16A058AE00CE57DA /* MockURLProtocol.h */,
 				52FA2CFD16A058AE00CE57DA /* MockURLProtocol.m */,
+				52FA2D0116A06FE600CE57DA /* StoryRendererTestAO3.h */,
+				52FA2D0216A06FE600CE57DA /* StoryRendererTestAO3.m */,
 			);
 			path = FanfictionDownloaderTests;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 				52FA2CED16A0165700CE57DA /* StoryListEntryTest.m in Sources */,
 				52FA2CF016A03E8C00CE57DA /* StoryRendererTestFF.m in Sources */,
 				52FA2CFE16A058AE00CE57DA /* MockURLProtocol.m in Sources */,
+				52FA2D0316A06FE600CE57DA /* StoryRendererTestAO3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
