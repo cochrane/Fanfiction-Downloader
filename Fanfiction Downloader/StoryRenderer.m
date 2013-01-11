@@ -11,6 +11,7 @@
 #import "FileTemplate.h"
 #import "StoryChapter.h"
 #import "StoryOverview.h"
+#import "StoryOverviewAO3.h"
 #import "StoryOverviewFF.h"
 
 static FileTemplate *tocTemplate;
@@ -97,6 +98,16 @@ static FileTemplate *storyTemplate;
 								   @"updated" : [dateFormatter stringFromDate:self.overview.updated],
 								   @"wordCount" : [countNumberFormatter stringFromNumber:@(self.overview.wordCount)] }];
 	
+	if ([self.overview isKindOfClass:[StoryOverviewAO3 class]])
+	{
+		StoryOverviewAO3 *ao3Overview = (StoryOverviewAO3 *) self.overview;
+		
+		[values addEntriesFromDictionary:@{
+		 @"relationships" : [ao3Overview.relationships componentsJoinedByString:@", "],
+		 @"tags" : [ao3Overview.tags componentsJoinedByString:@", "],
+		 @"warnings": [ao3Overview.warnings componentsJoinedByString:@", "]
+		 }];
+	}
 	if ([self.overview isKindOfClass:[StoryOverviewFF class]])
 	{
 		StoryOverviewFF *ffOverview = (StoryOverviewFF *) self.overview;

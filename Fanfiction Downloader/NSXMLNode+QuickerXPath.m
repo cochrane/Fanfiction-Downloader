@@ -32,7 +32,12 @@
 
 - (NSString *)allTextForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
 {	
-	return [[[self nodesForXPath:xpath error:error] valueForKeyPath:@"stringValue"] componentsJoinedByString:@""];
+	return [[self allTextsForXPath:xpath error:error] componentsJoinedByString:@""];
+}
+
+- (NSArray *)allTextsForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
+{
+	return [[self nodesForXPath:xpath error:error] valueForKeyPath:@"stringValue"];
 }
 
 @end

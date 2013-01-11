@@ -16,4 +16,6 @@
 - (NSString *)allTextForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
 - (NSXMLNode *)firstNodeForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
 
+- (NSArray *)allTextsForXPath:(NSString *)xpath error:(NSError * __autoreleasing *) error;
+
 @end

@@ -11,6 +11,7 @@
 #import "MockURLProtocol.h"
 #import "StoryID.h"
 #import "StoryOverview.h"
+#import "StoryOverviewAO3.h"
 #import "StoryRenderer.h"
 
 @implementation StoryRendererTestAO3
@@ -35,6 +36,29 @@
 {
 	[MockURLProtocol clearMockData];
 	[NSURLProtocol unregisterClass:[MockURLProtocol class]];
+}
+
+- (void)testOverviewOnly
+{
+	StoryID *storyID = [[StoryID alloc] initWithID:1 site:StorySiteAO3];
+	StoryOverviewAO3 *overview = (StoryOverviewAO3 *) [[StoryOverview alloc] initWithStoryID:storyID];
+	STAssertNotNil(overview, @"Overview should exist here");
+	STAssertEqualObjects(overview.className, @"StoryOverviewAO3", @"Should be AO3-specific subclass");
+	
+	NSError *error = nil;
+	BOOL success = [overview loadDataFromCache:NO error:&error];
+	STAssertTrue(success, @"Overview updated didn't work.");
+	STAssertNil(error, @"Overview update error should be nil, is %@", error);
+
+	STAssertEqualObjects(overview.author, @"Cochrane", @"Incorrect author");
+	STAssertEqualObjects(overview.title, @"Teststory", @"Incorrect title");
+	STAssertEquals(overview.characters.count, 7UL, @"Not enough characters");
+	STAssertEqualObjects([overview.characters objectAtIndex:0], @"Natsu Dragneel", @"Incorrect character");
+	STAssertEqualObjects([overview.characters objectAtIndex:1], @"Lucy Heartfilia", @"Incorrect character");
+	STAssertEquals(overview.tags.count, 3UL, @"Not enough tags");
+	STAssertEqualObjects([overview.tags objectAtIndex:0], @"Minor Character Death", @"Incorrect tag");
+	STAssertEqualObjects([overview.tags objectAtIndex:1], @"That's A Man", @"Incorrect tag");
+	STAssertEquals(overview.wordCount, 3706UL, @"Incorrect word count");
 }
 
 - (void)testStandardStory

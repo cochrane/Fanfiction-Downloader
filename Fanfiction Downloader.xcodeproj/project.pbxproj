@@ -18,6 +18,8 @@
 		52593DAE15CD831000282252 /* StoryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DAD15CD831000282252 /* StoryTableDataSource.m */; };
 		52593DC015CD917100282252 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DBE15CD917100282252 /* Settings.m */; };
 		52593DC115CD917100282252 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52593DBF15CD917100282252 /* Settings.xib */; };
+		5262A14416A078EC008655FF /* StoryOverviewAO3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5262A14316A078EC008655FF /* StoryOverviewAO3.m */; };
+		5262A14816A09F7A008655FF /* StoryChapterAO3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5262A14716A09F7A008655FF /* StoryChapterAO3.m */; };
 		5266901815CF29CC000F5D0E /* UpdateProgressWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5266901615CF29CB000F5D0E /* UpdateProgressWindowController.m */; };
 		5266901915CF29CC000F5D0E /* UpdateProgressWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5266901715CF29CB000F5D0E /* UpdateProgressWindowController.xib */; };
 		526A585215CD53E200EB2D63 /* AddStoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526A585115CD53E200EB2D63 /* AddStoryView.xib */; };
@@ -132,6 +134,10 @@
 		52593DBD15CD917100282252 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		52593DBE15CD917100282252 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		52593DBF15CD917100282252 /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
+		5262A14216A078EC008655FF /* StoryOverviewAO3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryOverviewAO3.h; sourceTree = "<group>"; };
+		5262A14316A078EC008655FF /* StoryOverviewAO3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryOverviewAO3.m; sourceTree = "<group>"; };
+		5262A14616A09F79008655FF /* StoryChapterAO3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryChapterAO3.h; sourceTree = "<group>"; };
+		5262A14716A09F7A008655FF /* StoryChapterAO3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryChapterAO3.m; sourceTree = "<group>"; };
 		5266901515CF29CB000F5D0E /* UpdateProgressWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProgressWindowController.h; sourceTree = "<group>"; };
 		5266901615CF29CB000F5D0E /* UpdateProgressWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProgressWindowController.m; sourceTree = "<group>"; };
 		5266901715CF29CB000F5D0E /* UpdateProgressWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateProgressWindowController.xib; sourceTree = "<group>"; };
@@ -268,6 +274,10 @@
 				52FA2CF416A0458C00CE57DA /* StoryChapterFF.m */,
 				52ED9E47169F896D0082EABB /* StoryOverviewFF.h */,
 				52ED9E48169F896D0082EABB /* StoryOverviewFF.m */,
+				5262A14616A09F79008655FF /* StoryChapterAO3.h */,
+				5262A14716A09F7A008655FF /* StoryChapterAO3.m */,
+				5262A14216A078EC008655FF /* StoryOverviewAO3.h */,
+				5262A14316A078EC008655FF /* StoryOverviewAO3.m */,
 			);
 			name = "Story parsing";
 			sourceTree = "<group>";
@@ -689,6 +699,8 @@
 				52FA2CE0169F5EF600CE57DA /* StoryID.m in Sources */,
 				52ED9E49169F896D0082EABB /* StoryOverviewFF.m in Sources */,
 				52FA2CF516A0458C00CE57DA /* StoryChapterFF.m in Sources */,
+				5262A14416A078EC008655FF /* StoryOverviewAO3.m in Sources */,
+				5262A14816A09F7A008655FF /* StoryChapterAO3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
