@@ -67,6 +67,8 @@ static NSURL *baseURL = nil;
 
 - (id)initWithStoryID:(StoryID *)storyID;
 {
+	NSParameterAssert(storyID);
+	
 	switch (storyID.site)
 	{
 		case StorySiteFFNet:
