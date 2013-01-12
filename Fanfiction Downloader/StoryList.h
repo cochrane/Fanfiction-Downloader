@@ -19,6 +19,8 @@
 @property (nonatomic) NSURL *propertyListURL;
 @property (nonatomic) BOOL isLocked;
 
+@property (nonatomic) NSUndoManager *undoManager;
+
 @property (nonatomic) id propertyListRepresentation;
 
 - (BOOL)readFromFileWithError:(NSError *__autoreleasing *)error;

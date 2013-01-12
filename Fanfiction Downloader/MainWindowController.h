@@ -13,6 +13,7 @@
 @interface MainWindowController : NSWindowController <NSWindowDelegate>
 
 @property (retain, nonatomic) SheetController *currentSheet;
+@property (retain, nonatomic) NSUndoManager *undoManager;
 
 - (void)startSheet:(SheetController *)sheet;
 - (void)endSheet;

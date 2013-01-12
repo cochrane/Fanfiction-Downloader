@@ -14,7 +14,7 @@
 #import "StoryOverviewAO3.h"
 #import "StoryOverviewFF.h"
 
-static dispatch_queue_t textLoadingQueue;
+static NSOperationQueue *textLoadingQueue;
 
 @interface StoryOverview ()
 {
@@ -27,7 +27,8 @@ static dispatch_queue_t textLoadingQueue;
 
 + (void)initialize
 {
-	textLoadingQueue = dispatch_queue_create("text loading queue", DISPATCH_QUEUE_SERIAL);
+	textLoadingQueue = [[NSOperationQueue alloc] init];
+	textLoadingQueue.maxConcurrentOperationCount = 4;
 }
 
 - (id)initWithStoryID:(StoryID *)storyID;
@@ -61,14 +62,14 @@ static dispatch_queue_t textLoadingQueue;
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 {
-	dispatch_async(textLoadingQueue, ^{
+	[textLoadingQueue addOperationWithBlock:^{
 		NSError *error = nil;
 		BOOL success = [self loadDataFromCache:useCacheWherePossible error:&error];
 		
 		dispatch_async(dispatch_get_main_queue(), ^(){
 			handler(success ? nil : error);
 		});
-	});
+	}];
 }
 
 - (BOOL)loadDataFromCache:(BOOL)useCacheWherePossible error:(NSError *__autoreleasing *)error;

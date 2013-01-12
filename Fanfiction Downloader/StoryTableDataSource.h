@@ -8,12 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class AppDelegate;
 @class StoryList;
 
 @interface StoryTableDataSource : NSObject<NSTableViewDataSource>
 
-@property (retain, nonatomic) NSTableView *tableView;
+@property (assign, nonatomic) IBOutlet AppDelegate *appDelegate;
+@property (retain, nonatomic) IBOutlet NSTableView *tableView;
 
 @property (retain, nonatomic) StoryList *storyList;
+
+- (IBAction)delete:(id)sender;
+- (IBAction)resend:(id)sender;
+- (IBAction)openInBrowser:(id)sender;
 
 @end

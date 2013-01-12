@@ -24,10 +24,10 @@ static NSString *storyListSuiteName = @"storylist";
 @interface AppDelegate ()
 
 @property (nonatomic, retain) NSUserDefaults *normalDefaults;
-@property (nonatomic, retain) StoryTableDataSource *tableDataSource;
 @property (nonatomic, retain) StoryUpdater *updater;
 @property (nonatomic, retain) Settings *settingsController;
 @property (nonatomic, retain) EmailSender *sender;
+@property (nonatomic, retain) NSUndoManager *undoManager;
 
 @property (nonatomic, readonly, retain) NSURL *defaultStoryListURL;
 @property (nonatomic, readonly, retain) NSURL *storyListURL;
@@ -42,7 +42,10 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	self.undoManager = [[NSUndoManager alloc] init];
+	
 	self.mainWindowController = [[MainWindowController alloc] initWithWindow:self.window];
+	self.mainWindowController.undoManager = self.undoManager;
 	
 	self.normalDefaults = [NSUserDefaults standardUserDefaults];
 	
@@ -57,10 +60,9 @@ static NSString *storyListSuiteName = @"storylist";
 		[list writeToFileWithError:NULL];
 	}
 	self.storyList = list;
+	self.storyList.undoManager = self.undoManager;
 	
-	self.tableDataSource = [[StoryTableDataSource alloc] init];
 	self.tableDataSource.storyList = self.storyList;
-	self.tableDataSource.tableView = self.tableView;
 	
 	self.settingsController = [[Settings alloc] init];
 	self.settingsController.appDelegate = self;
@@ -114,6 +116,12 @@ static NSString *storyListSuiteName = @"storylist";
 	[self changeToURL:self.storyListURL];
 }
 
+- (void)resendStories:(NSArray *)stories;
+{
+	if ([self openUpdateControllerIfPossible])
+		[self.updater forceUpdate:stories];
+}
+
 #pragma mark - Actions
 
 - (void)deleteBackward:(id)sender
@@ -158,8 +166,7 @@ static NSString *storyListSuiteName = @"storylist";
 		return;
 	}
 	
-	if ([self openUpdateControllerIfPossible])
-		[self.updater forceUpdate:selectedStories];
+	[self resendStories:selectedStories];
 }
 
 - (IBAction)showSettings:(id)sender;
@@ -197,6 +204,16 @@ static NSString *storyListSuiteName = @"storylist";
 		if (![importer importStoriesFromFile:url intoList:self.storyList error:&importError])
 			[self.window presentError:importError];
 	}];
+}
+
+#pragma mark - User Interface validation
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
+{
+	if ([anItem action] == @selector(resend:))
+		return self.storyListController.selectedObjects.count > 0;
+	
+	return YES;
 }
 
 #pragma mark - Private methods

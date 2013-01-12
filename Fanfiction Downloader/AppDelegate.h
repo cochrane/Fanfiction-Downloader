@@ -10,15 +10,19 @@
 
 @class MainWindowController;
 @class StoryList;
+@class StoryTableDataSource;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations>
 
 @property (nonatomic, assign) IBOutlet NSWindow *window;
 @property (nonatomic, assign) IBOutlet NSTableView *tableView;
 @property (nonatomic, assign) IBOutlet NSArrayController *storyListController;
+@property (nonatomic, assign) IBOutlet StoryTableDataSource *tableDataSource;
 
 @property (nonatomic, retain) StoryList *storyList;
 @property (nonatomic, retain) MainWindowController *mainWindowController;
+
+- (void)resendStories:(NSArray *)stories;
 
 - (IBAction)add:(id)sender;
 - (IBAction)refresh:(id)sender;

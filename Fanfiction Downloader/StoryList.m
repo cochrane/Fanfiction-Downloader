@@ -163,6 +163,7 @@
 	[self willChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 	
 	[self.stories insertObject:entry atIndex:idx];
+	[[self.undoManager prepareWithInvocationTarget:self] removeObjectFromStoriesAtIndex:idx];
 	
 	[self willChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 }
@@ -170,7 +171,9 @@
 {
 	[self willChange:NSKeyValueChangeRemoval valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 	
+	StoryListEntry *oldObject = [self objectInStoriesAtIndex:idx];
 	[self.stories removeObjectAtIndex:idx];
+	[[self.undoManager prepareWithInvocationTarget:self] insertObject:oldObject inStoriesAtIndex:idx];
 	
 	[self willChange:NSKeyValueChangeRemoval valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 }
@@ -178,7 +181,9 @@
 {
 	[self willChange:NSKeyValueChangeReplacement valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 	
+	StoryListEntry *oldObject = [self objectInStoriesAtIndex:idx];
 	[self.stories replaceObjectAtIndex:idx withObject:entry];
+	[[self.undoManager prepareWithInvocationTarget:self] replaceObjectInStoriesAtIndex:idx withObject:oldObject];
 	
 	[self willChange:NSKeyValueChangeReplacement valuesAtIndexes:[NSIndexSet indexSetWithIndex:idx] forKey:@"stories"];
 }

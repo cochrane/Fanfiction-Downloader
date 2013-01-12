@@ -8,11 +8,20 @@
 
 #import "StoryTableDataSource.h"
 
+#import "AppDelegate.h"
 #import "StoryID.h"
 #import "StoryList.h"
 #import "StoryOverview.h"
 
+@interface StoryTableDataSource ()
+
+- (NSIndexSet *)indicesForRightClick;
+
+@end
+
 @implementation StoryTableDataSource
+
+#pragma mark - Table View Data Source
 
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {
@@ -56,8 +65,47 @@
 - (void)setTableView:(NSTableView *)view
 {
 	_tableView = view;
-	_tableView.dataSource = self;
 	[_tableView registerForDraggedTypes:@[ NSURLPboardType ]];
+}
+
+#pragma mark - Context menu actions
+
+- (IBAction)delete:(id)sender;
+{
+	NSIndexSet *indices = self.indicesForRightClick;
+	
+	[[self.storyList mutableArrayValueForKey:@"stories"] removeObjectsAtIndexes:indices];
+}
+- (IBAction)resend:(id)sender;
+{
+	NSIndexSet *indices = self.indicesForRightClick;
+	NSArray *stories = [[self.storyList valueForKey:@"stories"] objectsAtIndexes:indices];
+	[self.appDelegate resendStories:stories];
+}
+- (IBAction)openInBrowser:(id)sender;
+{
+	NSIndexSet *indices = self.indicesForRightClick;
+	NSArray *storyURLs = [[[self.storyList valueForKey:@"stories"] objectsAtIndexes:indices] valueForKeyPath:@"storyID.overviewURL"];
+	
+	[[NSWorkspace sharedWorkspace] openURLs:storyURLs withAppBundleIdentifier:nil options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+}
+
+#pragma mark - Private methods
+
+- (NSIndexSet *)indicesForRightClick;
+{
+	NSInteger clicked = self.tableView.clickedRow;
+	
+	// If click is within selection or completely outside of rows, use
+	// selection
+	if (clicked == -1)
+		return self.tableView.selectedRowIndexes;
+	
+	if ([self.tableView.selectedRowIndexes containsIndex:clicked])
+		return self.tableView.selectedRowIndexes;
+	
+	// Otherwise, use only clicked row
+	return [NSIndexSet indexSetWithIndex:clicked];
 }
 
 @end

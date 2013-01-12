@@ -12,7 +12,7 @@
 #import "StoryID.h"
 #import "StoryOverview.h"
 
-static dispatch_queue_t imageLoadingQueue;
+static NSOperationQueue *imageLoadingQueue;
 
 @interface StoryListEntry ()
 
@@ -35,6 +35,12 @@ static dispatch_queue_t imageLoadingQueue;
 @end
 
 @implementation StoryListEntry
+
++ (void)initialize
+{
+	imageLoadingQueue = [[NSOperationQueue alloc] init];
+	imageLoadingQueue.maxConcurrentOperationCount = 2;
+}
 
 - (id)initWithPlist:(id)plist;
 {
@@ -172,11 +178,9 @@ static dispatch_queue_t imageLoadingQueue;
 	
 	// Set up the queue, if necessary.
 	// Note that all loading is done serially. Anything else risks blocks when there are too many parallel loads going on at once and thread limits get exhausted.
-	if (!imageLoadingQueue)
-		imageLoadingQueue = dispatch_queue_create("image loading", DISPATCH_QUEUE_SERIAL);
 	
 	// Send the request on the background thread.
-	dispatch_async(imageLoadingQueue, ^{
+	[imageLoadingQueue addOperationWithBlock:^{
 		NSURLResponse *response;
 		NSError *error;
 		NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -186,7 +190,7 @@ static dispatch_queue_t imageLoadingQueue;
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.image = [[NSImage alloc] initWithData:data];
 		});
-	});
+	}];
 }
 
 @end
