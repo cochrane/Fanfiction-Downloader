@@ -43,7 +43,7 @@
 	NSURL *url = [NSURL URLFromPasteboard:pboard];
 	
 	StoryID *storyID = [[StoryID alloc] initWithURL:url error:NULL];
-	if (!storyID || ![storyID checkIsReachableWithError:NULL])
+	if (!storyID)
 		return NO;
 	
 	[self.storyList addStoryIfNotExists:storyID atIndex:row errorHandler:^(NSError *error){
