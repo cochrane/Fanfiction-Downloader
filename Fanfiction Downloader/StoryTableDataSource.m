@@ -56,7 +56,6 @@
 - (void)setTableView:(NSTableView *)view
 {
 	_tableView = view;
-	_tableView.dataSource = self;
 	[_tableView registerForDraggedTypes:@[ NSURLPboardType ]];
 }
 

@@ -24,7 +24,6 @@ static NSString *storyListSuiteName = @"storylist";
 @interface AppDelegate ()
 
 @property (nonatomic, retain) NSUserDefaults *normalDefaults;
-@property (nonatomic, retain) StoryTableDataSource *tableDataSource;
 @property (nonatomic, retain) StoryUpdater *updater;
 @property (nonatomic, retain) Settings *settingsController;
 @property (nonatomic, retain) EmailSender *sender;
@@ -58,9 +57,7 @@ static NSString *storyListSuiteName = @"storylist";
 	}
 	self.storyList = list;
 	
-	self.tableDataSource = [[StoryTableDataSource alloc] init];
 	self.tableDataSource.storyList = self.storyList;
-	self.tableDataSource.tableView = self.tableView;
 	
 	self.settingsController = [[Settings alloc] init];
 	self.settingsController.appDelegate = self;

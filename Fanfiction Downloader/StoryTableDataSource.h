@@ -12,7 +12,7 @@
 
 @interface StoryTableDataSource : NSObject<NSTableViewDataSource>
 
-@property (retain, nonatomic) NSTableView *tableView;
+@property (retain, nonatomic) IBOutlet NSTableView *tableView;
 
 @property (retain, nonatomic) StoryList *storyList;
 

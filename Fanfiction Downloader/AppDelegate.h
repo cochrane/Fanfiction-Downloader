@@ -10,12 +10,14 @@
 
 @class MainWindowController;
 @class StoryList;
+@class StoryTableDataSource;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (nonatomic, assign) IBOutlet NSWindow *window;
 @property (nonatomic, assign) IBOutlet NSTableView *tableView;
 @property (nonatomic, assign) IBOutlet NSArrayController *storyListController;
+@property (nonatomic, assign) IBOutlet StoryTableDataSource *tableDataSource;
 
 @property (nonatomic, retain) StoryList *storyList;
 @property (nonatomic, retain) MainWindowController *mainWindowController;
