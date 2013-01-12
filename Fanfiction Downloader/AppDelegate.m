@@ -116,6 +116,12 @@ static NSString *storyListSuiteName = @"storylist";
 	[self changeToURL:self.storyListURL];
 }
 
+- (void)resendStories:(NSArray *)stories;
+{
+	if ([self openUpdateControllerIfPossible])
+		[self.updater forceUpdate:stories];
+}
+
 #pragma mark - Actions
 
 - (void)deleteBackward:(id)sender
@@ -160,8 +166,7 @@ static NSString *storyListSuiteName = @"storylist";
 		return;
 	}
 	
-	if ([self openUpdateControllerIfPossible])
-		[self.updater forceUpdate:selectedStories];
+	[self resendStories:selectedStories];
 }
 
 - (IBAction)showSettings:(id)sender;

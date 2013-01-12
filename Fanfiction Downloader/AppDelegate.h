@@ -22,6 +22,8 @@
 @property (nonatomic, retain) StoryList *storyList;
 @property (nonatomic, retain) MainWindowController *mainWindowController;
 
+- (void)resendStories:(NSArray *)stories;
+
 - (IBAction)add:(id)sender;
 - (IBAction)refresh:(id)sender;
 - (IBAction)resend:(id)sender;
