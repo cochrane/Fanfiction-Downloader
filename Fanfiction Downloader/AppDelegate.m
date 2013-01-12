@@ -206,6 +206,16 @@ static NSString *storyListSuiteName = @"storylist";
 	}];
 }
 
+#pragma mark - User Interface validation
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
+{
+	if ([anItem action] == @selector(resend:))
+		return self.storyListController.selectedObjects.count > 0;
+	
+	return YES;
+}
+
 #pragma mark - Private methods
 
 - (BOOL)openUpdateControllerIfPossible;
