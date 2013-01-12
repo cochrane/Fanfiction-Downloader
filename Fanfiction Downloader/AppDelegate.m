@@ -27,6 +27,7 @@ static NSString *storyListSuiteName = @"storylist";
 @property (nonatomic, retain) StoryUpdater *updater;
 @property (nonatomic, retain) Settings *settingsController;
 @property (nonatomic, retain) EmailSender *sender;
+@property (nonatomic, retain) NSUndoManager *undoManager;
 
 @property (nonatomic, readonly, retain) NSURL *defaultStoryListURL;
 @property (nonatomic, readonly, retain) NSURL *storyListURL;
@@ -41,7 +42,10 @@ static NSString *storyListSuiteName = @"storylist";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	self.undoManager = [[NSUndoManager alloc] init];
+	
 	self.mainWindowController = [[MainWindowController alloc] initWithWindow:self.window];
+	self.mainWindowController.undoManager = self.undoManager;
 	
 	self.normalDefaults = [NSUserDefaults standardUserDefaults];
 	
@@ -56,6 +60,7 @@ static NSString *storyListSuiteName = @"storylist";
 		[list writeToFileWithError:NULL];
 	}
 	self.storyList = list;
+	self.storyList.undoManager = self.undoManager;
 	
 	self.tableDataSource.storyList = self.storyList;
 	

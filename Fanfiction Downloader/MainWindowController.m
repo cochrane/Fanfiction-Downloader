@@ -84,4 +84,11 @@
 	self.sheetToRestoreAfterError = nil;
 }
 
+#pragma mark - Window delegate
+
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
+{
+	return self.undoManager;
+}
+
 @end
