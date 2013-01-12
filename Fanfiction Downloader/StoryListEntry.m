@@ -105,6 +105,9 @@ static dispatch_queue_t imageLoadingQueue;
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
 {
+	if (!self.title)
+		self.title = NSLocalizedString(@"Retrieving information…", @"list entry with no title");
+	
 	[self.overview loadDataFromCache:useCacheWherePossible completionHandler:^(NSError *error) {
 		// Handle load error
 		if (error)
