@@ -70,7 +70,8 @@ static NSURL *baseURL;
 
 	NSArray *chapterURLStrings = [document allTextsForXPath:chapterURLXPath error:error];
 	self.chapterIDs = [chapterURLStrings map:^(NSString *path){
-		return [NSURL URLWithString:path relativeToURL:baseURL];
+		NSURL *plainURL = [NSURL URLWithString:path relativeToURL:baseURL];
+		return [NSURL URLWithString:[plainURL.absoluteString stringByAppendingString:@"?view_adult=true"]];
 	}];
 	self.chapterCount = self.chapterIDs.count;
 	

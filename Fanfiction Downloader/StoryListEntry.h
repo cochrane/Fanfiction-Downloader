@@ -39,6 +39,7 @@
 @property (copy, nonatomic, readonly) NSString *summary;
 
 @property (nonatomic) NSError *updateError;
+@property (nonatomic, readonly) NSString *errorDescription;
 
 @property (nonatomic, readonly) StoryOverview *overview;
 

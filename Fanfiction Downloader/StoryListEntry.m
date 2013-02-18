@@ -43,6 +43,11 @@ static NSOperationQueue *imageLoadingQueue;
 	imageLoadingQueue.maxConcurrentOperationCount = 2;
 }
 
++ (NSSet *)keyPathsForValuesAffectingErrorDescription
+{
+	return [NSSet setWithObject:@"updateError"];
+}
+
 - (id)initWithPlist:(id)plist;
 {
 	if (!(self = [super init])) return nil;
@@ -208,6 +213,27 @@ static NSOperationQueue *imageLoadingQueue;
 - (void)loadErrorImage
 {
 	self.image = [NSImage imageNamed:@"AlertStopIcon"];
+}
+
+- (NSString *)errorDescription
+{
+	if (self.updateError)
+	{
+		NSMutableArray *components = [NSMutableArray arrayWithCapacity:3];
+		
+		if (self.updateError.localizedDescription)
+			[components addObject:self.updateError.localizedDescription];
+		
+		if (self.updateError.localizedFailureReason)
+			[components addObject:self.updateError.localizedFailureReason];
+		
+		if (self.updateError.localizedRecoverySuggestion)
+			[components addObject:self.updateError.localizedRecoverySuggestion];
+		
+		return [components componentsJoinedByString:@"\n"];
+	}
+	else
+		return nil;
 }
 
 @end
