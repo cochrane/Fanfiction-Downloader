@@ -247,6 +247,15 @@
 /* Class = "NSMenuItem"; title = "Main Window"; ObjectID = "706"; */
 "Main Window" = "Hauptfenster";
 
+/* Class = "NSMenuItem"; title = "Open in Browser…"; ObjectID = "721"; */
+"Open in Browser…" = "In Browser öffnen…";
+
+/* Class = "NSMenuItem"; title = "Send again…"; ObjectID = "722"; */
+"Send again…" = "Erneut senden…";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "723"; */
+"Delete" = "Löschen";
+
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Update"; ObjectID = "594"; */
 "Update" = "Aktualisieren";
 

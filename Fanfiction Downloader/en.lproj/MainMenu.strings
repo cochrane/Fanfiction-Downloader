@@ -247,12 +247,12 @@
 /* Class = "NSMenuItem"; title = "Main Window"; ObjectID = "706"; */
 "Main Window" = "Main Window";
 
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Update"; ObjectID = "594"; */
-"Update" = "Update";
+/* Class = "NSMenuItem"; title = "Open in Browser…"; ObjectID = "721"; */
+"Open in Browser…" = "Open in Browser…";
 
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Add story"; ObjectID = "615"; */
-"Add story" = "Add story";
+/* Class = "NSMenuItem"; title = "Send again…"; ObjectID = "722"; */
+"Send again…" = "Send again…";
 
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Remove story"; ObjectID = "631"; */
-"Remove story" = "Remove story";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "723"; */
+"Delete" = "Delete";
 

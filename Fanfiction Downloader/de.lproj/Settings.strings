@@ -16,3 +16,21 @@
 /* Class = "NSTextFieldCell"; placeholderString = "test@example.com"; ObjectID = "127"; */
 "test@example.com" = "test@example.com";
 
+/* Class = "NSTextFieldCell"; title = "Store story list:"; ObjectID = "168"; */
+"Store story list:" = "Speicherort für Geschichtenliste:";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "193"; */
+"OtherViews" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "In Library"; ObjectID = "194"; */
+"In Library" = "In der Bibliothek";
+
+/* Class = "NSMenuItem"; title = "Create a new file…"; ObjectID = "195"; */
+"Create a new file…" = "Neue Datei erstellen…";
+
+/* Class = "NSMenuItem"; title = "DNL - Current location marker"; ObjectID = "196"; */
+"DNL - Current location marker" = "DNL - Current location marker";
+
+/* Class = "NSMenuItem"; title = "Choose an existing file…"; ObjectID = "210"; */
+"Choose an existing file…" = "Vorhandene Datei auswählen…";
+
