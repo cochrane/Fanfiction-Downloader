@@ -171,4 +171,16 @@ static NSString *KeyNumber = @"number";
 	return ([self siteSpecificID] == [object siteSpecificID]) && ([self site] == [object site]);
 }
 
+#pragma mark - Description
+
+- (NSString *)localizedSiteName
+{
+	switch (self.site)
+	{
+		case StorySiteFFNet: return NSLocalizedString(@"Fanfiction.net", @"Story site: FF");
+		case StorySiteAO3: return NSLocalizedString(@"Archive of Our Own", @"Story site: AO3");
+		default: return nil;
+	}
+}
+
 @end

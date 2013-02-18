@@ -30,4 +30,6 @@ typedef enum __StorySite {
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)object;
 
+@property (nonatomic, readonly) NSString *localizedSiteName;
+
 @end

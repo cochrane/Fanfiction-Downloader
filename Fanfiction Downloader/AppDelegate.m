@@ -19,8 +19,6 @@
 #import "UpdateProgressWindowController.h"
 #import "UserDefaultsKeys.h"
 
-static NSString *storyListSuiteName = @"storylist";
-
 @interface AppDelegate ()
 
 @property (nonatomic, retain) NSUserDefaults *normalDefaults;
@@ -141,8 +139,9 @@ static NSString *storyListSuiteName = @"storylist";
 	[controller startWithParent:self.mainWindowController completionHandler:^(BOOL haveStory, StoryID *newStoryID){
 		if (!haveStory) return;
 		
+		NSWindow *window = self.window;
 		[self.storyList addStoryIfNotExists:newStoryID errorHandler:^(NSError *error){
-			[self.window presentError:error];
+			[window presentError:error];
 		}];
 	}];
 }
@@ -194,7 +193,7 @@ static NSString *storyListSuiteName = @"storylist";
 		{
 			NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:78 userInfo:@{
 						   NSLocalizedDescriptionKey : NSLocalizedString(@"Not a stories.ini file", @"URL does not end with stories.ini"),
-					NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Select a stories.ini file.", @"Do it")}];
+					NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Select a stories.ini file.", @"URL does not end with stories.ini")}];
 			[self.window presentError:error];
 			return;
 		}
@@ -271,7 +270,7 @@ static NSString *storyListSuiteName = @"storylist";
 	
 	BOOL isStale = NO;
 	NSError *error = nil;
-	NSURL *url = [NSURL URLByResolvingBookmarkData:bookmark options:0 relativeToURL:nil bookmarkDataIsStale:&isStale error:&error];
+	NSURL *url = [NSURL URLByResolvingBookmarkData:bookmark options:NSURLBookmarkResolutionWithSecurityScope relativeToURL:nil bookmarkDataIsStale:&isStale error:&error];
 	if (!url) return self.defaultStoryListURL;
 	
 	return url;

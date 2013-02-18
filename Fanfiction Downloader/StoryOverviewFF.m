@@ -17,7 +17,6 @@ static NSString *authorNameXPath = @"//table[@id='gui_table1i']//a[1]";
 static NSString *authorURLXPath = @"//table[@id='gui_table1i']//a[1]/attribute::href";
 static NSString *summaryXPath = @"//table[@id='gui_table1i']//div[@style='margin-top:2px'][1]";
 static NSString *categoryXPath = @"//div[@id='pre_story_links']/a[last()]/text()";
-static NSString *categoryURLXPath = @"//div[@id='pre_story_links']/a[last()]/attribute::href";
 static NSString *imageURLXPath = @"//table[@id='gui_table1i']//img[@class='cimage'][1]/attribute::src";
 
 static NSString *tokenListXPath = @"//table[@id='gui_table1i']/tbody/tr[@class='alt2']/td/div[last()]";
@@ -52,12 +51,15 @@ static NSArray *genres;
 	if (!document) return NO;
 	
 	// Data that can be easily gotten via XPath (at the moment)
-	self.title = [document firstTextForXPath:titleXPath error:error];
-	self.author = [document firstTextForXPath:authorNameXPath error:error];
+	NSString *title = [document firstTextForXPath:titleXPath error:error];
+	if (title) self.title = title;
+	NSString *author = [document firstTextForXPath:authorNameXPath error:error];
+	if (author) self.author = author;
 	self.authorURL = [document firstURLForXPath:authorURLXPath relativeToBase:baseURL error:error];
 	self.imageURL = [document firstURLForXPath:imageURLXPath relativeToBase:baseURL error:error];
 	
-	self.summary = [document firstTextForXPath:summaryXPath error:error];
+	NSString *summary = [document firstTextForXPath:summaryXPath error:error];
+	if (summary) self.summary = summary;
 	
 	self.fandoms = @[ [document allTextForXPath:categoryXPath error:error] ];
 		

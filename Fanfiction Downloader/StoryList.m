@@ -139,6 +139,13 @@
 
 #pragma mark - Accessors
 
+- (void)setPropertyListURL:(NSURL *)propertyListURL
+{
+	[_propertyListURL stopAccessingSecurityScopedResource];
+	_propertyListURL = propertyListURL;
+	[_propertyListURL startAccessingSecurityScopedResource];
+}
+
 - (void)setPropertyListRepresentation:(id)propertyListRepresentation
 {
 	NSAssert(propertyListRepresentation == nil || [propertyListRepresentation isKindOfClass:[NSArray class]], @"If there is a plist, it has to be an array, not %@", [propertyListRepresentation class]);

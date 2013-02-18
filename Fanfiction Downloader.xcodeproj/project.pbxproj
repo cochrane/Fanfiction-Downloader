@@ -13,6 +13,7 @@
 		523D59AF15CE7E3C00ECE017 /* FileTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 523D59AE15CE7E3C00ECE017 /* FileTemplate.m */; };
 		523D59B215CE7EF300ECE017 /* FileTemplateMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 523D59B115CE7EF300ECE017 /* FileTemplateMarker.m */; };
 		523D59B915CF39EB00ECE017 /* LemonImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 523D59B815CF39EB00ECE017 /* LemonImporter.m */; };
+		52473B6316D2E1C70093B60E /* AlertStopIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 52473B6216D2E1C70093B60E /* AlertStopIcon.icns */; };
 		52593DA715CD670300282252 /* StoryUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DA615CD670300282252 /* StoryUpdater.m */; };
 		52593DAB15CD671500282252 /* StoryRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DAA15CD671500282252 /* StoryRenderer.m */; };
 		52593DAE15CD831000282252 /* StoryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DAD15CD831000282252 /* StoryTableDataSource.m */; };
@@ -125,6 +126,8 @@
 		523D59B115CE7EF300ECE017 /* FileTemplateMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplateMarker.m; sourceTree = "<group>"; };
 		523D59B715CF39EB00ECE017 /* LemonImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LemonImporter.h; sourceTree = "<group>"; };
 		523D59B815CF39EB00ECE017 /* LemonImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LemonImporter.m; sourceTree = "<group>"; };
+		52473B6216D2E1C70093B60E /* AlertStopIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AlertStopIcon.icns; sourceTree = "<group>"; };
+		5257FAF216C954E00087ADD8 /* Fanfiction Downloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Fanfiction Downloader.entitlements"; sourceTree = "<group>"; };
 		52593DA515CD670300282252 /* StoryUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryUpdater.h; sourceTree = "<group>"; };
 		52593DA615CD670300282252 /* StoryUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryUpdater.m; sourceTree = "<group>"; };
 		52593DA915CD671500282252 /* StoryRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryRenderer.h; sourceTree = "<group>"; };
@@ -425,6 +428,7 @@
 		52B7E37115CC985200A686E9 /* Fanfiction Downloader */ = {
 			isa = PBXGroup;
 			children = (
+				5257FAF216C954E00087ADD8 /* Fanfiction Downloader.entitlements */,
 				5206250015CFDFE10007C96D /* Generate Kindle files */,
 				520624FF15CFDFB20007C96D /* Sending emails */,
 				520624FE15CFDF950007C96D /* User Interface */,
@@ -440,6 +444,7 @@
 		52B7E37215CC985200A686E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52473B6216D2E1C70093B60E /* AlertStopIcon.icns */,
 				52AD5FAD15D29DCC0078531D /* AddStoryView.strings */,
 				52AD5FB015D29DCF0078531D /* Credits.rtf */,
 				52AD5FB315D29DD20078531D /* InfoPlist.strings */,
@@ -612,6 +617,7 @@
 				529984D515D4143000227F44 /* MainMenu.strings in Resources */,
 				529984D615D4143000227F44 /* Settings.strings in Resources */,
 				529984D715D4143000227F44 /* UpdateProgressWindowController.strings in Resources */,
+				52473B6316D2E1C70093B60E /* AlertStopIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +844,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Torsten Kammer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -856,6 +863,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 			};
 			name = Debug;
@@ -869,6 +877,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Torsten Kammer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -880,6 +889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 			};
 			name = Release;
@@ -887,6 +897,7 @@
 		52B7E38615CC985200A686E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Fanfiction Downloader/Fanfiction Downloader.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanfiction Downloader/Fanfiction Downloader-Prefix.pch";
@@ -899,6 +910,7 @@
 		52B7E38715CC985200A686E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Fanfiction Downloader/Fanfiction Downloader.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fanfiction Downloader/Fanfiction Downloader-Prefix.pch";

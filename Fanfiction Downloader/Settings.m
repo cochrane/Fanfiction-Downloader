@@ -108,7 +108,7 @@
 		[delegate changeToURL:savePanel.URL];
 		
 		// Store as default
-		NSData *data = [savePanel.URL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+		NSData *data = [savePanel.URL bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 		[[NSUserDefaults standardUserDefaults] setObject:data forKey:DefaultsExternalStoreBookmarkKey];
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:DefaultsUseExternalStoreKey];
 		
@@ -151,7 +151,7 @@
 		[self.storyListPopup selectItem:locationMarkerItem];
 		
 		// Store as default
-		NSData *data = [openPanel.URL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+		NSData *data = [openPanel.URL bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 		[[NSUserDefaults standardUserDefaults] setObject:data forKey:DefaultsExternalStoreBookmarkKey];
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:DefaultsUseExternalStoreKey];
 		

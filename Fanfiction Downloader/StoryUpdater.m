@@ -59,6 +59,7 @@
 						__strong id strongDelegate = self.delegate;
 						[strongDelegate storyUpdaterEncounteredError:error];
 						[strongDelegate storyUpdaterFinishedStory:entry];
+						entry.updateError = error;
 					});
 					return;
 				}
@@ -72,11 +73,15 @@
 					entry.wordCountChangedSinceLastSend = NO;
 					entry.chapterCountChangedSinceLastSend = NO;
 				}
+				else
+				{
+					entry.updateError = mailError;
+				}
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
 					__strong id strongDelegate = self.delegate;
-					if (!success)[strongDelegate storyUpdaterEncounteredError:error];
+					if (!success)[strongDelegate storyUpdaterEncounteredError:mailError];
 					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 			}

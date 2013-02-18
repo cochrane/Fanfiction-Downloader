@@ -10,12 +10,15 @@
 
 #import "NSXMLNode+QuickerXPath.h"
 #import "StoryOverview.h"
+#import "StoryID.h"
 
 static NSString *chapterTitleXPath = @"//select[@id='chap_select']//option[@selected]";
 static NSString *chapterTitleRegexp = @"^(\\d+)\\. (.+)$";
 static NSString *titleXPath = @"//table[@id='gui_table1i']//b[1]";
 
 static NSString *contentXPath = @"//div[@id='storytext']";
+
+static NSString *warningXPath = @"//span[@class='gui_warning']";
 
 static NSRegularExpression *chapterTitleExpression;
 
@@ -33,7 +36,8 @@ static NSRegularExpression *chapterTitleExpression;
 	// Create document. Turn into string by hand, since NSXMLDocument can't deal with HTML5-style encoding declarations.
 	NSString *dataAsUTF8 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
-	if (!document) return NO;
+	if (!document)
+		return NO;
 	
 	// Find chapter title
 	NSString *chapterLabel = [document firstTextForXPath:chapterTitleXPath error:error];
@@ -54,7 +58,19 @@ static NSRegularExpression *chapterTitleExpression;
 	
 	// Find story
 	NSXMLNode *story = [document firstNodeForXPath:contentXPath error:error];
-	if (story == nil) return NO;
+	if (story == nil)
+	{
+		NSString *errorMessage = [document allTextForXPath:warningXPath error:error];
+		if (errorMessage && error && !*error)
+		{
+			StoryOverview *overview = self.overview;
+			*error = [NSError errorWithDomain:@"FF" code:1 userInfo:@{
+				   NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Did not find text for chapter %lu of story %lu on Fanfiction.net", @"story node not found"), self.number, overview.storyID.siteSpecificID],
+	   NSLocalizedRecoverySuggestionErrorKey : [NSString stringWithFormat:NSLocalizedString(@"The site reported the error: “%@”", errorMessage), errorMessage]
+					  }];
+		}
+		return NO;
+	}
 	
 	// Strip all attributes from hr elements.
 	NSArray *hrElements = [story nodesForXPath:@"//hr" error:error];

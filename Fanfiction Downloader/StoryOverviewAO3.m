@@ -82,14 +82,18 @@ static NSURL *baseURL;
 	NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:dataAsUTF8 options:NSXMLDocumentTidyHTML error:error];
 	if (!document) return NO;
 
-	self.author = [document firstTextForXPath:authorXPath error:error];
+	NSString *author = [document firstTextForXPath:authorXPath error:error];
+	if (author) self.author = author;
 	self.authorURL = [NSURL URLWithString:[document firstTextForXPath:authorURLXPath error:error] relativeToURL:baseURL];
 	self.characters = [document allTextsForXPath:charactersXPath error:error];
-	self.fandoms = [document allTextsForXPath:fandomsXPath error:error];
+	NSArray *fandoms = [document allTextsForXPath:fandomsXPath error:error];
+	if (fandoms) self.fandoms = fandoms;
 	self.rating = [document firstTextForXPath:ratingXPath error:error];
 	self.relationships = [document allTextsForXPath:relationshipsXPath error:error];
-	self.summary = [document firstTextForXPath:summaryXPath error:error];
-	self.title = [[document firstTextForXPath:titleXPath error:error] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *summary = [document firstTextForXPath:summaryXPath error:error];
+	if (summary) self.summary = summary;
+	NSString *title = [[document firstTextForXPath:titleXPath error:error] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if (title) self.title = title;
 	self.tags = [document allTextsForXPath:tagsXPath error:error];
 	self.warnings = [document allTextsForXPath:warningsXPath error:error];
 	

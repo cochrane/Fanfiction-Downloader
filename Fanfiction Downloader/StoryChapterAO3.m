@@ -33,6 +33,16 @@ static NSString *endNotesXPath = @"//div[@id='work_endnotes']/blockquote[@class=
 	
 	// Remove the first element, which is an H3 element containing simply the heading Chapter Text
 	NSXMLElement *textElement = (NSXMLElement *)[document firstNodeForXPath:textXPath error:error];
+	if (!textElement)
+	{
+		if (error)
+			*error = [NSError errorWithDomain:@"AO3" code:1 userInfo:@{
+				   NSLocalizedDescriptionKey : NSLocalizedString(@"The story chapter could not be read.", @"ao3: text element not found"),
+		  NSLocalizedRecoveryOptionsErrorKey : NSLocalizedString(@"The format used by Ao3 may have changed. Please update Fanfiction Downloader to the newest version.", @"ao3: text element not found")
+					  }];
+		return NO;
+	}
+	
 	NSUInteger firstElementIndex = 0;
 	while ([textElement childAtIndex:firstElementIndex].kind != NSXMLElementKind)
 		firstElementIndex += 1;

@@ -10,6 +10,7 @@
 
 #import "NSXMLNode+QuickerXPath.h"
 #import "StoryOverview.h"
+#import "StoryID.h"
 
 @implementation StoryChapter
 
@@ -40,7 +41,17 @@
 
 	NSURLRequest *request = [NSURLRequest requestWithURL:chapterURL cachePolicy:policy timeoutInterval:5.0];
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:NULL error:error];
-	if (!data) return NO;
+	if (!data)
+	{
+		if (error && !*error)
+		{
+			*error = [NSError errorWithDomain:@"StoryChapter" code:1 userInfo:@{
+				   NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Could not load chapter %lu of story %lu on %@", @"loadDataFromCache:error: failed"), self.number, overview.storyID.siteSpecificID, overview.storyID.localizedSiteName],
+				   NSLocalizedDescriptionKey : NSLocalizedString(@"The story may have been deleted", @"loadDataFromCache:error: failed"),
+					  }];
+		}
+		return NO;
+	}
 	
 	return [self updateWithHTMLData:data error:error];
 }

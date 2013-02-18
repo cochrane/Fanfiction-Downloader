@@ -31,6 +31,7 @@ static NSOperationQueue *imageLoadingQueue;
 @property (nonatomic, readwrite) StoryOverview *overview;
 
 - (void)loadImage;
+- (void)loadErrorImage;
 
 @end
 
@@ -119,6 +120,7 @@ static NSOperationQueue *imageLoadingQueue;
 		if (error)
 		{
 			handler(error);
+			self.updateError = error;
 			return;
 		};
 		
@@ -153,9 +155,19 @@ static NSOperationQueue *imageLoadingQueue;
 - (void)loadDisplayValuesErrorHandler:(void (^) (NSError *error)) handler;
 {
 	[self loadDataFromCache:YES completionHandler:^(NSError *error){
-		if (error != nil && handler != NULL)
-			handler(error);
+		if (error != nil)
+		{
+			self.updateError = error;
+			if (handler != NULL)
+				handler(error);
+		}
 	}];
+}
+
+- (void)setUpdateError:(NSError *)updateError
+{
+	_updateError = updateError;
+	[self loadErrorImage];
 }
 
 - (void)loadImage
@@ -191,6 +203,11 @@ static NSOperationQueue *imageLoadingQueue;
 			self.image = [[NSImage alloc] initWithData:data];
 		});
 	}];
+}
+
+- (void)loadErrorImage
+{
+	self.image = [NSImage imageNamed:@"AlertStopIcon"];
 }
 
 @end

@@ -38,6 +38,8 @@
 @property (retain, nonatomic, readonly) NSImage *image;
 @property (copy, nonatomic, readonly) NSString *summary;
 
+@property (nonatomic) NSError *updateError;
+
 @property (nonatomic, readonly) StoryOverview *overview;
 
 - (void)loadDataFromCache:(BOOL)useCacheWherePossible completionHandler:(void (^) (NSError *error))handler;
