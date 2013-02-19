@@ -1,6 +1,8 @@
 Fanfiction Downloader
 =====================
 
+**Download now at <http://ferroequinologist.de/software/fanfictiondownloader/Fanfiction Downloader 0.2.zip>**
+
 The Fanfiction Downloader is a Mac OS X app to track stories on [FanFiction.net][] and send them to your Kindle. When you click the "Update" button, it check which stories have been changed since the last time and then send them via E-mail to [Amazon][]. As soon as Amazon has processed the file, it will be ready for download to your Kindle, either right away or the next time WLAN is available.
 
 This is heavily inspired by [cryzed's Lemon][lemon] python script, but with a graphical user interface, and written completely in Objective C. The only actual code I copied (with adaptions) was the HTML template.
