@@ -10,7 +10,7 @@ This is heavily inspired by [cryzed's Lemon][lemon] python script, but with a gr
 Getting started
 ---------------
 
-1.	Download the newest version from "Downloads".
+1.	Download the newest version from <http://ferroequinologist.de/software/fanfictiondownloader/Fanfiction%20Downloader%200.2.zip>.
 2.	When it first runs, it will ask you for your Kindle's email address and your sender email address. The sender email address has to be one that Mail can use.
 3.	Add stories, either by clicking "+" or by dragging and dropping story URLs into the story window.
 4.	Send the stories to your Kindle by clicking the update button (lower right).

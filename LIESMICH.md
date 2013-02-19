@@ -1,7 +1,7 @@
 Fanfiction Downloader
 =====================
 
-**Download jetzt unter <http://ferroequinologist.de/software/fanfictiondownloader/Fanfiction%20Downloader%200.2.zip**
+**Download jetzt unter <http://ferroequinologist.de/software/fanfictiondownloader/Fanfiction%20Downloader%200.2.zip>**
 
 Der Fanfiction Downloader ist ein Mac OS X Programm um Geschichten auf [FanFiction.net][] zu verwalten und auf Kindle zu schicken. Der Update-Button sucht automatisch, welche Geschichten geändert wurden seit dem letzten Versenden, und schickt sie per E-mail an [Amazon][]. Sobald sie dort verarbeitet wurden, werden sie bei nächster Gelegenheit auf den Kindle heruntergeladen.
 
@@ -10,7 +10,7 @@ Das Projekt ist stark inspiriert von [cryzeds Lemon][lemon], ein Python Skript. 
 Anleitung
 ---------
 
-1.	Die neueste Version kann unter "Downloads" heruntergeladen werden.
+1.	Die neueste Version kann unter <http://ferroequinologist.de/software/fanfictiondownloader/Fanfiction%20Downloader%200.2.zip> heruntergeladen werden.
 2.	Beim ersten Start wird das Programm nach der E-mail-Adresse des Kindles und der Absenderadresse fragen. Die Absenderadresse muss in Mail bekannt sein, denn das Programm schickt die E-mails über Mail.
 3.	Geschichten kann man über den "+"-Button hinzufügen, oder in dem man Links per Drag-and-Drop ins Hauptfenster zieht.
 4.	Der Update-Button (oder das entsprechende Menü-Item) sorgen dann dafür, dass die Emails gesendet werden.
