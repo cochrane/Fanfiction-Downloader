@@ -14,6 +14,10 @@
 		523D59B215CE7EF300ECE017 /* FileTemplateMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 523D59B115CE7EF300ECE017 /* FileTemplateMarker.m */; };
 		523D59B915CF39EB00ECE017 /* LemonImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 523D59B815CF39EB00ECE017 /* LemonImporter.m */; };
 		52473B6316D2E1C70093B60E /* AlertStopIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 52473B6216D2E1C70093B60E /* AlertStopIcon.icns */; };
+		52473B6616D374D30093B60E /* MultipleErrorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52473B6516D374D30093B60E /* MultipleErrorsViewController.m */; };
+		52473B6816D374E80093B60E /* MultipleErrorsAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52473B6716D374E80093B60E /* MultipleErrorsAccessoryView.xib */; };
+		52473B6B16D376DD0093B60E /* ErrorTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52473B6A16D376DD0093B60E /* ErrorTableCellView.m */; };
+		52473B6E16D37A410093B60E /* NSError+AddKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 52473B6D16D37A410093B60E /* NSError+AddKey.m */; };
 		52593DA715CD670300282252 /* StoryUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DA615CD670300282252 /* StoryUpdater.m */; };
 		52593DAB15CD671500282252 /* StoryRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DAA15CD671500282252 /* StoryRenderer.m */; };
 		52593DAE15CD831000282252 /* StoryTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52593DAD15CD831000282252 /* StoryTableDataSource.m */; };
@@ -127,6 +131,13 @@
 		523D59B715CF39EB00ECE017 /* LemonImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LemonImporter.h; sourceTree = "<group>"; };
 		523D59B815CF39EB00ECE017 /* LemonImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LemonImporter.m; sourceTree = "<group>"; };
 		52473B6216D2E1C70093B60E /* AlertStopIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AlertStopIcon.icns; sourceTree = "<group>"; };
+		52473B6416D374D30093B60E /* MultipleErrorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleErrorsViewController.h; sourceTree = "<group>"; };
+		52473B6516D374D30093B60E /* MultipleErrorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleErrorsViewController.m; sourceTree = "<group>"; };
+		52473B6716D374E80093B60E /* MultipleErrorsAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleErrorsAccessoryView.xib; sourceTree = "<group>"; };
+		52473B6916D376DD0093B60E /* ErrorTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorTableCellView.h; sourceTree = "<group>"; };
+		52473B6A16D376DD0093B60E /* ErrorTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorTableCellView.m; sourceTree = "<group>"; };
+		52473B6C16D37A410093B60E /* NSError+AddKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+AddKey.h"; sourceTree = "<group>"; };
+		52473B6D16D37A410093B60E /* NSError+AddKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+AddKey.m"; sourceTree = "<group>"; };
 		5257FAF216C954E00087ADD8 /* Fanfiction Downloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Fanfiction Downloader.entitlements"; sourceTree = "<group>"; };
 		52593DA515CD670300282252 /* StoryUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryUpdater.h; sourceTree = "<group>"; };
 		52593DA615CD670300282252 /* StoryUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryUpdater.m; sourceTree = "<group>"; };
@@ -321,6 +332,8 @@
 				52F92C3B15D1E8890037648F /* SheetController.m */,
 				52BBA6CE1699DE3500DF3140 /* UserDefaultsKeys.h */,
 				52BBA6CF1699DE3500DF3140 /* UserDefaultsKeys.m */,
+				52473B6416D374D30093B60E /* MultipleErrorsViewController.h */,
+				52473B6516D374D30093B60E /* MultipleErrorsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -332,6 +345,9 @@
 				526A585115CD53E200EB2D63 /* AddStoryView.xib */,
 				52593DBF15CD917100282252 /* Settings.xib */,
 				5266901715CF29CB000F5D0E /* UpdateProgressWindowController.xib */,
+				52473B6716D374E80093B60E /* MultipleErrorsAccessoryView.xib */,
+				52473B6916D376DD0093B60E /* ErrorTableCellView.h */,
+				52473B6A16D376DD0093B60E /* ErrorTableCellView.m */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -467,6 +483,8 @@
 				52B7E39015CCA18900A686E9 /* NSXMLNode+QuickerXPath.m */,
 				52ED9E2F169998F20082EABB /* NSArray+Map.h */,
 				52ED9E30169998F20082EABB /* NSArray+Map.m */,
+				52473B6C16D37A410093B60E /* NSError+AddKey.h */,
+				52473B6D16D37A410093B60E /* NSError+AddKey.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -618,6 +636,7 @@
 				529984D615D4143000227F44 /* Settings.strings in Resources */,
 				529984D715D4143000227F44 /* UpdateProgressWindowController.strings in Resources */,
 				52473B6316D2E1C70093B60E /* AlertStopIcon.icns in Resources */,
+				52473B6816D374E80093B60E /* MultipleErrorsAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +726,9 @@
 				52FA2CF516A0458C00CE57DA /* StoryChapterFF.m in Sources */,
 				5262A14416A078EC008655FF /* StoryOverviewAO3.m in Sources */,
 				5262A14816A09F7A008655FF /* StoryChapterAO3.m in Sources */,
+				52473B6616D374D30093B60E /* MultipleErrorsViewController.m in Sources */,
+				52473B6B16D376DD0093B60E /* ErrorTableCellView.m in Sources */,
+				52473B6E16D37A410093B60E /* NSError+AddKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
