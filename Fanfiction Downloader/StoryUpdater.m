@@ -8,6 +8,7 @@
 
 #import "StoryUpdater.h"
 
+#import "NSError+AddKey.h"
 #import "StoryChapter.h"
 #import "StoryList.h"
 #import "StoryListEntry.h"
@@ -37,7 +38,7 @@
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
 					__strong id strongDelegate = self.delegate;
-					[strongDelegate storyUpdaterEncounteredError:error];
+					[strongDelegate storyUpdaterEncounteredError:[error errorByAddingUserInfoKeysAndValues:@{ @"StoryListEntry" : entry }]];
 					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 				return;
@@ -57,9 +58,9 @@
 					dispatch_async(dispatch_get_main_queue(), ^{
 						_storiesUpdatedSoFar++;
 						__strong id strongDelegate = self.delegate;
-						[strongDelegate storyUpdaterEncounteredError:error];
+						[entry loadErrorImage];
+						[strongDelegate storyUpdaterEncounteredError:[error errorByAddingUserInfoKeysAndValues:@{ @"StoryListEntry" : entry }]];
 						[strongDelegate storyUpdaterFinishedStory:entry];
-						entry.updateError = error;
 					});
 					return;
 				}
@@ -73,15 +74,15 @@
 					entry.wordCountChangedSinceLastSend = NO;
 					entry.chapterCountChangedSinceLastSend = NO;
 				}
-				else
-				{
-					entry.updateError = mailError;
-				}
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					_storiesUpdatedSoFar++;
 					__strong id strongDelegate = self.delegate;
-					if (!success)[strongDelegate storyUpdaterEncounteredError:mailError];
+					if (!success)
+					{
+						[entry loadErrorImage];
+						[strongDelegate storyUpdaterEncounteredError:[mailError errorByAddingUserInfoKeysAndValues:@{ @"StoryListEntry" : entry }]];
+					}
 					[strongDelegate storyUpdaterFinishedStory:entry];
 				});
 			}

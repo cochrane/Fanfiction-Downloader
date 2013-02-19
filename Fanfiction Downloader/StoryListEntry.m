@@ -8,6 +8,7 @@
 
 #import "StoryListEntry.h"
 
+#import "NSError+AddKey.h"
 #import "StoryChapter.h"
 #import "StoryID.h"
 #import "StoryOverview.h"
@@ -31,7 +32,6 @@ static NSOperationQueue *imageLoadingQueue;
 @property (nonatomic, readwrite) StoryOverview *overview;
 
 - (void)loadImage;
-- (void)loadErrorImage;
 
 @end
 
@@ -124,8 +124,8 @@ static NSOperationQueue *imageLoadingQueue;
 		// Handle load error
 		if (error)
 		{
-			handler(error);
-			self.updateError = error;
+			handler([error errorByAddingUserInfoKeysAndValues:@{ @"StoryListEntry" : self }]);
+			[self loadErrorImage];
 			return;
 		};
 		
@@ -162,17 +162,11 @@ static NSOperationQueue *imageLoadingQueue;
 	[self loadDataFromCache:YES completionHandler:^(NSError *error){
 		if (error != nil)
 		{
-			self.updateError = error;
+			[self loadErrorImage];
 			if (handler != NULL)
 				handler(error);
 		}
 	}];
-}
-
-- (void)setUpdateError:(NSError *)updateError
-{
-	_updateError = updateError;
-	[self loadErrorImage];
 }
 
 - (void)loadImage
@@ -215,25 +209,14 @@ static NSOperationQueue *imageLoadingQueue;
 	self.image = [NSImage imageNamed:@"AlertStopIcon"];
 }
 
-- (NSString *)errorDescription
+- (NSString *)localizedDescription
 {
-	if (self.updateError)
-	{
-		NSMutableArray *components = [NSMutableArray arrayWithCapacity:3];
-		
-		if (self.updateError.localizedDescription)
-			[components addObject:self.updateError.localizedDescription];
-		
-		if (self.updateError.localizedFailureReason)
-			[components addObject:self.updateError.localizedFailureReason];
-		
-		if (self.updateError.localizedRecoverySuggestion)
-			[components addObject:self.updateError.localizedRecoverySuggestion];
-		
-		return [components componentsJoinedByString:@"\n"];
-	}
+	if (self.title && self.author)
+		return [NSString stringWithFormat:NSLocalizedString(@"“%@” by %@", @"story description - title and author"), self.title, self.author];
+	else if (self.title)
+		return self.title;
 	else
-		return nil;
+		return self.storyID.localizedDescription;
 }
 
 @end

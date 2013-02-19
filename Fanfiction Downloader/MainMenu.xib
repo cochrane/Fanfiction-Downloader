@@ -1886,22 +1886,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">headerTitle: arrangedObjects.errorDescription</string>
-						<reference key="source" ref="5013928"/>
-						<reference key="destination" ref="1060587499"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="5013928"/>
-							<reference key="NSDestination" ref="1060587499"/>
-							<string key="NSLabel">headerTitle: arrangedObjects.errorDescription</string>
-							<string key="NSBinding">headerTitle</string>
-							<string key="NSKeyPath">arrangedObjects.errorDescription</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">730</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.summary</string>
 						<reference key="source" ref="405785327"/>
 						<reference key="destination" ref="1060587499"/>

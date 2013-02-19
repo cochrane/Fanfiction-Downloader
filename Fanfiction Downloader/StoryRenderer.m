@@ -98,7 +98,7 @@ static FileTemplate *storyTemplate;
 								   @"isComplete" : self.overview.isComplete ? NSLocalizedString(@"Complete", @"story status") : NSLocalizedString(@"In progress", @"story status"),
 								   @"published" : [dateFormatter stringFromDate:self.overview.published],
 								   @"rating" : self.overview.rating,
-								   @"summary" : self.overview.summary,
+								   @"summary" : self.overview.summary ? self.overview.summary : @"",
 								   @"title" : self.overview.title,
 								   @"updated" : [dateFormatter stringFromDate:self.overview.updated],
 								   @"wordCount" : [countNumberFormatter stringFromNumber:@(self.overview.wordCount)] }];
@@ -146,7 +146,8 @@ static FileTemplate *storyTemplate;
 
 - (NSString *)summary
 {
-	return self.overview.summary;
+	if (self.overview.summary) return self.overview.summary;
+	else return NSLocalizedString(@"No summary", @"marker in place of summary for email sending");
 }
 
 @end

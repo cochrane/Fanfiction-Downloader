@@ -31,5 +31,6 @@ typedef enum __StorySite {
 - (BOOL)isEqual:(id)object;
 
 @property (nonatomic, readonly) NSString *localizedSiteName;
+@property (nonatomic, readonly) NSString *localizedDescription;
 
 @end

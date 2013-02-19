@@ -32,5 +32,9 @@
 {
 	[self.parent showError:error resumeAfter:resume];
 }
+- (void)showAlert:(NSAlert *)alert resumeAfter:(BOOL)resume;
+{
+	[self.parent showAlert:alert resumeAfter:resume];
+}
 
 @end

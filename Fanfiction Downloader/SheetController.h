@@ -18,5 +18,6 @@
 - (void)end;
 
 - (void)showError:(NSError *)error resumeAfter:(BOOL)resume;
+- (void)showAlert:(NSAlert *)alert resumeAfter:(BOOL)resume;
 
 @end

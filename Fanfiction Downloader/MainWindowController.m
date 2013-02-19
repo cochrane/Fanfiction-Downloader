@@ -13,7 +13,7 @@
 @interface MainWindowController ()
 
 - (BOOL)hasSheet;
-- (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo;
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 
 @property (retain, nonatomic) SheetController *sheetToRestoreAfterError;
 
@@ -64,6 +64,10 @@
 
 - (void)showError:(NSError *)error resumeAfter:(BOOL)resume;
 {
+	[self showAlert:[NSAlert alertWithError:error] resumeAfter:resume];
+}
+- (void)showAlert:(NSAlert *)alert resumeAfter:(BOOL)resume;
+{
 	if ([self hasSheet] && self.currentSheet == nil)
 	{
 		NSLog(@"Cannot show error due to non-managed sheet active.");
@@ -75,9 +79,9 @@
 	if (self.currentSheet != nil)
 		[self endSheet];
 	
-	[self.window presentError:error modalForWindow:self.window delegate:self didPresentSelector:@selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
+	[alert beginSheetModalForWindow:self.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 }
-- (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo;
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 {
 	if (self.sheetToRestoreAfterError != nil)
 		[self startSheet:self.sheetToRestoreAfterError];

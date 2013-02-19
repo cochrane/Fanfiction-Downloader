@@ -8,12 +8,14 @@
 
 #import "UpdateProgressWindowController.h"
 
+#import "MultipleErrorsViewController.h"
 #import "StoryList.h"
 #import "StoryListEntry.h"
 
 @interface UpdateProgressWindowController ()
 
 @property (nonatomic) NSMutableArray *errors;
+@property (nonatomic) MultipleErrorsViewController *multipleErrorsViewController;
 
 @end
 
@@ -72,10 +74,13 @@
 				[self showError:self.errors.lastObject resumeAfter:NO];
 			else if (self.errors.count > 1)
 			{
-				NSError *cumulativeError = [NSError errorWithDomain:@"domain" code:4512 userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"There were multiple errors", @"more than one error during update"),
-								  NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"Check your network connection and/or try again. I don't know.", @"more than one error during update") }];
+				if (!self.multipleErrorsViewController)
+					self.multipleErrorsViewController = [[MultipleErrorsViewController alloc] init];
 				
-				[self showError:cumulativeError resumeAfter:NO];
+				self.multipleErrorsViewController.errors = self.errors;
+				NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"There were multiple errors", @"more than one error during update") defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:NSLocalizedString(@"Check your network connection and/or try again. I don't know.", @"more than one error during update")];
+				alert.accessoryView = self.multipleErrorsViewController.view;
+				[self showAlert:alert resumeAfter:NO];
 			}
 			else
 				[self end];

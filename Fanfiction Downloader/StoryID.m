@@ -183,4 +183,9 @@ static NSString *KeyNumber = @"number";
 	}
 }
 
+- (NSString *)localizedDescription
+{
+	return [NSString stringWithFormat:NSLocalizedString(@"Story %lu on %@", @"story id description"), self.siteSpecificID, self.localizedSiteName];
+}
+
 @end

@@ -19,5 +19,6 @@
 - (void)endSheet;
 
 - (void)showError:(NSError *)error resumeAfter:(BOOL)resume;
+- (void)showAlert:(NSAlert *)error resumeAfter:(BOOL)resume;
 
 @end
